@@ -42,7 +42,7 @@ public class ThongKePanel extends javax.swing.JPanel {
     public ThongKePanel() {
         initComponents();
         loadData();
-        TongTien();
+//        TongTien();
         selectHomNay();
         loadTableSPsapHet();
     }
@@ -1022,19 +1022,18 @@ public class ThongKePanel extends javax.swing.JPanel {
         }
     }
 
-    private void TongTien() {
-        HoaDon hd = new HoaDon();
-        DecimalFormat x = new DecimalFormat("###,###,###");
-        double Tong = 0;
-        for (int i = 0; i < tbdoanhthu.getRowCount(); i++) {
-            Tong += Double.parseDouble(tbdoanhthu.getValueAt(i, 2).toString());
-        }
-        lbltong.setText(x.format(Tong) + "" + " VND");
-        lblTHD.setText(hdservice.GetListHoaSon().size() + " " + " Đơn ");
-        lblhdHuy.setText(hdservice.finbyngaytrangThai(2).size() + " " + " Đơn ");
-        lblhdThanhcong.setText(hdservice.finbyngaytrangThai(5).size() + " " + " Đơn ");
-
-    }
+//    private void TongTien() {
+//        HoaDon hd = new HoaDon();
+//        DecimalFormat x = new DecimalFormat("###,###,###");
+//        double Tong = 0;
+//        for (int i = 0; i < tbdoanhthu.getRowCount(); i++) {
+//            Tong += Double.parseDouble(tbdoanhthu.getValueAt(i, 2).toString());
+//        }
+//        lbltong.setText(x.format(Tong) + "" + " VND");
+//        lblTHD.setText(hdservice.GetListHoaSon().size() + " " + " Đơn ");
+//        lblhdHuy.setText(hdservice.finbyngaytrangThai(2).size() + " " + " Đơn ");
+//        lblhdThanhcong.setText(hdservice.finbyngaytrangThai(5).size() + " " + " Đơn ");
+//    }
 
     private void selectHomNay() {
         DecimalFormat x = new DecimalFormat("###,###,###");
