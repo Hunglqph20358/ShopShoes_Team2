@@ -5,6 +5,7 @@
 package com.mycompany.Service.IPM;
 
 import com.mycompany.DomainModels.HoaDon;
+import com.mycompany.DomainModels.ThongKe;
 import com.mycompany.Repository.HoaDonRepository;
 import com.mycompany.Service.HoaDonService;
 import com.mycompany.ViewModel.BanHang.HoaDonViewModels;
@@ -137,6 +138,53 @@ public class HoaDonServiceIpm implements HoaDonService {
             lst_view.add(ql);
         }
         return lst_view;
+    }
+
+    
+    @Override
+    public List<HoaDonViewModels> GetListHoaSon() {
+        List<HoaDonViewModels> list = new ArrayList();
+        var HD = hoaDonRepository.getAllHoaDon();
+        for (HoaDon hd : HD) {
+            list.add(new HoaDonViewModels(hd.getMaHD(), hd.getNgayThanhToan(), hd.getTrangThai(), hd.getTongTien()));
+        }
+        return list;
+    }
+
+    @Override
+    public ArrayList<HoaDonViewModels> finbyngaythanhToan(String timkiem) {
+        ArrayList<HoaDonViewModels> list = new ArrayList();
+        var HD = hoaDonRepository.finByNgayThanhToan(timkiem);
+        for (HoaDon hd : HD) {
+            list.add(new HoaDonViewModels(hd.getMaHD(), hd.getNgayThanhToan(), hd.getTrangThai(), hd.getTongTien()));
+        }
+        return list;
+    }
+    @Override
+    public ArrayList<HoaDon> finbyngaythanhToanhomNay(int ma) {
+        return hoaDonRepository.finByNgayThanhToanHomNay(ma);
+    }
+    @Override
+    public ArrayList<HoaDon> finByNgayThanhToanandHDTK(int ma) {
+        return hoaDonRepository.finByNgayThanhToanandHDTK(ma);
+    }
+    @Override
+    public ArrayList<HoaDon> finByNgayThanhToanandHDH(int ma) {
+        return hoaDonRepository.finByNgayThanhToanandHDH(ma);
+    }
+
+    @Override
+    public ArrayList<HoaDon> finbyngaytrangThai(int ma) {
+        return hoaDonRepository.finByTrangThai(ma);
+    }
+    
+    @Override
+    public List<HoaDon> finByKhoangNgayThanhToan(String timkiem, String tk) {
+        return hoaDonRepository.finByKhoangNgayThanhToan(timkiem, tk);
+    }
+    @Override
+    public ArrayList<ThongKe>finByBieuDo() {
+        return hoaDonRepository.finByBieuDo();
     }
 
 }

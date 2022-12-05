@@ -53,5 +53,14 @@ public class HoaDon implements Serializable{
     private String GhiChu;
     private String SDTNguoiGiaoHang;
     private Integer TrangThai;
+
+    public HoaDon(String MaHD, Date NgayThanhToan, BigDecimal TongTien, Integer TrangThai) {
+        this.MaHD = MaHD;
+        this.NgayThanhToan = NgayThanhToan;
+        this.TongTien = TongTien;
+        this.TrangThai = TrangThai;
+    }
+    
+    
     
 }

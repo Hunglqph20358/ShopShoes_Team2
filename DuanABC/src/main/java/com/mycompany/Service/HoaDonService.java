@@ -5,8 +5,10 @@
 package com.mycompany.Service;
 
 import com.mycompany.DomainModels.HoaDon;
+import com.mycompany.DomainModels.ThongKe;
 import com.mycompany.ViewModel.BanHang.HoaDonViewModels;
 import com.mycompany.ViewModel.hoaDon.QLHoaDonViewModel;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -32,4 +34,21 @@ public interface HoaDonService {
     Integer updateHD(HoaDon hd);
 
     Integer updateHDDatHangThanhCong(HoaDon hd);
+    
+     //tinhph23160-----------------
+    ArrayList<HoaDonViewModels> finbyngaythanhToan(String hd);
+
+    ArrayList<HoaDon> finbyngaytrangThai(int ma);
+
+    ArrayList<HoaDon> finbyngaythanhToanhomNay(int ma);
+
+    ArrayList<HoaDon> finByNgayThanhToanandHDTK(int ma);
+
+    ArrayList<HoaDon> finByNgayThanhToanandHDH(int ma);
+
+    List<HoaDon> finByKhoangNgayThanhToan(String timkiem, String tk);
+
+    List<HoaDonViewModels> GetListHoaSon();
+
+    ArrayList<ThongKe> finByBieuDo();
 }

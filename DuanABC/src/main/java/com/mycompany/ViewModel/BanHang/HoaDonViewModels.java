@@ -22,6 +22,7 @@ public class HoaDonViewModels {
      private String Id;
     private String Ma;
     private Date ngayTao;
+    private Date ngayThanhToan;
     private String TenNV;
     private Integer TrangThai;
     private Date NgayShip;
@@ -49,4 +50,13 @@ public class HoaDonViewModels {
             return "Đã Thành Toán";
         }
     }
+
+    public HoaDonViewModels(String Ma, Date ngayThanhToan, Integer TrangThai, BigDecimal tongTien) {
+        this.Ma = Ma;
+        this.ngayThanhToan = ngayThanhToan;
+        this.TrangThai = TrangThai;
+        this.tongTien = tongTien;
+    }
+    
+    
 }
