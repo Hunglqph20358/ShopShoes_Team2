@@ -32,10 +32,10 @@ public class GiamGiaChiTiet implements Serializable{
     @GenericGenerator(name = "generator", strategy = "guid", parameters = {})
     @GeneratedValue(generator = "generator")
     private String Id;
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "IdGG")
     private PhieuGiamGia phieuGiamGia;
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "IdChiTietSP")
     private ChiTietSP chiTietSP;
     private BigDecimal GiaTriGG;

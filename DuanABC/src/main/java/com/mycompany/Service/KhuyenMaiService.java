@@ -4,8 +4,9 @@
  */
 package com.mycompany.Service;
 
-import com.mycompany.DomainModels.NhaCungCap;
+import com.mycompany.DomainModels.GiamGiaChiTiet;
 import com.mycompany.DomainModels.PhieuGiamGia;
+import com.mycompany.ViewModel.KhuyenMai.KhuyenMaiViewModel;
 import java.util.List;
 
 /**
@@ -13,11 +14,12 @@ import java.util.List;
  * @author ACER
  */
 public interface KhuyenMaiService {
-     List<PhieuGiamGia> GetALLGG();
 
-    void insert(PhieuGiamGia sp);
+    List<KhuyenMaiViewModel> getKhuyenMai();
 
-    void update(String Ma, PhieuGiamGia sp);
-    void delete(String Ma);
+    Integer add(GiamGiaChiTiet gg);
+    Integer addPGG(PhieuGiamGia pgg);
+
+    Integer update(GiamGiaChiTiet gg);
 
 }
