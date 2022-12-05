@@ -50,6 +50,19 @@ public class HoaDonRepository {
         }
         return lst;
     }
+    public List<HoaDon> getAllHDViewQLHDByTrangThai(Integer trangThai) {
+        List<HoaDon> lst = new ArrayList<>();
+        String hql = "select hd From HoaDon hd left join hd.khachHang kh left join hd.nhanVien nv where hd.TrangThai = :tt";
+        try (Session sess = HibernateUtil.getFACTORY().openSession()) {
+            Query q = sess.createQuery(hql);
+            q.setParameter("tt", trangThai);
+            lst = q.getResultList();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+        return lst;
+    }
     
     public List<HoaDon> getAllHDByTrangThai(int tt) {
         List<HoaDon> lst = new ArrayList<>();

@@ -81,6 +81,11 @@ public class HoaDonPanel extends javax.swing.JPanel {
         lblTrangThai.setText("Trạng Thái :");
 
         cbbTrangThai.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "  ", "Chưa Thanh Toán", "Chờ Thanh Toán", "Đã Thanh Toán", "Đã Hủy", "Đang Giao Hàng", "Đã Giao Hàng" }));
+        cbbTrangThai.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cbbTrangThaiItemStateChanged(evt);
+            }
+        });
 
         lblTuNgay.setText("Từ Ngày :");
 
@@ -203,6 +208,10 @@ public class HoaDonPanel extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_tblQLHoaDonMouseClicked
 
+    private void cbbTrangThaiItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbbTrangThaiItemStateChanged
+       
+    }//GEN-LAST:event_cbbTrangThaiItemStateChanged
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> cbbTrangThai;
@@ -226,6 +235,13 @@ public class HoaDonPanel extends javax.swing.JPanel {
         DefaultTableModel tblModel = (DefaultTableModel) tblQLHoaDon.getModel();
         tblModel.setRowCount(0);
         for (QLHoaDonViewModel ql : hoaDonService.getAllHDViewQLHD()) {
+            tblModel.addRow(new Object[]{ql.getMaHD(),ql.getHoTenNV(),ql.getTenKH(),ql.getTongTien(),ql.getNgayTao(),ql.getNgayThanhToan(),ql.getGhiChu(),ql.getTrangThai()});
+        }
+    }
+    private void fillToHoaDonByTrangThai(Integer trangThai) {
+        DefaultTableModel tblModel = (DefaultTableModel) tblQLHoaDon.getModel();
+        tblModel.setRowCount(0);
+        for (QLHoaDonViewModel ql : hoaDonService.getAllHDViewQLHDByTrangThai(trangThai)) {
             tblModel.addRow(new Object[]{ql.getMaHD(),ql.getHoTenNV(),ql.getTenKH(),ql.getTongTien(),ql.getNgayTao(),ql.getNgayThanhToan(),ql.getGhiChu(),ql.getTrangThai()});
         }
     }

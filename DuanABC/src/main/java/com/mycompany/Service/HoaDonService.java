@@ -14,22 +14,22 @@ import java.util.List;
  * @author FPT
  */
 public interface HoaDonService {
-    
+
     List<HoaDonViewModels> getAllHD();
-    
-    public List<QLHoaDonViewModel> getAllHDViewQLHD();
-    
+
+    List<QLHoaDonViewModel> getAllHDViewQLHD();
+
+    List<QLHoaDonViewModel> getAllHDViewQLHDByTrangThai(Integer trangThai);
+
     List<HoaDonViewModels> getAllHDByTrangThai(int tt);
-    
+
     List<HoaDon> getAllHDCheckMa();
-    
-    
+
     Integer updateHDDatHang(HoaDon hd);
 
     Integer addHD(HoaDon hd);
-    
+
     Integer updateHD(HoaDon hd);
-    
-    
+
     Integer updateHDDatHangThanhCong(HoaDon hd);
 }
