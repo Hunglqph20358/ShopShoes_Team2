@@ -122,7 +122,7 @@ public class HoaDonServiceIpm implements HoaDonService {
 
     @Override
     public List<QLHoaDonViewModel> getAllHDViewQLHDByTrangThai(Integer trangThai) {
-        List<HoaDon> lst = hoaDonRepository.getAllHDViewQLHD();
+        List<HoaDon> lst = hoaDonRepository.getAllHDViewQLHDByTrangThai(trangThai);
         List<QLHoaDonViewModel> lst_view = new ArrayList<>();
         for (HoaDon hd : lst) {
             String hoTen= null;
@@ -139,7 +139,46 @@ public class HoaDonServiceIpm implements HoaDonService {
         }
         return lst_view;
     }
-
+    @Override
+    public List<QLHoaDonViewModel> getAllHDViewQLHDBySearch(String timKiem) {
+         List<HoaDon> lst = hoaDonRepository.getAllHDViewQLHDBySearch(timKiem);
+        List<QLHoaDonViewModel> lst_view = new ArrayList<>();
+        for (HoaDon hd : lst) {
+            String hoTen= null;
+            if(hd.getKhachHang() == null){
+                hoTen = " ";
+            }else{
+                hoTen = hd.getKhachHang().getHoTen();
+            }
+            QLHoaDonViewModel ql = new QLHoaDonViewModel(hd.getMaHD(),
+                    hd.getNhanVien().getHoTen(),hoTen,hd.getTongTien()
+                    ,hd.getNgayTao(), hd.getNgayThanhToan(), hd.getGhiChu(),hd.getTrangThai());
+            
+            lst_view.add(ql);
+        }
+        return lst_view;
+    }
+    @Override
+    public List<QLHoaDonViewModel> getAllHDViewQLHDByNgay(Date ngay, Date ngay2) {
+         List<HoaDon> lst = hoaDonRepository.getAllHDViewQLHDByNgay(ngay, ngay2);
+        List<QLHoaDonViewModel> lst_view = new ArrayList<>();
+        for (HoaDon hd : lst) {
+            String hoTen= null;
+            if(hd.getKhachHang() == null){
+                hoTen = " ";
+            }else{
+                hoTen = hd.getKhachHang().getHoTen();
+            }
+            QLHoaDonViewModel ql = new QLHoaDonViewModel(hd.getMaHD(),
+                    hd.getNhanVien().getHoTen(),hoTen,hd.getTongTien()
+                    ,hd.getNgayTao(), hd.getNgayThanhToan(), hd.getGhiChu(),hd.getTrangThai());
+            
+            lst_view.add(ql);
+        }
+        return lst_view;
+    }
+    //-----------------------------------------------------
+    //-----------------------------------------------------
     
     @Override
     public List<HoaDonViewModels> GetListHoaSon() {
@@ -186,5 +225,6 @@ public class HoaDonServiceIpm implements HoaDonService {
     public ArrayList<ThongKe>finByBieuDo() {
         return hoaDonRepository.finByBieuDo();
     }
+
 
 }

@@ -9,6 +9,7 @@ import com.mycompany.DomainModels.ThongKe;
 import com.mycompany.ViewModel.BanHang.HoaDonViewModels;
 import com.mycompany.ViewModel.hoaDon.QLHoaDonViewModel;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -22,6 +23,10 @@ public interface HoaDonService {
     List<QLHoaDonViewModel> getAllHDViewQLHD();
 
     List<QLHoaDonViewModel> getAllHDViewQLHDByTrangThai(Integer trangThai);
+    
+    List<QLHoaDonViewModel> getAllHDViewQLHDByNgay(Date ngay, Date ngay2);
+    
+    List<QLHoaDonViewModel> getAllHDViewQLHDBySearch(String timKiem);
 
     List<HoaDonViewModels> getAllHDByTrangThai(int tt);
 

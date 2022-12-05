@@ -70,6 +70,35 @@ public class HoaDonRepository {
         }
         return lst;
     }
+    public List<HoaDon> getAllHDViewQLHDBySearch(String timKiem) {
+        List<HoaDon> lst = new ArrayList<>();
+        String hql = "select hd From HoaDon hd left join hd.khachHang kh left join hd.nhanVien nv where hd.MaHD like :ma or nv.HoTen like :ten or kh.HoTen like :tenkh";
+        try (Session sess = HibernateUtil.getFACTORY().openSession()) {
+            Query q = sess.createQuery(hql);
+            q.setParameter("ma","%"+timKiem +"%");
+            q.setParameter("ten","%"+timKiem +"%");
+            q.setParameter("tenkh","%"+timKiem +"%");
+            lst = q.getResultList();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+        return lst;
+    }
+    public List<HoaDon> getAllHDViewQLHDByNgay(Date ngay, Date ngay2) {
+        List<HoaDon> lst = new ArrayList<>();
+        String hql = "select hd From HoaDon hd left join hd.khachHang kh left join hd.nhanVien nv where hd.NgayTao between :ngay and :ngay1";
+        try (Session sess = HibernateUtil.getFACTORY().openSession()) {
+            Query q = sess.createQuery(hql);
+            q.setParameter("ngay", ngay);
+            q.setParameter("ngay1", ngay2);
+            lst = q.getResultList();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+        return lst;
+    }
     
     public List<HoaDon> getAllHDByTrangThai(int tt) {
         List<HoaDon> lst = new ArrayList<>();
@@ -364,5 +393,5 @@ public class HoaDonRepository {
     }
     //-----------------
     //----------------------
-    
+
 }

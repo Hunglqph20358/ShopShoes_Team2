@@ -218,4 +218,8 @@ public class KHRepository {
         }
         return null;
     }
+        
+        public static void main(String[] args) {
+        new KHRepository().getAllKhachHang().forEach(c -> System.out.println(c));
+    }
 }
