@@ -356,7 +356,9 @@ public class KhuyenMaiPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_btnLamMoiActionPerformed
 
     private void btnLuuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLuuActionPerformed
-        ChiTietSP ctsp = new ChiTietSP();
+        //  ChiTietSP ctsp = new ChiTietSP();
+        System.out.println(tblSanPham.getValueAt(0, 0));
+        List<ChiTietSP> list = new ArrayList<>();
         GiamGiaChiTiet ggct = new GiamGiaChiTiet();
         PhieuGiamGia pgg = new PhieuGiamGia();
         pgg.setMa(txtMa.getText());
@@ -365,22 +367,29 @@ public class KhuyenMaiPanel extends javax.swing.JPanel {
         pgg.setNgayKT(txtThoiGianKT.getDate());
         pgg.setTrangThai(chkDang.isSelected() ? 1 : 0);
         for (int i = 0; i < chiTietSPService.getAllSP().size(); i++) {
-
-            if (chiTietSPService.getAllSP().get(i).getMa().equals(tblSanPham.getValueAt(tblSanPham.getSelectedRow(), 1))) {
-                ctsp.setId(chiTietSPService.getAllSP().get(i).getId());
-
+            try {
+                if(tblSanPham.getValueAt(i, 0).toString().equalsIgnoreCase(Boolean.FALSE.toString())||tblSanPham.getValueAt(i, 0)==null){
+            }else{
+                 String id = chiTietSPService.getAllSP().get(i).getId();
+                ChiTietSP c = new ChiTietSP();
+                c.setId(id);
+                list.add(c);
+            }
+            } catch (Exception e) {
             }
 
         }
+        System.out.println(list.size());
         if (khuyenMaiService.addPGG(pgg) > 0) {
             ggct.setPhieuGiamGia(pgg);
-            ggct.setChiTietSP(ctsp);
-            ggct.setGiaTriGG(new BigDecimal(txtMuc.getText()));
-            if (khuyenMaiService.add(ggct) > 0) {
-                JOptionPane.showMessageDialog(this, "Lưu Thành Công");
-                fillTable();
-
+            for (ChiTietSP x : list) {
+                ggct.setChiTietSP(x);
+                ggct.setGiaTriGG(new BigDecimal(txtMuc.getText()));
+                khuyenMaiService.add(ggct);
             }
+            JOptionPane.showMessageDialog(this, "Lưu Thành Công");
+            fillTable();
+
         }
 
 
