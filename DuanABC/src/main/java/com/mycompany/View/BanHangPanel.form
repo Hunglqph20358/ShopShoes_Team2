@@ -243,6 +243,9 @@
                       <Properties>
                         <Property name="text" type="java.lang.String" value="jLabel2"/>
                       </Properties>
+                      <AuxValues>
+                        <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
+                      </AuxValues>
                     </Component>
                     <Component class="javax.swing.JLabel" name="lblNgayTao">
                       <Properties>
@@ -256,6 +259,9 @@
                       <Properties>
                         <Property name="text" type="java.lang.String" value="jLabel2"/>
                       </Properties>
+                      <AuxValues>
+                        <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
+                      </AuxValues>
                     </Component>
                     <Component class="javax.swing.JLabel" name="jLabel12">
                       <Properties>
@@ -524,6 +530,9 @@
                       <Properties>
                         <Property name="text" type="java.lang.String" value="0.0"/>
                       </Properties>
+                      <AuxValues>
+                        <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
+                      </AuxValues>
                     </Component>
                     <Component class="javax.swing.JLabel" name="txtTienTraLai">
                       <Properties>

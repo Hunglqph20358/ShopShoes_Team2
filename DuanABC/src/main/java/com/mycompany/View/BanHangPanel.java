@@ -1458,9 +1458,18 @@ public class BanHangPanel extends javax.swing.JPanel {
             }
             if (hoaDonService.updateHD(hd) > 0) {
                 JOptionPane.showMessageDialog(this, "Thanh Toán Thành Công!");
-                fillHoaDon();
-                fillGioHang("");
-                clearForm();
+                int luaChon = JOptionPane.showConfirmDialog(this, "Bạn có muốn In Hóa Đơn không ?");
+                if (luaChon == JOptionPane.YES_OPTION) {
+                    new InHoaDon_JFrame().setVisible(true);
+                    fillHoaDon();
+                    fillGioHang("");
+                    clearForm();
+                } else {
+                    fillHoaDon();
+                    fillGioHang("");
+                    clearForm();
+                }
+
             }
 
         } catch (Exception e) {
@@ -2080,10 +2089,10 @@ public class BanHangPanel extends javax.swing.JPanel {
     private javax.swing.JTextField txtKhachTraDatHang;
     private javax.swing.JTextField txtKhoangGia1;
     private javax.swing.JTextField txtKhoangGia2;
-    private javax.swing.JLabel txtMaHD;
+    public static javax.swing.JLabel txtMaHD;
     private javax.swing.JLabel txtMaHDDatHang;
     private com.toedter.calendar.JDateChooser txtNgayDuKien;
-    private javax.swing.JLabel txtNgayTao;
+    public static javax.swing.JLabel txtNgayTao;
     private javax.swing.JLabel txtNgayTaoDatHang;
     private javax.swing.JTextField txtPhiShip;
     public static javax.swing.JTextField txtSDTKH;
@@ -2093,7 +2102,7 @@ public class BanHangPanel extends javax.swing.JPanel {
     private javax.swing.JLabel txtTienTraLai;
     private javax.swing.JLabel txtTienTraLaiDatHang;
     private javax.swing.JTextField txtTimKiemSPBh;
-    private javax.swing.JLabel txtTongTien;
+    public static javax.swing.JLabel txtTongTien;
     private javax.swing.JLabel txtTongTienDatHang;
     // End of variables declaration//GEN-END:variables
 

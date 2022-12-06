@@ -368,13 +368,13 @@ public class KhuyenMaiPanel extends javax.swing.JPanel {
         pgg.setTrangThai(chkDang.isSelected() ? 1 : 0);
         for (int i = 0; i < chiTietSPService.getAllSP().size(); i++) {
             try {
-                if(tblSanPham.getValueAt(i, 0).toString().equalsIgnoreCase(Boolean.FALSE.toString())||tblSanPham.getValueAt(i, 0)==null){
-            }else{
-                 String id = chiTietSPService.getAllSP().get(i).getId();
-                ChiTietSP c = new ChiTietSP();
-                c.setId(id);
-                list.add(c);
-            }
+                if (tblSanPham.getValueAt(i, 0).toString().equalsIgnoreCase(Boolean.FALSE.toString()) || tblSanPham.getValueAt(i, 0) == null) {
+                } else {
+                    String id = chiTietSPService.getAllSP().get(i).getId();
+                    ChiTietSP c = new ChiTietSP();
+                    c.setId(id);
+                    list.add(c);
+                }
             } catch (Exception e) {
             }
 
