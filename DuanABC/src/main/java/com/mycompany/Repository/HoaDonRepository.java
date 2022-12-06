@@ -216,7 +216,7 @@ public class HoaDonRepository {
     //Hunglqph20358
     //------------------------
     
-     //tinhph23160
+    //tinhph23160
     public List<HoaDon> getAllHoaDon() {
         List<HoaDon> lst = new ArrayList<>();
         Transaction tran = null;
@@ -268,13 +268,16 @@ public class HoaDonRepository {
         }
         return listsp;
     }
-    public static ArrayList<HoaDon> finByNgayThanhToanHomNay(int ma) {
+   
+    
+
+    public ArrayList<HoaDon> finByNgayThanhToanandTH(int ma, int mi) {
         ArrayList<HoaDon> listsp = new ArrayList<>();
         Connection con;
         try {
             con = DBContext.getConnection();
             String sql = "SELECT MaHD, NgayThanhToan, TongTien, TrangThai\n"
-                    + " FROM     dbo.HoaDon where NgayThanhToan like '%" + ma + "%'";
+                    + " FROM     dbo.HoaDon where NgayThanhToan like '%" + ma + "%' and TrangThai like '%" + mi + "%'";
             PreparedStatement ps = con.prepareStatement(sql);
             ps.execute();
             ResultSet rs = ps.getResultSet();
@@ -288,77 +291,15 @@ public class HoaDonRepository {
         }
         return listsp;
     }
+    
 
-    public ArrayList<HoaDon> finByNgayThanhToanandHDTK(int ma) {
-        ArrayList<HoaDon> listsp = new ArrayList<>();
-        Connection con;
-        try {
-            con = DBContext.getConnection();
-            String sql = "SELECT MaHD, NgayThanhToan, TongTien, TrangThai\n"
-                    + " FROM     dbo.HoaDon where NgayThanhToan like '%" + ma + "%' and TrangThai = 5";
-            PreparedStatement ps = con.prepareStatement(sql);
-            ps.execute();
-            ResultSet rs = ps.getResultSet();
-
-            while (rs.next()) {
-                HoaDon bhsp = new HoaDon(rs.getString(1), rs.getDate(2), rs.getBigDecimal(3), rs.getInt(4));
-                listsp.add(bhsp);
-            }
-        } catch (SQLException ex) {
-            ex.printStackTrace();
-        }
-        return listsp;
-    }
-    public ArrayList<HoaDon> finByNgayThanhToanandHDH(int ma) {
-        ArrayList<HoaDon> listsp = new ArrayList<>();
-        Connection con;
-        try {
-            con = DBContext.getConnection();
-            String sql = "SELECT MaHD, NgayThanhToan, TongTien, TrangThai\n"
-                    + " FROM     dbo.HoaDon where NgayThanhToan like '%" + ma + "%' and TrangThai = 2";
-            PreparedStatement ps = con.prepareStatement(sql);
-            ps.execute();
-            ResultSet rs = ps.getResultSet();
-
-            while (rs.next()) {
-                HoaDon bhsp = new HoaDon(rs.getString(1), rs.getDate(2), rs.getBigDecimal(3), rs.getInt(4));
-                listsp.add(bhsp);
-            }
-        } catch (SQLException ex) {
-            ex.printStackTrace();
-        }
-        return listsp;
-    }
-
-//    public static List<HoaDon> finByKhoangNgayThanhToan(Date min, Date max) {
-//        List<HoaDon> listsp = new ArrayList<>();
-//        Connection con;
-//        try {
-//            con = DBContext.getConnection();
-//            String sql = "MaHD, NgayThanhToan, TongTien, TrangThai \n"
-//                    + "    FROM HoaDon  where NgayThanhToan  between '%" + min + "%' and  '%" + max + "%'";
-//
-//            PreparedStatement ps = con.prepareStatement(sql);
-//            ResultSet rs = ps.executeQuery();
-//
-//            while (rs.next()) {
-//                HoaDon bhsp = new HoaDon(rs.getString(1), rs.getDate(2), rs.getBigDecimal(3), rs.getInt(4));
-//                listsp.add(bhsp);
-//            }
-//
-//        } catch (SQLException ex) {
-//            ex.printStackTrace();
-//        }
-//        return listsp;
-//    }
-    public List<HoaDon> finByKhoangNgayThanhToan(String gia, String gia2) {
+    public List<HoaDon> finByKhoangNgayThanhToan(Date ngay, Date ngay1) {
         List<HoaDon> lst = new ArrayList<>();
+        String hql = "select hd From HoaDon hd where hd.NgayThanhToan between :ngay and :ngay1" ;
         try (Session sess = HibernateUtil.getFACTORY().openSession()) {
-            Query q = sess.createQuery("SELECT MaHD, NgayTao, NgayThanhToan, TongTien \n"
-                    + "    FROM HoaDon  where NgayThanhToan  between :gia and :gia2");
-            q.setParameter("gia",  gia);
-            q.setParameter("gia2",  gia2);
-            
+            Query q = sess.createQuery(hql);
+            q.setParameter("ngay", ngay);
+            q.setParameter("ngay1", ngay1);
             lst = q.getResultList();
         } catch (Exception e) {
             e.printStackTrace();
@@ -367,31 +308,8 @@ public class HoaDonRepository {
         return lst;
     }
     
-    public ArrayList<ThongKe> finByBieuDo() {
-
-        ArrayList<ThongKe> listsp = new ArrayList<>();
-        Connection con;
-        try {
-            con = DBContext.getConnection();
-            String sql = "SELECT YEAR(NgayThanhToan) as Ngay, sum(TongTien) as Tien\n" +
-"                     FROM HoaDon \n" +
-"					 Group by YEAR(NgayThanhToan)";
-            PreparedStatement ps = con.prepareStatement(sql);
-            ps.execute();
-            ResultSet rs = ps.getResultSet();
-
-            while (rs.next()) {
-                ThongKe bhsp = new ThongKe();
-                bhsp.setNgay(rs.getString("Ngay"));
-                bhsp.setTien(rs.getInt("Tien"));
-                listsp.add(bhsp);
-            }
-        } catch (SQLException ex) {
-            ex.printStackTrace();
-        }
-        return listsp;
-    }
+    
     //-----------------
     //----------------------
-
+    
 }

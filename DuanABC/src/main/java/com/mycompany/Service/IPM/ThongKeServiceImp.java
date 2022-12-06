@@ -5,10 +5,13 @@
 package com.mycompany.Service.IPM;
 
 import com.mycompany.DomainModels.ChiTietSP;
+import com.mycompany.DomainModels.ThongKe;
 import com.mycompany.Repository.ThongKeRepository;
 import com.mycompany.Service.ThongKeService;
 import com.mycompany.ViewModel.ThongKe.ThongKeViewModel;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 
 /**
  *
@@ -38,5 +41,37 @@ public class ThongKeServiceImp implements ThongKeService {
         }
         return list_view;
     }
-
+    
+    //tinhph23160-----------------------------
+    
+    @Override
+    public ArrayList<ThongKe>finByBieuDo() {
+        return thongkerepo.finByBieuDo();
+    }
+    @Override
+    public ArrayList<ThongKe> finByNgayThanhToanNam(int ma) {
+        return thongkerepo.finByNgayThanhToanNam(ma);
+    }
+    @Override
+    public ArrayList<ThongKe> finbyngaythanhToanThang(int ma) {
+        return thongkerepo.finByNgayThanhToanThang(ma);
+    }
+    @Override
+    public ArrayList<ThongKe> finbyngaythanhToanNgay(int ma) {
+        return thongkerepo.finByNgayThanhToanNgay(ma);
+    }
+    @Override
+    public ArrayList<ThongKe> finByNgayThanhToanandNgay(int ma, int mi) {
+        return thongkerepo.finByNgayThanhToanandNgay(ma, mi);
+    }
+    @Override
+    public ArrayList<ThongKe> finByNgayThanhToannamandTT(int ma, int mi) {
+        return thongkerepo.finByNgayThanhToanNamanhTT(ma, mi);
+    }
+    @Override
+    public ArrayList<ThongKe> finByNgayThanhToaThangnandTT(int ma, int mi) {
+        return thongkerepo.finByNgayThanhToanThanganhTT(ma, mi);
+    }
+    
+    
 }

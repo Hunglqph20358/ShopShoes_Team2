@@ -4,6 +4,7 @@
  */
 package com.mycompany.Service;
 
+import com.mycompany.DomainModels.ThongKe;
 import com.mycompany.ViewModel.ThongKe.ThongKeViewModel;
 import java.util.ArrayList;
 
@@ -15,4 +16,17 @@ public interface ThongKeService {
     
     ArrayList<ThongKeViewModel> getAllSanPhamThongKe();
     
+    ArrayList<ThongKe> finByBieuDo();
+
+    ArrayList<ThongKe> finByNgayThanhToanandNgay(int ma, int mi);
+
+    ArrayList<ThongKe> finByNgayThanhToaThangnandTT(int ma, int mi);
+
+    ArrayList<ThongKe> finByNgayThanhToannamandTT(int ma, int mi);
+
+    ArrayList<ThongKe> finByNgayThanhToanNam(int ma);
+
+    ArrayList<ThongKe> finbyngaythanhToanThang(int ma);
+
+    ArrayList<ThongKe> finbyngaythanhToanNgay(int ma);
 }

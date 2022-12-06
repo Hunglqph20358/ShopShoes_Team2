@@ -12,6 +12,7 @@ package com.mycompany.DomainModels;
 public class ThongKe {
     private String Ngay;
     private int Tien;
+    private int trangThai;
 
     public ThongKe() {
     }
@@ -20,6 +21,14 @@ public class ThongKe {
         this.Ngay = Ngay;
         this.Tien = Tien;
     }
+
+    public ThongKe(String Ngay, int Tien, int trangThai) {
+        this.Ngay = Ngay;
+        this.Tien = Tien;
+        this.trangThai = trangThai;
+    }
+    
+    
 
     public String getNgay() {
         return Ngay;
@@ -37,5 +46,19 @@ public class ThongKe {
     public void setTien(int Tien) {
         this.Tien = Tien;
     }
+
+    public int getTrangThai() {
+        return trangThai;
+    }
+
+    public void setTrangThai(int trangThai) {
+        this.trangThai = trangThai;
+    }
+
     
+    
+    @Override
+    public String toString() {
+        return ""+ Tien ;
+    }
 }

@@ -40,20 +40,14 @@ public interface HoaDonService {
 
     Integer updateHDDatHangThanhCong(HoaDon hd);
     
-     //tinhph23160-----------------
+    //tinhph23160-----------------
     ArrayList<HoaDonViewModels> finbyngaythanhToan(String hd);
 
-    ArrayList<HoaDon> finbyngaytrangThai(int ma);
+    ArrayList<HoaDonViewModels> finbyngaytrangThai(int ma);
 
-    ArrayList<HoaDon> finbyngaythanhToanhomNay(int ma);
+    ArrayList<HoaDon> finByNgayThanhToanandTrangThai(int ma, int mi);
 
-    ArrayList<HoaDon> finByNgayThanhToanandHDTK(int ma);
-
-    ArrayList<HoaDon> finByNgayThanhToanandHDH(int ma);
-
-    List<HoaDon> finByKhoangNgayThanhToan(String timkiem, String tk);
+    List<HoaDonViewModels> finByKhoangNgayThanhToan(Date ngay1, Date ngay2);
 
     List<HoaDonViewModels> GetListHoaSon();
-
-    ArrayList<ThongKe> finByBieuDo();
 }

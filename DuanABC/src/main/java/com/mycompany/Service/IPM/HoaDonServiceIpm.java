@@ -179,7 +179,7 @@ public class HoaDonServiceIpm implements HoaDonService {
     }
     //-----------------------------------------------------
     //-----------------------------------------------------
-    
+    //-----------------------------
     @Override
     public List<HoaDonViewModels> GetListHoaSon() {
         List<HoaDonViewModels> list = new ArrayList();
@@ -199,32 +199,32 @@ public class HoaDonServiceIpm implements HoaDonService {
         }
         return list;
     }
+    
     @Override
-    public ArrayList<HoaDon> finbyngaythanhToanhomNay(int ma) {
-        return hoaDonRepository.finByNgayThanhToanHomNay(ma);
-    }
-    @Override
-    public ArrayList<HoaDon> finByNgayThanhToanandHDTK(int ma) {
-        return hoaDonRepository.finByNgayThanhToanandHDTK(ma);
-    }
-    @Override
-    public ArrayList<HoaDon> finByNgayThanhToanandHDH(int ma) {
-        return hoaDonRepository.finByNgayThanhToanandHDH(ma);
-    }
-
-    @Override
-    public ArrayList<HoaDon> finbyngaytrangThai(int ma) {
-        return hoaDonRepository.finByTrangThai(ma);
+    public ArrayList<HoaDon> finByNgayThanhToanandTrangThai(int ma, int mi) {
+        return hoaDonRepository.finByNgayThanhToanandTH(ma,mi);
     }
     
     @Override
-    public List<HoaDon> finByKhoangNgayThanhToan(String timkiem, String tk) {
-        return hoaDonRepository.finByKhoangNgayThanhToan(timkiem, tk);
+    public ArrayList<HoaDonViewModels> finbyngaytrangThai(int ma) {
+         ArrayList<HoaDonViewModels> list = new ArrayList();
+        var HD = hoaDonRepository.finByTrangThai(ma);
+        for (HoaDon hd : HD) {
+            list.add(new HoaDonViewModels(hd.getMaHD(), hd.getNgayThanhToan(), hd.getTrangThai(), hd.getTongTien()));
+        }
+        return list;
     }
+    
     @Override
-    public ArrayList<ThongKe>finByBieuDo() {
-        return hoaDonRepository.finByBieuDo();
+    public List<HoaDonViewModels> finByKhoangNgayThanhToan(Date ngay1, Date ngay2) {
+        List<HoaDonViewModels> list = new ArrayList();
+        var HD = hoaDonRepository.finByKhoangNgayThanhToan(ngay1,ngay2);
+        for (HoaDon hd : HD) {
+            list.add(new HoaDonViewModels(hd.getMaHD(), hd.getNgayThanhToan(), hd.getTrangThai(), hd.getTongTien()));
+        }
+        return list;
     }
+    
 
 
 }
