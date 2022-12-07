@@ -86,9 +86,10 @@ public class ThongKeRepository {
         Connection con;
         try {
             con = DBContext.getConnection();
-            String sql = "SELECT YEAR(NgayThanhToan) as Ngay, sum(TongTien) as Tien\n" +
+            String sql = "SELECT year(NgayThanhToan) as ngay, sum(TongTien) as Tien\n" +
 "                     FROM HoaDon \n" +
-"					 Group by YEAR(NgayThanhToan)";
+"					 where TrangThai =5\n" +
+"					 Group by year(NgayThanhToan)";
             PreparedStatement ps = con.prepareStatement(sql);
             ps.execute();
             ResultSet rs = ps.getResultSet();
