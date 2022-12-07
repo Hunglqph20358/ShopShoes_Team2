@@ -256,16 +256,16 @@ public class HoaDonPanel extends javax.swing.JPanel {
                 fillToHoaDonByTrangThai(1);
             }
             else if (cbbTrangThai.getSelectedIndex() == 3) {
-                fillToHoaDonByTrangThai(2);
+                fillToHoaDonByTrangThai(5);
             }
             else if (cbbTrangThai.getSelectedIndex() == 4) {
-                fillToHoaDonByTrangThai(3);
+                fillToHoaDonByTrangThai(2);
             }
             else if(cbbTrangThai.getSelectedIndex() == 5) {
-                fillToHoaDonByTrangThai(4);
+                fillToHoaDonByTrangThai(3);
             }
             else if(cbbTrangThai.getSelectedIndex() == 6){
-                fillToHoaDonByTrangThai(5);
+                fillToHoaDonByTrangThai(4);
             }
         } catch (Exception e) {
         }
