@@ -1236,7 +1236,7 @@ public class BanHangPanel extends javax.swing.JPanel {
                 txtTongTienDatHang.setText(dmf.format(tongTien)+ "");
                 txtKhachCanTraDatHang.setText(dmf.format(Double.parseDouble(txtTongTienDatHang.getText()) + Double.parseDouble(txtPhiShip.getText()))+"");
             } else {
-                idFromKH = null;
+                
                 txtSDTKHDatHang.setText("");
                 txtHoTenKHDatHang.setText("");
                 txtDiaChiNhanHang.setText("");
