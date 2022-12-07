@@ -35,18 +35,21 @@ public class KHRepository {
         return lst;
     }
     
-    public  KhachHang getByKH(String sdt){
-        KhachHang kh = new KhachHang();
-        String hql = "Select kh From KhachHang kh where kh.Sdt = :sdt";
+    public  List<KhachHang> getByKH(String sdt){
+        List<KhachHang> lst = new ArrayList<>();
+        String hql = "Select kh From KhachHang kh where kh.Ma like :ma or kh.HoTen like :ten or kh.Sdt like :sdt or kh.DiaChi like :dc";
         try(Session sess = HibernateUtil.getFACTORY().openSession()) {
             Query q = sess.createQuery(hql);
-            q.setParameter("sdt", sdt);
-            kh = (KhachHang) q.getSingleResult();
+            q.setParameter("ma","%"+ sdt+"%");
+            q.setParameter("ten","%"+ sdt+"%");
+            q.setParameter("sdt","%"+ sdt+"%");
+            q.setParameter("dc","%"+ sdt+"%");
+            lst = q.getResultList();
         } catch (Exception e) {
             e.printStackTrace();
             return null;
         }
-        return kh;
+        return lst;
     }
     public Integer addKH(KhachHang kh){
         try(Session sess = HibernateUtil.getFACTORY().openSession()) {

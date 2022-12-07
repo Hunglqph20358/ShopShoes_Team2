@@ -17,7 +17,7 @@ public interface KHService {
 
     List<KHViewModel> getAllKH();
 
-    KhachHang getByKH(String sdt);
+    List<KHViewModel> getByKH(String timKiem);
 
     Integer addKH(KhachHang kh);
 

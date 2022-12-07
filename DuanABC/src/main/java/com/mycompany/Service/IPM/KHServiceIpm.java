@@ -42,8 +42,21 @@ public class KHServiceIpm implements KHService {
     }
 
     @Override
-    public KhachHang getByKH(String sdt) {
-        return kHRepository.getByKH(sdt);
+    public List<KHViewModel> getByKH(String timKiem) {
+        List<KhachHang> lst = kHRepository.getByKH(timKiem);
+        List<KHViewModel> lst_View = new ArrayList<>();
+        for (KhachHang kh : lst) {
+            KHViewModel kh_View = new KHViewModel();
+            kh_View.setId(kh.getId());
+            kh_View.setMaKh(kh.getMa());
+            kh_View.setHoTen(kh.getHoTen());
+            kh_View.setDiaChi(kh.getDiaChi());
+            kh_View.setNgaySinh(kh.getNgaySinh());
+            kh_View.setSDT(kh.getSdt());
+            kh_View.setTrangThai(kh.getTrangThai());
+            lst_View.add(kh_View);
+        }
+        return lst_View;
     }
 
     @Override

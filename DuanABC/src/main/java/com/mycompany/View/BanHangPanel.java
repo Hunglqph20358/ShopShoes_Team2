@@ -27,6 +27,7 @@ import com.mycompany.ViewModel.BanHang.SanPhamViewModelBanHang;
 import java.awt.Frame;
 import java.awt.event.MouseEvent;
 import java.math.BigDecimal;
+import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -1172,12 +1173,13 @@ public class BanHangPanel extends javax.swing.JPanel {
                 }
 
             }
+            DecimalFormat dmf = new DecimalFormat("####.####");
             Double tongTien = 0.0;
             for (int i = 0; i < hoaDonChiTietService.getAllHDCT(txtMaHD.getText()).size(); i++) {
                 tongTien += hoaDonChiTietService.getAllHDCT(txtMaHD.getText()).get(i).getThanhTien();
             }
-            txtTongTien.setText(tongTien + "");
-            txtKhachCanTra.setText(tongTien + "");
+            txtTongTien.setText(dmf.format(tongTien) + "");
+            txtKhachCanTra.setText(dmf.format(tongTien) + "");
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -1201,6 +1203,7 @@ public class BanHangPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
         try {
 //            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+            DecimalFormat dmf = new DecimalFormat("####.####");
             Double tongTien = 0.0;
             Double tienTraHang = 0.0;
             List<HoaDonViewModels> lst = hoaDonService.getAllHD();
@@ -1230,10 +1233,10 @@ public class BanHangPanel extends javax.swing.JPanel {
                         tienTraHang += hoaDonChiTietService.getAllHDCT(txtMaHD.getText()).get(i).getThanhTien();
                     }
                 }
-                txtTongTienDatHang.setText((tongTien) + "");
-                txtKhachCanTraDatHang.setText(Double.parseDouble(txtTongTienDatHang.getText()) + Double.parseDouble(txtPhiShip.getText()) + "");
+                txtTongTienDatHang.setText(dmf.format(tongTien)+ "");
+                txtKhachCanTraDatHang.setText(dmf.format(Double.parseDouble(txtTongTienDatHang.getText()) + Double.parseDouble(txtPhiShip.getText()))+"");
             } else {
-
+                idFromKH = null;
                 txtSDTKHDatHang.setText("");
                 txtHoTenKHDatHang.setText("");
                 txtDiaChiNhanHang.setText("");
@@ -1243,8 +1246,8 @@ public class BanHangPanel extends javax.swing.JPanel {
                 for (int i = 0; i < hoaDonChiTietService.getAllHDCT(txtMaHD.getText()).size(); i++) {
                     tongTien += hoaDonChiTietService.getAllHDCT(txtMaHD.getText()).get(i).getThanhTien();
                 }
-                txtTongTien.setText(tongTien + "");
-                txtTongTienDatHang.setText(tongTien + "");
+                txtTongTien.setText(dmf.format(tongTien) + "");
+                txtTongTienDatHang.setText(dmf.format(tongTien) + "");
                 txtKhachCanTra.setText(txtTongTien.getText() + "");
                 txtKhachCanTraDatHang.setText(txtTongTienDatHang.getText() + "");
             }
@@ -2108,9 +2111,10 @@ public class BanHangPanel extends javax.swing.JPanel {
 
     public void fillDSSP() {
         DefaultTableModel tblModel = (DefaultTableModel) tblSanPham.getModel();
+        DecimalFormat dmf = new DecimalFormat("###.####");
         tblModel.setRowCount(0);
         for (SanPhamViewModelBanHang sp : ctspService.getSPBanHang()) {
-            tblModel.addRow(new Object[]{sp.getMaSP(), sp.getTenSP(), sp.getLoaiSP(), sp.getMauSac(), sp.getSize(), sp.getSoLunog(), sp.getDonGia()});
+            tblModel.addRow(new Object[]{sp.getMaSP(), sp.getTenSP(), sp.getLoaiSP(), sp.getMauSac(), sp.getSize(), sp.getSoLunog(),dmf.format(sp.getDonGia())});
         }
     }
 
@@ -2150,10 +2154,11 @@ public class BanHangPanel extends javax.swing.JPanel {
 
     public void fillGioHang(String maHd) {
         DefaultTableModel tblModel = (DefaultTableModel) tblGioHang.getModel();
+        DecimalFormat dmf = new DecimalFormat("###.####");
         tblModel.setRowCount(0);
         for (GioHangViewModel gh : hoaDonChiTietService.getAllHDCT(maHd)) {
 
-            tblModel.addRow(new Object[]{gh.getMaSP(), gh.getTenSP(), gh.getSoLuong(), gh.getDonGia(), gh.getThanhTien(), gh.getTrangThai()});
+            tblModel.addRow(new Object[]{gh.getMaSP(), gh.getTenSP(), gh.getSoLuong(), gh.getDonGia(),dmf.format( gh.getThanhTien()), gh.getTrangThai()});
         }
     }
 
