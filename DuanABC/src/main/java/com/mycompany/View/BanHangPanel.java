@@ -217,8 +217,12 @@ public class BanHangPanel extends javax.swing.JPanel {
         jLabel12.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel12.setText("SDT KH");
 
+        txtSDTKH.setEnabled(false);
+
         jLabel13.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel13.setText("Họ tên KH");
+
+        txtTenKH.setEnabled(false);
 
         btnXacNhanKH.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnXacNhanKH.setText("Xác nhận");
@@ -244,7 +248,7 @@ public class BanHangPanel extends javax.swing.JPanel {
                             .addComponent(jLabel12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(lblNgayTao, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(lblMaHD, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGroup(pnThongTinChungLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(pnThongTinChungLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(pnThongTinChungLayout.createSequentialGroup()
                                 .addGap(29, 29, 29)
                                 .addGroup(pnThongTinChungLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -254,7 +258,7 @@ public class BanHangPanel extends javax.swing.JPanel {
                             .addGroup(pnThongTinChungLayout.createSequentialGroup()
                                 .addGap(27, 27, 27)
                                 .addComponent(txtSDTKH)
-                                .addGap(21, 21, 21)))
+                                .addGap(27, 27, 27)))
                         .addComponent(btnXacNhanKH)))
                 .addContainerGap(46, Short.MAX_VALUE))
         );
@@ -483,8 +487,12 @@ public class BanHangPanel extends javax.swing.JPanel {
         lblHoTenKHDatHang.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         lblHoTenKHDatHang.setText("Họ tên KH");
 
+        txtHoTenKHDatHang.setEnabled(false);
+
         jLabel29.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel29.setText("SDT");
+
+        txtSDTKHDatHang.setEnabled(false);
 
         lblNgayTaoDatHang.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         lblNgayTaoDatHang.setText("Ngày tạo");
@@ -538,16 +546,12 @@ public class BanHangPanel extends javax.swing.JPanel {
                             .addComponent(lblMaHDDatHang, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel29, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(49, 49, 49)
-                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel5Layout.createSequentialGroup()
-                                .addComponent(txtSDTKHDatHang)
-                                .addGap(89, 89, 89))
-                            .addGroup(jPanel5Layout.createSequentialGroup()
-                                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtHoTenKHDatHang, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtMaHDDatHang, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 48, Short.MAX_VALUE)
-                                .addComponent(btnXacNhanKHDatHang)))))
+                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(txtHoTenKHDatHang, javax.swing.GroupLayout.DEFAULT_SIZE, 156, Short.MAX_VALUE)
+                            .addComponent(txtMaHDDatHang, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtSDTKHDatHang))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 52, Short.MAX_VALUE)
+                        .addComponent(btnXacNhanKHDatHang)))
                 .addContainerGap())
         );
         jPanel5Layout.setVerticalGroup(
@@ -1670,6 +1674,7 @@ public class BanHangPanel extends javax.swing.JPanel {
     private void btnGiaoHangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGiaoHangActionPerformed
         // TODO add your handling code here:
         try {
+            String chkSo = "^[0-9]{10}$";
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
             if (tblHoaDon.getSelectedRow() == -1) {
                 JOptionPane.showMessageDialog(this, "Vui lòng chọn Hóa đơn để Giao Hàng");
@@ -1705,6 +1710,10 @@ public class BanHangPanel extends javax.swing.JPanel {
             }
             if (txtDiaChiNhanHang.getText().isBlank()) {
                 JOptionPane.showMessageDialog(this, "Vui lòng Nhập Địa Giao Hàng");
+                return;
+            }
+            if (!txtSDTNguoiGiaoHang.getText().matches(chkSo)) {
+                JOptionPane.showMessageDialog(this, "Vui lòng Nhập SDT Giao Hàng phải là Số và 10 Số!");
                 return;
             }
             String idHD = null;
@@ -1820,14 +1829,14 @@ public class BanHangPanel extends javax.swing.JPanel {
             DecimalFormat dmf = new DecimalFormat("####.####");
             Double tongTien = 0.0;
             for (int i = 0; i < hoaDonChiTietService.getAllHDCT(txtMaHD.getText()).size(); i++) {
-                if(hoaDonChiTietService.getAllHDCT(txtMaHDDatHang.getText()).get(i).getTrangThai().equals("")){
-                  tongTien += hoaDonChiTietService.getAllHDCT(txtMaHDDatHang.getText()).get(i).getThanhTien();  
+                if (hoaDonChiTietService.getAllHDCT(txtMaHDDatHang.getText()).get(i).getTrangThai().equals("")) {
+                    tongTien += hoaDonChiTietService.getAllHDCT(txtMaHDDatHang.getText()).get(i).getThanhTien();
                 }
-                
+
             }
             txtTongTienDatHang.setText(dmf.format(tongTien) + "");
             txtKhachCanTraDatHang.setText(dmf.format(tongTien) + "");
-            
+
         } catch (Exception e) {
             e.printStackTrace();
         }

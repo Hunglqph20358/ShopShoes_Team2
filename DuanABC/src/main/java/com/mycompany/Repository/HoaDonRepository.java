@@ -35,7 +35,7 @@ public class HoaDonRepository {
     //HungLQPH20358
     public List<HoaDon> getAllHD() {
         List<HoaDon> lst = new ArrayList<>();
-        String hql = "select hd From HoaDon hd join hd.nhanVien nv where hd.TrangThai = 0 or hd.TrangThai = 1 or hd.TrangThai = 3";
+        String hql = "select hd From HoaDon hd join hd.nhanVien nv where hd.TrangThai = 0 or hd.TrangThai = 1 or hd.TrangThai = 3 order by hd.NgayTao desc ";
         try (Session sess = HibernateUtil.getFACTORY().openSession()) {
             Query q = sess.createQuery(hql);
             lst = q.getResultList();
@@ -47,7 +47,7 @@ public class HoaDonRepository {
     }
     public List<HoaDon> getAllHDViewQLHD() {
         List<HoaDon> lst = new ArrayList<>();
-        String hql = "select hd From HoaDon hd left join hd.khachHang kh left join hd.nhanVien nv";
+        String hql = "select hd From HoaDon hd left join hd.khachHang kh left join hd.nhanVien nv order by hd.NgayTao desc";
         try (Session sess = HibernateUtil.getFACTORY().openSession()) {
             Query q = sess.createQuery(hql);
             lst = q.getResultList();

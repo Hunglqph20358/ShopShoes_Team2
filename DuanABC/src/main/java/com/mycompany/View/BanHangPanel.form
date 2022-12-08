@@ -174,8 +174,8 @@
                                           <Component id="lblNgayTao" alignment="0" max="32767" attributes="0"/>
                                           <Component id="lblMaHD" alignment="0" max="32767" attributes="0"/>
                                       </Group>
-                                      <Group type="103" groupAlignment="0" attributes="0">
-                                          <Group type="102" alignment="0" attributes="0">
+                                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                          <Group type="102" attributes="0">
                                               <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
                                               <Group type="103" groupAlignment="0" attributes="0">
                                                   <Component id="txtMaHD" min="-2" pref="129" max="-2" attributes="0"/>
@@ -186,7 +186,7 @@
                                           <Group type="102" attributes="0">
                                               <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
                                               <Component id="txtSDTKH" max="32767" attributes="0"/>
-                                              <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
+                                              <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
                                           </Group>
                                       </Group>
                                       <Component id="btnXacNhanKH" min="-2" max="-2" attributes="0"/>
@@ -272,6 +272,9 @@
                       </Properties>
                     </Component>
                     <Component class="javax.swing.JTextField" name="txtSDTKH">
+                      <Properties>
+                        <Property name="enabled" type="boolean" value="false"/>
+                      </Properties>
                       <AuxValues>
                         <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
                       </AuxValues>
@@ -285,6 +288,9 @@
                       </Properties>
                     </Component>
                     <Component class="javax.swing.JTextField" name="txtTenKH">
+                      <Properties>
+                        <Property name="enabled" type="boolean" value="false"/>
+                      </Properties>
                       <AuxValues>
                         <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
                       </AuxValues>
@@ -665,20 +671,13 @@
                                           <Component id="jLabel29" alignment="0" min="-2" pref="44" max="-2" attributes="0"/>
                                       </Group>
                                       <EmptySpace min="-2" pref="49" max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="0" attributes="0">
-                                          <Group type="102" alignment="0" attributes="0">
-                                              <Component id="txtSDTKHDatHang" max="32767" attributes="0"/>
-                                              <EmptySpace min="-2" pref="89" max="-2" attributes="0"/>
-                                          </Group>
-                                          <Group type="102" alignment="0" attributes="0">
-                                              <Group type="103" groupAlignment="0" attributes="0">
-                                                  <Component id="txtHoTenKHDatHang" min="-2" pref="156" max="-2" attributes="0"/>
-                                                  <Component id="txtMaHDDatHang" min="-2" pref="129" max="-2" attributes="0"/>
-                                              </Group>
-                                              <EmptySpace pref="48" max="32767" attributes="0"/>
-                                              <Component id="btnXacNhanKHDatHang" min="-2" max="-2" attributes="0"/>
-                                          </Group>
+                                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                          <Component id="txtHoTenKHDatHang" pref="156" max="32767" attributes="0"/>
+                                          <Component id="txtMaHDDatHang" min="-2" pref="129" max="-2" attributes="0"/>
+                                          <Component id="txtSDTKHDatHang" max="32767" attributes="0"/>
                                       </Group>
+                                      <EmptySpace pref="52" max="32767" attributes="0"/>
+                                      <Component id="btnXacNhanKHDatHang" min="-2" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
@@ -753,6 +752,9 @@
                       </Properties>
                     </Component>
                     <Component class="javax.swing.JTextField" name="txtHoTenKHDatHang">
+                      <Properties>
+                        <Property name="enabled" type="boolean" value="false"/>
+                      </Properties>
                       <AuxValues>
                         <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
                       </AuxValues>
@@ -766,6 +768,9 @@
                       </Properties>
                     </Component>
                     <Component class="javax.swing.JTextField" name="txtSDTKHDatHang">
+                      <Properties>
+                        <Property name="enabled" type="boolean" value="false"/>
+                      </Properties>
                       <AuxValues>
                         <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
                       </AuxValues>
