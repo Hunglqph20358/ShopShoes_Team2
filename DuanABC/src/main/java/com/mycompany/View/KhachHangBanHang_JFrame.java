@@ -136,6 +136,8 @@ public class KhachHangBanHang_JFrame extends javax.swing.JFrame {
             }
         });
 
+        txtMa.setEnabled(false);
+
         lblTen.setText("Tên");
 
         lblNgaySinh.setText("Ngày Sinh :");
@@ -243,6 +245,16 @@ public class KhachHangBanHang_JFrame extends javax.swing.JFrame {
     private void btnThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemActionPerformed
         // TODO add your handling code here:
         try {
+            String chkSDT = "^[0-9]{10}";
+            if(txtTen.getText().isBlank() || txtSDT.getText().isBlank() || txtDiaChi.getText().isBlank()
+                    ){
+                JOptionPane.showMessageDialog(this,"Vui lòng không để Trống!");
+                return;
+            }
+            if(!txtSDT.getText().matches(chkSDT)){
+                JOptionPane.showMessageDialog(this,"Vui lòng Nhập số SDT Là Số và Đủ 10 Số !");
+                return;
+            }
             KhachHang kh = new KhachHang();
             kh.setMa(zenMaKH(kHRepository.getAllKH()));
             kh.setHoTen(txtTen.getText());
