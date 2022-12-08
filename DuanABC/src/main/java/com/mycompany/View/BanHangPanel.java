@@ -1180,6 +1180,8 @@ public class BanHangPanel extends javax.swing.JPanel {
             }
             txtTongTien.setText(dmf.format(tongTien) + "");
             txtKhachCanTra.setText(dmf.format(tongTien) + "");
+            txtTongTienDatHang.setText(dmf.format(tongTien) + "");
+
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -1233,16 +1235,24 @@ public class BanHangPanel extends javax.swing.JPanel {
                         tienTraHang += hoaDonChiTietService.getAllHDCT(txtMaHD.getText()).get(i).getThanhTien();
                     }
                 }
-                txtTongTienDatHang.setText(dmf.format(tongTien)+ "");
-                txtKhachCanTraDatHang.setText(dmf.format(Double.parseDouble(txtTongTienDatHang.getText()) + Double.parseDouble(txtPhiShip.getText()))+"");
+                txtTongTienDatHang.setText(dmf.format(tongTien) + "");
+                txtKhachCanTraDatHang.setText(dmf.format(Double.parseDouble(txtTongTienDatHang.getText()) + Double.parseDouble(txtPhiShip.getText())) + "");
             } else {
-                
+
                 txtSDTKHDatHang.setText("");
                 txtHoTenKHDatHang.setText("");
                 txtDiaChiNhanHang.setText("");
                 txtNgayDuKien.setDate(today);
                 txtPhiShip.setText("");
                 txtSDTNguoiGiaoHang.setText("");
+                if (hoaDonViewModels.getKhachHang() == null) {
+                    txtSDTKH.setText("");
+                    txtTenKH.setText("");
+                } else {
+                    txtSDTKH.setText(hoaDonViewModels.getKhachHang().getSdt());
+                    txtTenKH.setText(hoaDonViewModels.getKhachHang().getHoTen());
+                }
+
                 for (int i = 0; i < hoaDonChiTietService.getAllHDCT(txtMaHD.getText()).size(); i++) {
                     tongTien += hoaDonChiTietService.getAllHDCT(txtMaHD.getText()).get(i).getThanhTien();
                 }
@@ -1383,6 +1393,7 @@ public class BanHangPanel extends javax.swing.JPanel {
     private void txtKhachTraCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_txtKhachTraCaretUpdate
         // TODO add your handling code here:
         try {
+            DecimalFormat dmf = new DecimalFormat("####.####");
             double khachCanTra = Double.parseDouble(txtKhachCanTra.getText());
             double khachTra = Double.parseDouble(txtKhachTra.getText());
             double khachTraCK = Double.parseDouble(txtKhachCK.getText());
@@ -1391,7 +1402,7 @@ public class BanHangPanel extends javax.swing.JPanel {
                 return;
             }
             double tongTien = (khachTra + khachTraCK) - khachCanTra;
-            txtTienTraLai.setText(tongTien + "");
+            txtTienTraLai.setText(dmf.format(tongTien) + "");
         } catch (Exception e) {
         }
     }//GEN-LAST:event_txtKhachTraCaretUpdate
@@ -1500,7 +1511,7 @@ public class BanHangPanel extends javax.swing.JPanel {
 
     private void txtKhachCKCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_txtKhachCKCaretUpdate
         try {
-
+            DecimalFormat dmf = new DecimalFormat("####.####");
             double khachCanTra = Double.parseDouble(txtKhachCanTra.getText());
             double khachTra = Double.parseDouble(txtKhachTra.getText());
             double khachTraCK = Double.parseDouble(txtKhachCK.getText());
@@ -1509,7 +1520,7 @@ public class BanHangPanel extends javax.swing.JPanel {
                 return;
             }
             double tongTien = (khachTra + khachTraCK) - khachCanTra;
-            txtTienTraLai.setText(tongTien + "");
+            txtTienTraLai.setText(dmf.format(tongTien) + "");
         } catch (Exception e) {
         }
     }//GEN-LAST:event_txtKhachCKCaretUpdate
@@ -1517,7 +1528,7 @@ public class BanHangPanel extends javax.swing.JPanel {
     private void txtKhachTraDatHangCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_txtKhachTraDatHangCaretUpdate
         // TODO add your handling code here:
         try {
-
+            DecimalFormat dmf = new DecimalFormat("####.####");
             double khachCanTra = Double.parseDouble(txtKhachCanTraDatHang.getText());
             double khachTra = Double.parseDouble(txtKhachTraDatHang.getText());
             double khachTraCK = Double.parseDouble(txtKhachCKDatHang.getText());
@@ -1526,14 +1537,14 @@ public class BanHangPanel extends javax.swing.JPanel {
                 return;
             }
             double tongTien = (khachTra + khachTraCK) - khachCanTra;
-            txtTienTraLaiDatHang.setText(tongTien + "");
+            txtTienTraLaiDatHang.setText(dmf.format(tongTien) + "");
         } catch (Exception e) {
         }
     }//GEN-LAST:event_txtKhachTraDatHangCaretUpdate
 
     private void txtKhachCKDatHangCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_txtKhachCKDatHangCaretUpdate
         try {
-
+            DecimalFormat dmf = new DecimalFormat("####.####");
             double khachCanTra = Double.parseDouble(txtKhachCanTraDatHang.getText());
             double khachTra = Double.parseDouble(txtKhachTraDatHang.getText());
             double khachTraCK = Double.parseDouble(txtKhachCKDatHang.getText());
@@ -1542,7 +1553,7 @@ public class BanHangPanel extends javax.swing.JPanel {
                 return;
             }
             double tongTien = (khachTra + khachTraCK) - khachCanTra;
-            txtTienTraLaiDatHang.setText(tongTien + "");
+            txtTienTraLaiDatHang.setText(dmf.format(tongTien) + "");
         } catch (Exception e) {
         }
     }//GEN-LAST:event_txtKhachCKDatHangCaretUpdate
@@ -1609,7 +1620,12 @@ public class BanHangPanel extends javax.swing.JPanel {
 
     private void cbbHTTTItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbbHTTTItemStateChanged
         // TODO add your handling code here:
-        if (cbbHTTT.getSelectedIndex() == 1) {
+        if (cbbHTTT.getSelectedIndex() == 0) {
+            txtKhachTra.setEnabled(false);
+            txtKhachCK.setEnabled(false);
+            txtKhachTra.setText("0.0");
+            txtKhachCK.setText("0.0");
+        } else if (cbbHTTT.getSelectedIndex() == 1) {
             txtKhachCK.setEnabled(false);
             txtKhachTra.setEnabled(true);
             txtKhachCK.setText("0.0");
@@ -1628,7 +1644,12 @@ public class BanHangPanel extends javax.swing.JPanel {
 
     private void cbbHTTTDatHangItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbbHTTTDatHangItemStateChanged
         // TODO add your handling code here:
-        if (cbbHTTTDatHang.getSelectedIndex() == 1) {
+        if (cbbHTTTDatHang.getSelectedIndex() == 0) {
+            txtKhachTraDatHang.setEnabled(false);
+            txtKhachCKDatHang.setEnabled(false);
+            txtKhachTraDatHang.setText("0.0");
+            txtKhachCKDatHang.setText("0.0");
+        } else if (cbbHTTTDatHang.getSelectedIndex() == 1) {
             txtKhachCKDatHang.setEnabled(false);
             txtKhachTraDatHang.setEnabled(true);
             txtKhachCKDatHang.setText("0.0");
@@ -1796,6 +1817,17 @@ public class BanHangPanel extends javax.swing.JPanel {
                     }
                 }
             }
+            DecimalFormat dmf = new DecimalFormat("####.####");
+            Double tongTien = 0.0;
+            for (int i = 0; i < hoaDonChiTietService.getAllHDCT(txtMaHD.getText()).size(); i++) {
+                if(hoaDonChiTietService.getAllHDCT(txtMaHDDatHang.getText()).get(i).getTrangThai().equals("")){
+                  tongTien += hoaDonChiTietService.getAllHDCT(txtMaHDDatHang.getText()).get(i).getThanhTien();  
+                }
+                
+            }
+            txtTongTienDatHang.setText(dmf.format(tongTien) + "");
+            txtKhachCanTraDatHang.setText(dmf.format(tongTien) + "");
+            
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -1803,9 +1835,10 @@ public class BanHangPanel extends javax.swing.JPanel {
 
     private void txtPhiShipCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_txtPhiShipCaretUpdate
         try {
+            DecimalFormat dmf = new DecimalFormat("####.####");
             double phiShip = Double.parseDouble(txtPhiShip.getText());
             double tongTien = Double.parseDouble(txtTongTienDatHang.getText());
-            txtKhachCanTraDatHang.setText(tongTien + phiShip + "");
+            txtKhachCanTraDatHang.setText(dmf.format(tongTien + phiShip) + "");
         } catch (Exception e) {
         }
     }//GEN-LAST:event_txtPhiShipCaretUpdate
@@ -2114,7 +2147,7 @@ public class BanHangPanel extends javax.swing.JPanel {
         DecimalFormat dmf = new DecimalFormat("###.####");
         tblModel.setRowCount(0);
         for (SanPhamViewModelBanHang sp : ctspService.getSPBanHang()) {
-            tblModel.addRow(new Object[]{sp.getMaSP(), sp.getTenSP(), sp.getLoaiSP(), sp.getMauSac(), sp.getSize(), sp.getSoLunog(),dmf.format(sp.getDonGia())});
+            tblModel.addRow(new Object[]{sp.getMaSP(), sp.getTenSP(), sp.getLoaiSP(), sp.getMauSac(), sp.getSize(), sp.getSoLunog(), dmf.format(sp.getDonGia())});
         }
     }
 
@@ -2158,7 +2191,7 @@ public class BanHangPanel extends javax.swing.JPanel {
         tblModel.setRowCount(0);
         for (GioHangViewModel gh : hoaDonChiTietService.getAllHDCT(maHd)) {
 
-            tblModel.addRow(new Object[]{gh.getMaSP(), gh.getTenSP(), gh.getSoLuong(), gh.getDonGia(),dmf.format( gh.getThanhTien()), gh.getTrangThai()});
+            tblModel.addRow(new Object[]{gh.getMaSP(), gh.getTenSP(), gh.getSoLuong(), gh.getDonGia(), dmf.format(gh.getThanhTien()), gh.getTrangThai()});
         }
     }
 
@@ -2192,16 +2225,20 @@ public class BanHangPanel extends javax.swing.JPanel {
     }
 
     private void clearForm() {
+        idFromKH = null;
         txtMaHD.setText("");
         txtNgayTao.setText("");
         txtKhachCanTra.setText("0.0");
         txtKhachTra.setText("");
         txtTongTien.setText("0.0");
         txtTienTraLai.setText("0.0");
+        txtSDTKH.setText("");
+        txtTenKH.setText("");
 
     }
 
     public void clearFormDatHang() {
+        idFromKH = null;
         txtMaHDDatHang.setText("");
         txtNgayTaoDatHang.setText("");
         txtSDTKHDatHang.setText("");
