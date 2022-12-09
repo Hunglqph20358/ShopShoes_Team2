@@ -73,5 +73,4 @@ public class ThongKeServiceImp implements ThongKeService {
         return thongkerepo.finByNgayThanhToanThanganhTT(ma, mi);
     }
     
-    
 }

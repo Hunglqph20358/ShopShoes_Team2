@@ -37,6 +37,7 @@ public class NhanVienPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        buttonGroup1 = new javax.swing.ButtonGroup();
         btnThungRac = new javax.swing.JButton();
         btnsua = new javax.swing.JButton();
         byaxoa = new javax.swing.JButton();
@@ -71,6 +72,9 @@ public class NhanVienPanel extends javax.swing.JPanel {
         jButton3 = new javax.swing.JButton();
         txtten = new javax.swing.JTextField();
 
+        setBackground(new java.awt.Color(102, 255, 255));
+
+        btnThungRac.setBackground(new java.awt.Color(255, 0, 51));
         btnThungRac.setIcon(new javax.swing.ImageIcon(getClass().getResource("/delete.png"))); // NOI18N
         btnThungRac.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -88,6 +92,7 @@ public class NhanVienPanel extends javax.swing.JPanel {
         });
 
         byaxoa.setBackground(new java.awt.Color(153, 255, 153));
+        byaxoa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/btnRemove.png"))); // NOI18N
         byaxoa.setText("Xóa");
         byaxoa.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -112,10 +117,12 @@ public class NhanVienPanel extends javax.swing.JPanel {
             }
         });
 
+        buttonGroup1.add(rdnam);
         rdnam.setText("Nam");
 
         jLabel3.setText("Họ tên");
 
+        buttonGroup1.add(rdnu);
         rdnu.setText("Nữ");
 
         jLabel4.setText("Tên tài khoản");
@@ -161,6 +168,7 @@ public class NhanVienPanel extends javax.swing.JPanel {
 
         jLabel10.setText("Dịa chỉ");
 
+        jPanel1.setBackground(new java.awt.Color(102, 255, 255));
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Thông tin", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 14))); // NOI18N
 
         tbnhavien.setModel(new javax.swing.table.DefaultTableModel(
@@ -225,15 +233,18 @@ public class NhanVienPanel extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(989, Short.MAX_VALUE)
-                .addComponent(btnThungRac, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(40, 40, 40))
+                .addContainerGap(412, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(btnThungRac, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(40, 40, 40))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 273, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(402, 402, 402))))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createSequentialGroup()
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(439, 439, 439)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGroup(layout.createSequentialGroup()
                             .addGap(182, 182, 182)
                             .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -291,20 +302,19 @@ public class NhanVienPanel extends javax.swing.JPanel {
                             .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGap(101, 101, 101)
                             .addComponent(btnmoi, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addContainerGap(173, Short.MAX_VALUE))
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addContainerGap(174, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(240, 240, 240)
+                .addGap(35, 35, 35)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(135, 135, 135)
                 .addComponent(btnThungRac)
                 .addContainerGap(493, Short.MAX_VALUE))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
-                    .addGap(53, 53, 53)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(23, 23, 23)
+                    .addGap(125, 125, 125)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(jLabel2)
                         .addComponent(jLabel7))
@@ -527,6 +537,7 @@ public class NhanVienPanel extends javax.swing.JPanel {
     private javax.swing.JCheckBox btnshowmk;
     private javax.swing.JButton btnsua;
     private javax.swing.JButton btnthem;
+    private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JButton byaxoa;
     private javax.swing.JComboBox<String> cbchucvu;
     private javax.swing.JComboBox<String> cbtrangthai;

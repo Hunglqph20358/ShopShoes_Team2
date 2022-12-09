@@ -88,7 +88,7 @@ public class ThongKeRepository {
             con = DBContext.getConnection();
             String sql = "SELECT year(NgayThanhToan) as ngay, sum(TongTien) as Tien\n" +
 "                     FROM HoaDon \n" +
-"					 where TrangThai =5\n" +
+"					 where TrangThai =5 or TrangThai =4\n" +
 "					 Group by year(NgayThanhToan)";
             PreparedStatement ps = con.prepareStatement(sql);
             ps.execute();
@@ -113,7 +113,7 @@ public class ThongKeRepository {
         try {
             con = DBContext.getConnection();
             String sql = "SELECT Year(NgayThanhToan) as Ngay, TongTien, TrangThai \n" +
-"                     FROM HoaDon where Year(NgayThanhToan) like '%" + ma + "%'and TrangThai like '%" + mi + "%'";
+"                     FROM HoaDon where Year(NgayThanhToan) like '" + ma + "%'and TrangThai like '" + mi + "%'";
             PreparedStatement ps = con.prepareStatement(sql);
             ps.execute();
             ResultSet rs = ps.getResultSet();
@@ -136,7 +136,7 @@ public class ThongKeRepository {
         try {
             con = DBContext.getConnection();
             String sql = "SELECT Month(NgayThanhToan) as Ngay, TongTien, TrangThai \n" +
-"                     FROM HoaDon where Month(NgayThanhToan) like '%" + ma + "%'and TrangThai like '%" + mi + "%'";
+"                     FROM HoaDon where Month(NgayThanhToan) like '" + ma + "%'and TrangThai like '" + mi + "%'";
             PreparedStatement ps = con.prepareStatement(sql);
             ps.execute();
             ResultSet rs = ps.getResultSet();
@@ -159,7 +159,7 @@ public class ThongKeRepository {
         try {
             con = DBContext.getConnection();
             String sql = "SELECT Day(NgayThanhToan) as Ngay, TongTien, TrangThai \n" +
-"                     FROM HoaDon where Day(NgayThanhToan) like '%" + ma + "%'and TrangThai like '%" + mi + "%'";
+"                     FROM HoaDon where Day(NgayThanhToan) like '" + ma + "%'and TrangThai like '" + mi + "%'";
             PreparedStatement ps = con.prepareStatement(sql);
             ps.execute();
             ResultSet rs = ps.getResultSet();
@@ -176,14 +176,35 @@ public class ThongKeRepository {
         }
         return listsp;
     }
-    
+     public static ArrayList<ThongKe> finByNgayThanhToanNgay(int ma) {
+        ArrayList<ThongKe> listsp = new ArrayList<>();
+        Connection con;
+        try {
+            con = DBContext.getConnection();
+            String sql = "SELECT Day(NgayThanhToan) as Ngay, TongTien \n" +
+"                     FROM HoaDon where Day(NgayThanhToan) like '" + ma + "' and TrangThai=5 ";
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.execute();
+            ResultSet rs = ps.getResultSet();
+
+            while (rs.next()) {
+                ThongKe bhsp = new ThongKe();
+                bhsp.setNgay(rs.getString("Ngay"));
+                bhsp.setTien(rs.getInt("TongTien"));
+                listsp.add(bhsp);
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        return listsp;
+    }
     public static ArrayList<ThongKe> finByNgayThanhToanThang(int ma) {
         ArrayList<ThongKe> listsp = new ArrayList<>();
         Connection con;
         try {
             con = DBContext.getConnection();
             String sql = "SELECT Month(NgayThanhToan) as Ngay, TongTien \n" +
-"                     FROM HoaDon where Month(NgayThanhToan) like '%" + ma + "%'";
+"                     FROM HoaDon where Month(NgayThanhToan) like '" + ma + "' and TrangThai=5 or TrangThai=4";
             PreparedStatement ps = con.prepareStatement(sql);
             ps.execute();
             ResultSet rs = ps.getResultSet();
@@ -207,7 +228,7 @@ public class ThongKeRepository {
         try {
             con = DBContext.getConnection();
             String sql = "SELECT Year(NgayThanhToan) as Ngay, TongTien \n" +
-"                     FROM HoaDon where Year(NgayThanhToan) like '%" + ma + "%'";
+"                     FROM HoaDon where Year(NgayThanhToan) like '" + ma + "' and TrangThai=5 or TrangThai=4";
             PreparedStatement ps = con.prepareStatement(sql);
             ps.execute();
             ResultSet rs = ps.getResultSet();
@@ -225,29 +246,6 @@ public class ThongKeRepository {
     
     }
      
-     public static ArrayList<ThongKe> finByNgayThanhToanNgay(int ma) {
-        ArrayList<ThongKe> listsp = new ArrayList<>();
-        Connection con;
-        try {
-            con = DBContext.getConnection();
-            String sql = "SELECT Day(NgayThanhToan) as Ngay, TongTien \n" +
-"                     FROM HoaDon where Day(NgayThanhToan) like '%" + ma + "%'";
-            PreparedStatement ps = con.prepareStatement(sql);
-            ps.execute();
-            ResultSet rs = ps.getResultSet();
-
-            while (rs.next()) {
-                ThongKe bhsp = new ThongKe();
-                bhsp.setNgay(rs.getString("Ngay"));
-                bhsp.setTien(rs.getInt("TongTien"));
-                listsp.add(bhsp);
-            }
-        } catch (SQLException ex) {
-            ex.printStackTrace();
-        }
-        return listsp;
-    
-    }
      
      
 

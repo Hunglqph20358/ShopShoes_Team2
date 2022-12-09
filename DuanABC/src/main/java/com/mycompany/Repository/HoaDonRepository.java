@@ -217,15 +217,36 @@ public class HoaDonRepository {
     //------------------------
     
     //tinhph23160
+//    public List<HoaDon> getAllHoaDon() {
+//        List<HoaDon> lst = new ArrayList<>();
+//        Transaction tran = null;
+//        try (Session sess = HibernateUtil.getFACTORY().openSession()) {
+//            tran = sess.beginTransaction();
+//            lst = sess.createQuery("FROM HoaDon").list();
+//            tran.commit();
+//        }
+//        return lst;
+//    }
+
     public List<HoaDon> getAllHoaDon() {
-        List<HoaDon> lst = new ArrayList<>();
-        Transaction tran = null;
-        try (Session sess = HibernateUtil.getFACTORY().openSession()) {
-            tran = sess.beginTransaction();
-            lst = sess.createQuery("FROM HoaDon").list();
-            tran.commit();
+       List<HoaDon> listsp = new ArrayList<>();
+        Connection con;
+        try {
+            con = DBContext.getConnection();
+            String sql = "SELECT MaHD, NgayThanhToan, TongTien, TrangThai\n"
+                    + " FROM     dbo.HoaDon where TrangThai=5 or TrangThai=4 or TrangThai=2";
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.execute();
+            ResultSet rs = ps.getResultSet();
+
+            while (rs.next()) {
+                HoaDon bhsp = new HoaDon(rs.getString(1), rs.getDate(2), rs.getBigDecimal(3), rs.getInt(4));
+                listsp.add(bhsp);
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
         }
-        return lst;
+        return listsp;
     }
 
     public ArrayList<HoaDon> finByTrangThai(int ma) {
@@ -311,5 +332,4 @@ public class HoaDonRepository {
     
     //-----------------
     //----------------------
-    
 }
