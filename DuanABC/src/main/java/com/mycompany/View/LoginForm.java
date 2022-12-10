@@ -190,6 +190,9 @@ public class LoginForm extends javax.swing.JDialog {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         try {
+            if(txtUserName.getText().isBlank() || txtUserName.getText().isBlank()){
+                JOptionPane.showMessageDialog(this,"Vui lòng không để Trống!", "Thông Báo", JOptionPane.ERROR_MESSAGE);
+            }
             NhanVien login = nvservice.getLogin(txtUserName.getText(), new String(txtPassWord.getPassword()));
             if(login != null){
                 JOptionPane.showMessageDialog(this,"Đăng Nhập Thành Công !");
