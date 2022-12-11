@@ -63,7 +63,7 @@ public class ChucVuRepository {
         }
     }
 
-    public ChucVu updateChucVu(ChucVu cv, String ma, String ten, String trangthai) {
+    public ChucVu updateChucVu(ChucVu cv, String ma, String ten, Integer trangthai) {
         Transaction trans = null;
         try (Session sess = HibernateUtil.getFACTORY().openSession()) {
             trans = sess.beginTransaction();

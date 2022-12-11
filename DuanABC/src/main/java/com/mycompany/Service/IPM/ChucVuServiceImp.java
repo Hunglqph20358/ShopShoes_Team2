@@ -30,7 +30,7 @@ public class ChucVuServiceImp implements ChucVuSevice{
         return rep.insertChucVu(cv);
     }
      @Override
-    public ChucVu updateChucVu(ChucVu cv, String ma, String ten, String trangthai){
+    public ChucVu updateChucVu(ChucVu cv, String ma, String ten, Integer trangthai){
         return rep.updateChucVu(cv, ma, ten, trangthai);
     }
 }

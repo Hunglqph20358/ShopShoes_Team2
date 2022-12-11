@@ -5,6 +5,7 @@
 package com.mycompany.Repository;
 
 import com.mycompany.DomainModels.ChiTietSP;
+import com.mycompany.DomainModels.GiamGiaChiTiet;
 import com.mycompany.DomainModels.LoaiSP;
 import com.mycompany.DomainModels.MauSac;
 import com.mycompany.DomainModels.SanPham;
@@ -45,14 +46,24 @@ public class ChiTietSPRepository {
             query.select(ctspRoot);
             Query q = sess.createQuery(query);
             lst = q.getResultList();
-
         } catch (Exception e) {
             e.printStackTrace();
             return null;
         }
         return lst;
     }
-
+     public List<GiamGiaChiTiet> getAllSPGiamGia() {
+        List<GiamGiaChiTiet> lst = new ArrayList<>();
+        try (Session sess = HibernateUtil.getFACTORY().openSession()) {
+            Query q = sess.createQuery("Select ggct From GiamGiaChiTiet ggct");
+            lst = q.getResultList();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+        return lst;
+    }
+     
     public List<ChiTietSP> getAllBySearch(String timKiem) {
         List<ChiTietSP> lst = new ArrayList<>();
         try (Session sess = HibernateUtil.getFACTORY().openSession()) {
@@ -219,7 +230,9 @@ public class ChiTietSPRepository {
         return 1;
     }
     public static void main(String[] args) {
-        new ChiTietSPRepository().getAllByKhoangGia(new BigDecimal(80000), new BigDecimal(160000)).forEach(c -> System.out.println(c));
-        
+       ChiTietSPRepository ctspRepo = new ChiTietSPRepository();
+        for (GiamGiaChiTiet ct : ctspRepo.getAllSPGiamGia()) {
+            System.out.println(ct);
+        }
     }
 }
