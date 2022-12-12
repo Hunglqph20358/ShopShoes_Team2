@@ -225,6 +225,7 @@ public class BanHangPanel extends javax.swing.JPanel {
         txtTenKH.setEnabled(false);
 
         btnXacNhanKH.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnXacNhanKH.setIcon(new javax.swing.ImageIcon(getClass().getResource("/add.png"))); // NOI18N
         btnXacNhanKH.setText("Xác nhận");
         btnXacNhanKH.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -260,7 +261,7 @@ public class BanHangPanel extends javax.swing.JPanel {
                                 .addComponent(txtSDTKH)
                                 .addGap(27, 27, 27)))
                         .addComponent(btnXacNhanKH)))
-                .addContainerGap(46, Short.MAX_VALUE))
+                .addContainerGap(40, Short.MAX_VALUE))
         );
         pnThongTinChungLayout.setVerticalGroup(
             pnThongTinChungLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
