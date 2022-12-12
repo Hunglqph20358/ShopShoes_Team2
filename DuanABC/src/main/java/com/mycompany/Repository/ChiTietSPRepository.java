@@ -52,6 +52,47 @@ public class ChiTietSPRepository {
         }
         return lst;
     }
+    public List<ChiTietSP> getAllPhanTrang(int soTrang) {
+        List<ChiTietSP> lst = new ArrayList<>();
+        String sql = "select TOP 5 ctsp.Id, sp.Ma as MaSP, sp.Ten as TenSP ,loai.Ten as tenLoai ,ms.Ten as tenMauSac,ctsp.Size,ctsp.SoLuong,ctsp.GiaBan from ChiTietSP ctsp join SanPham sp on ctsp.IdGiay = sp.Id \n" +
+"  join LoaiSP loai on ctsp.IdLoaiSP = loai.Id join MauSac ms on ctsp.IdMauSac = ms.Id where ctsp.Id not in (select top "+(soTrang-1) * 5 +" Id from ChiTietSP)";
+        try (Connection con = DBContext.getConnection();PreparedStatement ps = con.prepareCall(sql)) {
+         ResultSet rs = ps.executeQuery();
+            while (rs.next()) {                
+               SanPham sp = new SanPham();
+               sp.setMa(rs.getString("MaSP"));
+               sp.setTen(rs.getString("TenSP"));
+               LoaiSP loaisp = new LoaiSP();
+               loaisp.setTen(rs.getString("tenLoai"));
+               MauSac ms = new MauSac();
+               ms.setTen(rs.getString("tenMauSac"));
+               ChiTietSP ctsp = new ChiTietSP();
+               ctsp.setId(rs.getString("Id"));
+               ctsp.setSanPham(sp);
+               ctsp.setLoaiSP(loaisp);
+               ctsp.setMauSac(ms);
+               ctsp.setSize(rs.getInt("Size"));
+               ctsp.setSoLuong(rs.getInt("SoLuong"));
+               ctsp.setGiaBan(rs.getBigDecimal("GiaBan"));
+               lst.add(ctsp);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+        return lst;
+    }
+    public int countSanPhamBanHang() {
+        try (Session sess = HibernateUtil.getFACTORY().openSession()) {
+            Query q = sess.createQuery("select Count(*) from ChiTietSP ctsp");
+            return Integer.parseInt(q.getSingleResult().toString());
+        } catch (Exception e) {
+            e.printStackTrace();
+            return -1;
+        }
+    } 
+    
+    
     public List<ChiTietSP> getAllBySearch(String timKiem) {
         List<ChiTietSP> lst = new ArrayList<>();
         try (Session sess = HibernateUtil.getFACTORY().openSession()) {

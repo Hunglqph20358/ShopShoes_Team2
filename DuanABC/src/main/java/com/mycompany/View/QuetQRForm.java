@@ -335,7 +335,7 @@ public class QuetQRForm extends javax.swing.JFrame implements Runnable, ThreadFa
                     sp.setId(idCTSP);
                     sp.setSoLuong(tongSLSP);
                     if (chiTietSPService.updateSPKhiMua(sp) > 0) {
-                        BanHangPanel.banHangPanel.fillDSSP();
+                        BanHangPanel.banHangPanel.fillDSSP(1);
                         JOptionPane.showMessageDialog(this, "Thêm Vào Giỏ Hàng Thành Công!");
                         this.dispose();
                     }
@@ -346,7 +346,7 @@ public class QuetQRForm extends javax.swing.JFrame implements Runnable, ThreadFa
                     sp.setId(idCTSP);
                     sp.setSoLuong(tongSLSP);
                     if (chiTietSPService.updateSPKhiMua(sp) > 0) {
-                        BanHangPanel.banHangPanel.fillDSSP();
+                        BanHangPanel.banHangPanel.fillDSSP(1);
                         JOptionPane.showMessageDialog(this, "Thêm Vào Giỏ Hàng Thành Công!");
                         this.dispose();
                     }

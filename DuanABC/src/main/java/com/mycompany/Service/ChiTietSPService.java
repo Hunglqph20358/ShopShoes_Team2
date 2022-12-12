@@ -17,7 +17,9 @@ import java.util.List;
  */
 public interface ChiTietSPService {
 
-    List<SanPhamViewModelBanHang> getSPBanHang();
+    List<SanPhamViewModelBanHang> getSPBanHang(int soTrang);
+    
+    int countSanPhamBanHang();
     
     List<SanPhamViewModelBanHang> getSPBanHangBySearch(String timKiem);
     

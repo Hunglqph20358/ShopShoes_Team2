@@ -26,8 +26,8 @@ public class CTSPSerivceIpm implements ChiTietSPService {
     }
 
     @Override
-    public List<SanPhamViewModelBanHang> getSPBanHang() {
-        List<ChiTietSP> lst = chiTietSPRepository.getAll();
+    public List<SanPhamViewModelBanHang> getSPBanHang(int soTrang) {
+        List<ChiTietSP> lst = chiTietSPRepository.getAllPhanTrang(soTrang);
         List<SanPhamViewModelBanHang> lst_view = new ArrayList<>();
         for (ChiTietSP chiTietSP : lst) {
             SanPhamViewModelBanHang sp = new SanPhamViewModelBanHang();
@@ -42,6 +42,10 @@ public class CTSPSerivceIpm implements ChiTietSPService {
             lst_view.add(sp);
         }
         return lst_view;
+    }
+     @Override
+    public int countSanPhamBanHang() {
+        return chiTietSPRepository.countSanPhamBanHang();
     }
     //--------------------------------------
 
@@ -127,5 +131,7 @@ public class CTSPSerivceIpm implements ChiTietSPService {
         }
         return lst_view;
     }
+
+   
 
 }
