@@ -38,9 +38,6 @@ public class LoaiSP implements Serializable{
     private String Ma;
     private String Ten;
     private Integer TrangThai;
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "idCha")
-    private LoaiSP loaiSP;
     
       @Override
     public String toString() {

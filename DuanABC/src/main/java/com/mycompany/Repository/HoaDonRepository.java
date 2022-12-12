@@ -47,7 +47,7 @@ public class HoaDonRepository {
 
     public int countHoaDonBanHang() {
         try (Session sess = HibernateUtil.getFACTORY().openSession()) {
-            Query q = sess.createQuery("select Count(*) from HoaDon hd where hd.TrangThai = 0 or hd.TrangThai = 1 or hd.TrangThai = 3");
+            Query q = sess.createQuery("select Count(*) from HoaDon hd");
             return Integer.parseInt(q.getSingleResult().toString());
         } catch (Exception e) {
             e.printStackTrace();

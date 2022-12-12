@@ -42,7 +42,7 @@ public class LoaiSPForm extends javax.swing.JFrame {
         String id = lblID.getText().trim();
         String ma = txtMa.getText().trim();
         String ten = txtTen.getText().trim();
-        LoaiSP sp=new LoaiSP(id, ma, ten,null,null);
+        LoaiSP sp=new LoaiSP(id, ma, ten,null);
         return sp;
     }
 

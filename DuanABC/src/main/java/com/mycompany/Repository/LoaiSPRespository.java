@@ -24,7 +24,7 @@ public class LoaiSPRespository {
             PreparedStatement ps = con.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {                
-              lst.add(new LoaiSP(rs.getString(1), rs.getString(2), rs.getString(3),rs.getInt(4),(LoaiSP) rs.getObject(5)));
+              lst.add(new LoaiSP(rs.getString(1), rs.getString(2), rs.getString(3),rs.getInt(4)));
             }
         } catch (Exception e) {
         }

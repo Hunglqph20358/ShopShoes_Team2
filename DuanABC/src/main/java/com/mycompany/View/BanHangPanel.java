@@ -1234,7 +1234,7 @@ public class BanHangPanel extends javax.swing.JPanel {
                     sp.setId(idSP);
                     sp.setSoLuong(tongSoLuong);
                     if (ctspService.updateSPKhiMua(sp) > 0) {
-                        fillDSSP(1);
+                        fillDSSP(trang);
                     }
                 }
             } else {
@@ -1243,7 +1243,7 @@ public class BanHangPanel extends javax.swing.JPanel {
                     sp.setId(idSP);
                     sp.setSoLuong(tongSoLuong);
                     if (ctspService.updateSPKhiMua(sp) > 0) {
-                        fillDSSP(1);
+                        fillDSSP(trang);
                     }
                 }
 
@@ -1379,7 +1379,7 @@ public class BanHangPanel extends javax.swing.JPanel {
                     ctsp.setId(idCTSP);
                     ctsp.setSoLuong(soLuongSP);
                     if (ctspService.updateSPKhiMua(ctsp) > 0) {
-                        fillDSSP(1);
+                        fillDSSP(trang);
                     }
                 }
             }
@@ -2380,6 +2380,5 @@ public class BanHangPanel extends javax.swing.JPanel {
     public String zenMaHD(List<HoaDon> lst) {
         String maHD = "HD0";
         return maHD + (lst.size() + 1);
-
     }
 }
