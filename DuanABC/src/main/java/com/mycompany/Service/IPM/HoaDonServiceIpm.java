@@ -50,7 +50,11 @@ public class HoaDonServiceIpm implements HoaDonService {
         }
         return lst_view;
     }
-
+    
+    @Override
+    public int countHoaDonBanHang() {
+        return hoaDonRepository.countHoaDonBanHang();
+    }
     @Override
     public Integer addHD(HoaDon hd) {
         return hoaDonRepository.addHD(hd);
@@ -224,6 +228,8 @@ public class HoaDonServiceIpm implements HoaDonService {
         }
         return list;
     }
+
+    
     
 
 

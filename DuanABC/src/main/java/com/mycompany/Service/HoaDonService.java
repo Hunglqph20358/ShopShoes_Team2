@@ -19,6 +19,8 @@ import java.util.List;
 public interface HoaDonService {
 
     List<HoaDonViewModels> getAllHD();
+    
+    int countHoaDonBanHang();
 
     List<QLHoaDonViewModel> getAllHDViewQLHD();
 

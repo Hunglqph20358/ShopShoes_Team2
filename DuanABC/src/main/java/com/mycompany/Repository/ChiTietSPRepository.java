@@ -52,18 +52,6 @@ public class ChiTietSPRepository {
         }
         return lst;
     }
-     public List<GiamGiaChiTiet> getAllSPGiamGia() {
-        List<GiamGiaChiTiet> lst = new ArrayList<>();
-        try (Session sess = HibernateUtil.getFACTORY().openSession()) {
-            Query q = sess.createQuery("Select ggct From GiamGiaChiTiet ggct");
-            lst = q.getResultList();
-        } catch (Exception e) {
-            e.printStackTrace();
-            return null;
-        }
-        return lst;
-    }
-     
     public List<ChiTietSP> getAllBySearch(String timKiem) {
         List<ChiTietSP> lst = new ArrayList<>();
         try (Session sess = HibernateUtil.getFACTORY().openSession()) {
@@ -228,11 +216,5 @@ public class ChiTietSPRepository {
             return -1;
         }
         return 1;
-    }
-    public static void main(String[] args) {
-       ChiTietSPRepository ctspRepo = new ChiTietSPRepository();
-        for (GiamGiaChiTiet ct : ctspRepo.getAllSPGiamGia()) {
-            System.out.println(ct);
-        }
     }
 }

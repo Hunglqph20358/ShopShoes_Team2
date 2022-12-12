@@ -55,6 +55,7 @@ public class BanHangPanel extends javax.swing.JPanel {
     public static String MaHDQRCode = null;
 
     private Date today = new Date();
+  
 
     /**
      * Creates new form BansHangPanel
@@ -68,8 +69,11 @@ public class BanHangPanel extends javax.swing.JPanel {
         hoaDonChiTietService = new HDCTServiceIpm();
         kHService = new KHServiceIpm();
         htttService = new HTThanhToanServiceIpm();
+        
         fillDSSP();
         fillHoaDon();
+        
+
     }
 
     /**
@@ -261,7 +265,7 @@ public class BanHangPanel extends javax.swing.JPanel {
                                 .addComponent(txtSDTKH)
                                 .addGap(27, 27, 27)))
                         .addComponent(btnXacNhanKH)))
-                .addContainerGap(40, Short.MAX_VALUE))
+                .addContainerGap(36, Short.MAX_VALUE))
         );
         pnThongTinChungLayout.setVerticalGroup(
             pnThongTinChungLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -551,7 +555,7 @@ public class BanHangPanel extends javax.swing.JPanel {
                             .addComponent(txtHoTenKHDatHang, javax.swing.GroupLayout.DEFAULT_SIZE, 156, Short.MAX_VALUE)
                             .addComponent(txtMaHDDatHang, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtSDTKHDatHang))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 52, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 62, Short.MAX_VALUE)
                         .addComponent(btnXacNhanKHDatHang)))
                 .addContainerGap())
         );
@@ -867,7 +871,7 @@ public class BanHangPanel extends javax.swing.JPanel {
             pnHoaDonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnHoaDonLayout.createSequentialGroup()
                 .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 628, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 22, Short.MAX_VALUE))
+                .addGap(0, 29, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnHoaDonLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(rdoTatCa)
@@ -887,8 +891,9 @@ public class BanHangPanel extends javax.swing.JPanel {
                     .addComponent(rdoChoThanhToan)
                     .addComponent(rdoChuaThanhToan)
                     .addComponent(rdoTatCa))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         pnGioHang.setBackground(new java.awt.Color(255, 255, 255));
@@ -943,7 +948,7 @@ public class BanHangPanel extends javax.swing.JPanel {
                 .addContainerGap())
             .addGroup(pnGioHangLayout.createSequentialGroup()
                 .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 634, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 16, Short.MAX_VALUE))
+                .addGap(0, 23, Short.MAX_VALUE))
         );
         pnGioHangLayout.setVerticalGroup(
             pnGioHangLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1043,7 +1048,7 @@ public class BanHangPanel extends javax.swing.JPanel {
                         .addContainerGap())
                     .addGroup(pnDSSanPhamLayout.createSequentialGroup()
                         .addComponent(lblTimKiem)
-                        .addGap(47, 533, Short.MAX_VALUE))))
+                        .addGap(47, 537, Short.MAX_VALUE))))
             .addComponent(jScrollPane6, javax.swing.GroupLayout.Alignment.TRAILING)
         );
         pnDSSanPhamLayout.setVerticalGroup(
@@ -1053,18 +1058,18 @@ public class BanHangPanel extends javax.swing.JPanel {
                 .addComponent(lblTimKiem)
                 .addGap(9, 9, 9)
                 .addGroup(pnDSSanPhamLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(pnDSSanPhamLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(txtKhoangGia1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtKhoangGia2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel2)
+                        .addComponent(jLabel4))
                     .addGroup(pnDSSanPhamLayout.createSequentialGroup()
                         .addGroup(pnDSSanPhamLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel3)
                             .addComponent(txtTimKiemSPBh, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(pnDSSanPhamLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(txtKhoangGia1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(txtKhoangGia2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel2)
-                        .addComponent(jLabel4)))
-                .addContainerGap())
+                        .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(60, 60, 60))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);

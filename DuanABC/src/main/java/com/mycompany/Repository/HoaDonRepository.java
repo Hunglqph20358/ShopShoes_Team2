@@ -19,9 +19,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import javax.persistence.criteria.CriteriaBuilder;
-import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.Root;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
@@ -38,13 +35,26 @@ public class HoaDonRepository {
         String hql = "select hd From HoaDon hd join hd.nhanVien nv where hd.TrangThai = 0 or hd.TrangThai = 1 or hd.TrangThai = 3 order by hd.NgayTao desc ";
         try (Session sess = HibernateUtil.getFACTORY().openSession()) {
             Query q = sess.createQuery(hql);
-            lst = q.getResultList();
+            lst =  q.getResultList();
         } catch (Exception e) {
             e.printStackTrace();
             return null;
         }
+
         return lst;
     }
+  
+
+    public int countHoaDonBanHang() {
+        try (Session sess = HibernateUtil.getFACTORY().openSession()) {
+            Query q = sess.createQuery("select Count(*) from HoaDon hd where hd.TrangThai = 0 or hd.TrangThai = 1 or hd.TrangThai = 3");
+            return Integer.parseInt(q.getSingleResult().toString());
+        } catch (Exception e) {
+            e.printStackTrace();
+            return -1;
+        }
+    }
+
     public List<HoaDon> getAllHDViewQLHD() {
         List<HoaDon> lst = new ArrayList<>();
         String hql = "select hd From HoaDon hd left join hd.khachHang kh left join hd.nhanVien nv order by hd.NgayTao desc";
@@ -57,6 +67,7 @@ public class HoaDonRepository {
         }
         return lst;
     }
+
     public List<HoaDon> getAllHDViewQLHDByTrangThai(Integer trangThai) {
         List<HoaDon> lst = new ArrayList<>();
         String hql = "select hd From HoaDon hd left join hd.khachHang kh left join hd.nhanVien nv where hd.TrangThai = :tt";
@@ -70,14 +81,15 @@ public class HoaDonRepository {
         }
         return lst;
     }
+
     public List<HoaDon> getAllHDViewQLHDBySearch(String timKiem) {
         List<HoaDon> lst = new ArrayList<>();
         String hql = "select hd From HoaDon hd left join hd.khachHang kh left join hd.nhanVien nv where hd.MaHD like :ma or nv.HoTen like :ten or kh.HoTen like :tenkh";
         try (Session sess = HibernateUtil.getFACTORY().openSession()) {
             Query q = sess.createQuery(hql);
-            q.setParameter("ma","%"+timKiem +"%");
-            q.setParameter("ten","%"+timKiem +"%");
-            q.setParameter("tenkh","%"+timKiem +"%");
+            q.setParameter("ma", "%" + timKiem + "%");
+            q.setParameter("ten", "%" + timKiem + "%");
+            q.setParameter("tenkh", "%" + timKiem + "%");
             lst = q.getResultList();
         } catch (Exception e) {
             e.printStackTrace();
@@ -85,6 +97,7 @@ public class HoaDonRepository {
         }
         return lst;
     }
+
     public List<HoaDon> getAllHDViewQLHDByNgay(Date ngay, Date ngay2) {
         List<HoaDon> lst = new ArrayList<>();
         String hql = "select hd From HoaDon hd left join hd.khachHang kh left join hd.nhanVien nv where hd.NgayTao between :ngay and :ngay1";
@@ -99,7 +112,7 @@ public class HoaDonRepository {
         }
         return lst;
     }
-    
+
     public List<HoaDon> getAllHDByTrangThai(int tt) {
         List<HoaDon> lst = new ArrayList<>();
         String hql = "select hd From HoaDon hd join hd.nhanVien nv where hd.TrangThai = :tt1 or hd.TrangThai = :tt2 or hd.TrangThai = :tt3";
@@ -115,6 +128,7 @@ public class HoaDonRepository {
         }
         return lst;
     }
+
     public List<HoaDon> getAllHDCheckMa() {
         List<HoaDon> lst = new ArrayList<>();
         String hql = "select hd From HoaDon hd";
@@ -127,8 +141,7 @@ public class HoaDonRepository {
         }
         return lst;
     }
-    
-    
+
     public Integer addHD(HoaDon hd) {
         try (Session sess = HibernateUtil.getFACTORY().openSession()) {
             sess.getTransaction().begin();
@@ -148,7 +161,7 @@ public class HoaDonRepository {
             sess.getTransaction().begin();
             Query q = sess.createQuery(hql);
             String idKH = null;
-            if(hd.getKhachHang() != null){
+            if (hd.getKhachHang() != null) {
                 idKH = hd.getKhachHang().getId();
             }
             q.setParameter("tong", hd.getTongTien());
@@ -165,8 +178,7 @@ public class HoaDonRepository {
         }
         return row;
     }
-    
-    
+
     public Integer updateHDDatHangThanhCong(HoaDon hd) {
         Integer row = null;
         String hql = "update HoaDon set TongTien = :tong, NgayThanhToan = :ngayttoan ,NgayDaNhanHang = :ngayDaNhanHang ,TrangThai = :tt where Id = :id";
@@ -186,7 +198,8 @@ public class HoaDonRepository {
         }
         return row;
     }
-     public Integer updateHDDatHang(HoaDon hd) {
+
+    public Integer updateHDDatHang(HoaDon hd) {
         Integer row = null;
         String hql = "update HoaDon set TrangThai = :trangThai,"
                 + "NgayShip = :ngayShip, NgayNhanHang = :ngayDuKien , "
@@ -204,7 +217,7 @@ public class HoaDonRepository {
             q.setParameter("gc", hd.getGhiChu());
             q.setParameter("dc", hd.getDiaChiGiaoHang());
             q.setParameter("sdt", hd.getSDTNguoiGiaoHang());
-            
+
             row = q.executeUpdate();
             sess.getTransaction().commit();
         } catch (Exception e) {
@@ -215,7 +228,7 @@ public class HoaDonRepository {
     }
     //Hunglqph20358
     //------------------------
-    
+
     //tinhph23160
 //    public List<HoaDon> getAllHoaDon() {
 //        List<HoaDon> lst = new ArrayList<>();
@@ -227,9 +240,8 @@ public class HoaDonRepository {
 //        }
 //        return lst;
 //    }
-
     public List<HoaDon> getAllHoaDon() {
-       List<HoaDon> listsp = new ArrayList<>();
+        List<HoaDon> listsp = new ArrayList<>();
         Connection con;
         try {
             con = DBContext.getConnection();
@@ -269,6 +281,7 @@ public class HoaDonRepository {
         }
         return listsp;
     }
+
     public static ArrayList<HoaDon> finByNgayThanhToan(String ma) {
         ArrayList<HoaDon> listsp = new ArrayList<>();
         Connection con;
@@ -289,8 +302,6 @@ public class HoaDonRepository {
         }
         return listsp;
     }
-   
-    
 
     public ArrayList<HoaDon> finByNgayThanhToanandTH(int ma, int mi) {
         ArrayList<HoaDon> listsp = new ArrayList<>();
@@ -312,11 +323,10 @@ public class HoaDonRepository {
         }
         return listsp;
     }
-    
 
     public List<HoaDon> finByKhoangNgayThanhToan(Date ngay, Date ngay1) {
         List<HoaDon> lst = new ArrayList<>();
-        String hql = "select hd From HoaDon hd where hd.NgayThanhToan between :ngay and :ngay1" ;
+        String hql = "select hd From HoaDon hd where hd.NgayThanhToan between :ngay and :ngay1";
         try (Session sess = HibernateUtil.getFACTORY().openSession()) {
             Query q = sess.createQuery(hql);
             q.setParameter("ngay", ngay);
@@ -328,8 +338,8 @@ public class HoaDonRepository {
         }
         return lst;
     }
-    
-    
+
+
     //-----------------
     //----------------------
 }

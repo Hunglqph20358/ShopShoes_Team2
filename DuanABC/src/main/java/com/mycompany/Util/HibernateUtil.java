@@ -29,6 +29,7 @@ public class HibernateUtil {
         pro.put(Environment.URL, "jdbc:sqlserver://localhost:1433;databaseName=SHOP_BAN_GIAY_TEAM2_PRO1041;encrypt=true;trustServerCertificate=true");
         pro.put(Environment.USER,"sa" );
         pro.put(Environment.PASS,"123456789" );
+        
         pro.put(Environment.SHOW_SQL,"true" );
         
         conf.setProperties(pro);
