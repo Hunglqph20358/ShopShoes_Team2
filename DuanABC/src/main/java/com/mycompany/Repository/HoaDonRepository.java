@@ -261,7 +261,8 @@ public class HoaDonRepository {
         try {
             con = DBContext.getConnection();
             String sql = "SELECT MaHD, NgayThanhToan, TongTien, TrangThai\n"
-                    + " FROM     dbo.HoaDon where TrangThai=5 or TrangThai=4 or TrangThai=2";
+                    + " FROM     dbo.HoaDon where TrangThai=5 or TrangThai=4 or TrangThai=2"
+            + " ORDER BY Cast(SUBSTRING(dbo.HoaDon.MaHD, 3,2) as int)";
             PreparedStatement ps = con.prepareStatement(sql);
             ps.execute();
             ResultSet rs = ps.getResultSet();
@@ -276,13 +277,15 @@ public class HoaDonRepository {
         return listsp;
     }
 
+    
     public ArrayList<HoaDon> finByTrangThai(int ma) {
         ArrayList<HoaDon> listsp = new ArrayList<>();
         Connection con;
         try {
             con = DBContext.getConnection();
             String sql = "SELECT MaHD, NgayThanhToan, TongTien, TrangThai\n"
-                    + " FROM     dbo.HoaDon where TrangThai like '%" + ma + "%'";
+                    + " FROM     dbo.HoaDon where TrangThai like '%" + ma + "%'"
+                     + "ORDER BY Cast(SUBSTRING(dbo.HoaDon.MaHD, 3,2) as int)";
             PreparedStatement ps = con.prepareStatement(sql);
             ps.execute();
             ResultSet rs = ps.getResultSet();
@@ -324,7 +327,8 @@ public class HoaDonRepository {
         try {
             con = DBContext.getConnection();
             String sql = "SELECT MaHD, NgayThanhToan, TongTien, TrangThai\n"
-                    + " FROM     dbo.HoaDon where NgayThanhToan like '%" + ma + "%' and TrangThai like '%" + mi + "%'";
+                    + " FROM     dbo.HoaDon where NgayThanhToan like '%" + ma + "%' and TrangThai like '%" + mi + "%'"
+                    +  "ORDER BY Cast(SUBSTRING(dbo.HoaDon.MaHD, 3,2) as int)";
             PreparedStatement ps = con.prepareStatement(sql);
             ps.execute();
             ResultSet rs = ps.getResultSet();

@@ -72,5 +72,16 @@ public class ThongKeServiceImp implements ThongKeService {
     public ArrayList<ThongKe> finByNgayThanhToaThangnandTT(int ma, int mi) {
         return thongkerepo.finByNgayThanhToanThanganhTT(ma, mi);
     }
-    
+    @Override
+    public ArrayList<ThongKe> finTongtienByNgayThanhToanNam(int ma) {
+        return thongkerepo.finByTongtienNgayThanhToanNam(ma);
+    }
+    @Override
+    public ArrayList<ThongKe> finbyTongtienngaythanhToanThang(int ma) {
+        return thongkerepo.finByTongtienNgayThanhToanThang(ma);
+    }
+    @Override
+    public ArrayList<ThongKe> finbyTongtienngaythanhToanNgay(int ma) {
+        return thongkerepo.finByTongtienNgayThanhToanNgay(ma);
+    }
 }

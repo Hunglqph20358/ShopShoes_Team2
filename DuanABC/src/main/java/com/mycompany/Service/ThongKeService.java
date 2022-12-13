@@ -29,4 +29,10 @@ public interface ThongKeService {
     ArrayList<ThongKe> finbyngaythanhToanThang(int ma);
 
     ArrayList<ThongKe> finbyngaythanhToanNgay(int ma);
+    
+    ArrayList<ThongKe> finTongtienByNgayThanhToanNam(int ma);
+
+    ArrayList<ThongKe> finbyTongtienngaythanhToanThang(int ma);
+
+    ArrayList<ThongKe> finbyTongtienngaythanhToanNgay(int ma);
 }

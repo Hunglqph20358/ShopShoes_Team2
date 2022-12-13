@@ -176,13 +176,13 @@ public class ThongKeRepository {
         }
         return listsp;
     }
-     public static ArrayList<ThongKe> finByNgayThanhToanNgay(int ma) {
+    public static ArrayList<ThongKe> finByNgayThanhToanNgay(int ma) {
         ArrayList<ThongKe> listsp = new ArrayList<>();
         Connection con;
         try {
             con = DBContext.getConnection();
             String sql = "SELECT Day(NgayThanhToan) as Ngay, TongTien \n" +
-"                     FROM HoaDon where Day(NgayThanhToan) like '" + ma + "' and TrangThai=5 ";
+"                     FROM HoaDon where Day(NgayThanhToan) like '" + ma + "' and TrangThai=5 or TrangThai=4 or TrangThai = 2";
             PreparedStatement ps = con.prepareStatement(sql);
             ps.execute();
             ResultSet rs = ps.getResultSet();
@@ -204,7 +204,7 @@ public class ThongKeRepository {
         try {
             con = DBContext.getConnection();
             String sql = "SELECT Month(NgayThanhToan) as Ngay, TongTien \n" +
-"                     FROM HoaDon where Month(NgayThanhToan) like '" + ma + "' and TrangThai=5 or TrangThai=4";
+"                     FROM HoaDon where Month(NgayThanhToan) like '" + ma + "' and TrangThai=5 or TrangThai=4 or TrangThai = 2";
             PreparedStatement ps = con.prepareStatement(sql);
             ps.execute();
             ResultSet rs = ps.getResultSet();
@@ -228,6 +228,75 @@ public class ThongKeRepository {
         try {
             con = DBContext.getConnection();
             String sql = "SELECT Year(NgayThanhToan) as Ngay, TongTien \n" +
+"                     FROM HoaDon where Year(NgayThanhToan) like '" + ma + "' and TrangThai=5 or TrangThai=4 or TrangThai = 2";
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.execute();
+            ResultSet rs = ps.getResultSet();
+
+            while (rs.next()) {
+                ThongKe bhsp = new ThongKe();
+                bhsp.setNgay(rs.getString("Ngay"));
+                bhsp.setTien(rs.getInt("TongTien"));
+                listsp.add(bhsp);
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        return listsp;
+    
+    }
+     public static ArrayList<ThongKe> finByTongtienNgayThanhToanNgay(int ma) {
+        ArrayList<ThongKe> listsp = new ArrayList<>();
+        Connection con;
+        try {
+            con = DBContext.getConnection();
+            String sql = "SELECT Day(NgayThanhToan) as Ngay, TongTien \n" +
+"                     FROM HoaDon where Day(NgayThanhToan) like '" + ma + "' and TrangThai=5 or TrangThai=4 ";
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.execute();
+            ResultSet rs = ps.getResultSet();
+
+            while (rs.next()) {
+                ThongKe bhsp = new ThongKe();
+                bhsp.setNgay(rs.getString("Ngay"));
+                bhsp.setTien(rs.getInt("TongTien"));
+                listsp.add(bhsp);
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        return listsp;
+    }
+    public static ArrayList<ThongKe> finByTongtienNgayThanhToanThang(int ma) {
+        ArrayList<ThongKe> listsp = new ArrayList<>();
+        Connection con;
+        try {
+            con = DBContext.getConnection();
+            String sql = "SELECT Month(NgayThanhToan) as Ngay, TongTien \n" +
+"                     FROM HoaDon where Month(NgayThanhToan) like '" + ma + "' and TrangThai=5 or TrangThai=4 ";
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.execute();
+            ResultSet rs = ps.getResultSet();
+
+            while (rs.next()) {
+                ThongKe bhsp = new ThongKe();
+                bhsp.setNgay(rs.getString("Ngay"));
+                bhsp.setTien(rs.getInt("TongTien"));
+                listsp.add(bhsp);
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        return listsp;
+    }
+    
+    
+     public static ArrayList<ThongKe> finByTongtienNgayThanhToanNam(int ma) {
+        ArrayList<ThongKe> listsp = new ArrayList<>();
+        Connection con;
+        try {
+            con = DBContext.getConnection();
+            String sql = "SELECT Year(NgayThanhToan) as Ngay, TongTien \n" +
 "                     FROM HoaDon where Year(NgayThanhToan) like '" + ma + "' and TrangThai=5 or TrangThai=4";
             PreparedStatement ps = con.prepareStatement(sql);
             ps.execute();
@@ -245,8 +314,6 @@ public class ThongKeRepository {
         return listsp;
     
     }
-     
-     
      
 
 }

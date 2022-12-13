@@ -1088,7 +1088,7 @@ public class ThongKePanel extends javax.swing.JPanel {
         lblDTNamThanhcong.setText(thongkeser.finByNgayThanhToannamandTT(nam, 5).size() + " " + " Đơn ");
         lblNamDHT.setText(thongkeser.finByNgayThanhToannamandTT(nam, 4).size() + " " + " Đơn ");
         lblDTNamHuy.setText(thongkeser.finByNgayThanhToannamandTT(nam, 2).size() + " " + " Đơn ");
-        List<ThongKe> list = thongkeser.finByNgayThanhToanNam(nam);
+        List<ThongKe> list = thongkeser.finTongtienByNgayThanhToanNam(nam);
         for (ThongKe hd : list) {
             Nam += hd.getTien();
 
@@ -1108,7 +1108,7 @@ public class ThongKePanel extends javax.swing.JPanel {
         lblDTThangHuy.setText(thongkeser.finByNgayThanhToaThangnandTT(thang, 2).size() + " " + " Đơn ");
         lblThangDHT.setText(thongkeser.finByNgayThanhToaThangnandTT(thang, 4).size() + " " + " Đơn ");
 
-        List<ThongKe> listthang = thongkeser.finbyngaythanhToanThang(thang);
+        List<ThongKe> listthang = thongkeser.finbyTongtienngaythanhToanThang(thang);
         for (ThongKe hd : listthang) {
             Thang += hd.getTien();
 
@@ -1125,7 +1125,7 @@ public class ThongKePanel extends javax.swing.JPanel {
         lblDTNgayThanhcong.setText(thongkeser.finByNgayThanhToanandNgay(ngay, 5).size() + " " + " Đơn ");
         lblDTNgayHuy.setText(thongkeser.finByNgayThanhToanandNgay(ngay, 2).size() + " " + " Đơn ");
         lblNgayDHT.setText(thongkeser.finByNgayThanhToanandNgay(ngay, 4).size() + " " + " Đơn ");
-        List<ThongKe> listngay = thongkeser.finbyngaythanhToanNgay(ngay);
+        List<ThongKe> listngay = thongkeser.finbyTongtienngaythanhToanNgay(ngay);
         for (ThongKe hd : listngay) {
             Ngay += hd.getTien();
         }

@@ -1652,6 +1652,7 @@ public class BanHangPanel extends javax.swing.JPanel {
             Object traLoi = JOptionPane.showInputDialog(this, "Vui lòng nhập lý do Hủy !");
             if (traLoi instanceof String) {
                 hd.setGhiChu(traLoi.toString());
+                hd.setNgayThanhToan(new Date());
             } else {
                 return;
             }
