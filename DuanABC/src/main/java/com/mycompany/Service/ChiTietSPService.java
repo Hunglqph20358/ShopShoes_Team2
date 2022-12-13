@@ -57,7 +57,7 @@ public interface ChiTietSPService {
     List<SanPhamViewModelSP> getListThungRacSP();
 
     ArrayList<SanPhamViewModelSP> finbySize(int size);
-    
-     long totalCount();
+
+    void deletePGG(String id);
 
 }
