@@ -201,10 +201,10 @@ public class ThungRacSPForm extends javax.swing.JFrame {
                 return;
             }
 
-            for (int i = 0; i < chiTietSPService.getAllSPDangKinhDoanh().size(); i++) {
-                if (chiTietSPService.getAllSPDangKinhDoanh().get(i).getMa().equals(tblThungRacSP.getValueAt(row, 0))) {
+            for (int i = 0; i < chiTietSPService.getAllSPNgungKinhDoanh().size(); i++) {
+                if (chiTietSPService.getAllSPNgungKinhDoanh().get(i).getMa().equals(tblThungRacSP.getValueAt(row, 0))) {
 
-                    id = chiTietSPService.getAllSPDangKinhDoanh().get(i).getId();
+                    id = chiTietSPService.getAllSPNgungKinhDoanh().get(i).getId();
                 }
             }
             chiTietSPService.delete(id);
@@ -241,6 +241,14 @@ public class ThungRacSPForm extends javax.swing.JFrame {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(ThungRacSPForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
