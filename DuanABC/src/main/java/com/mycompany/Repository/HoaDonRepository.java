@@ -11,7 +11,6 @@ import com.mycompany.DomainModels.NhanVien;
 import com.mycompany.DomainModels.ThongKe;
 import com.mycompany.Util.DBContext;
 import com.mycompany.Util.HibernateUtil;
-import java.math.BigDecimal;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -45,7 +44,7 @@ public class HoaDonRepository {
     }
   
 
-    public int countHoaDonBanHang() {
+    public int countHoaDon() {
         try (Session sess = HibernateUtil.getFACTORY().openSession()) {
             Query q = sess.createQuery("select Count(*) from HoaDon hd");
             return Integer.parseInt(q.getSingleResult().toString());
@@ -55,12 +54,28 @@ public class HoaDonRepository {
         }
     }
 
-    public List<HoaDon> getAllHDViewQLHD() {
+    public List<HoaDon> getAllHDViewQLHD(int sotrang) {
         List<HoaDon> lst = new ArrayList<>();
-        String hql = "select hd From HoaDon hd left join hd.khachHang kh left join hd.nhanVien nv order by hd.NgayTao desc";
-        try (Session sess = HibernateUtil.getFACTORY().openSession()) {
-            Query q = sess.createQuery(hql);
-            lst = q.getResultList();
+        String hql = "  select top 5 hd.MaHD, nv.HoTen as tenNV , kh.HoTen as tenKH, hd.TongTien , hd.NgayTao , hd.NgayThanhToan , hd.GhiChu, hd.TrangThai\n" +
+"  From HoaDon hd left join khachHang kh on hd.IdKH = kh.Id left join nhanVien nv on hd.IdNV = nv.Id where hd.MaHD not in(Select top "+(sotrang-1)*5 +" MaHD From HoaDon order by NgayTao desc)  order by hd.NgayTao desc";
+        try (Connection con = DBContext.getConnection(); PreparedStatement ps = con.prepareStatement(hql)) {
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {                
+                NhanVien nv = new NhanVien();
+                nv.setHoTen(rs.getString("tenNV"));
+                KhachHang kh = new KhachHang();
+                kh.setHoTen(rs.getString("tenKH"));
+                HoaDon hd = new HoaDon();
+                hd.setMaHD(rs.getString("MaHD"));
+                hd.setKhachHang(kh);
+                hd.setNhanVien(nv);
+                hd.setTongTien(rs.getBigDecimal("TongTien"));
+                hd.setNgayTao(rs.getDate("NgayTao"));
+                hd.setNgayThanhToan(rs.getDate("NgayThanhToan"));
+                hd.setGhiChu(rs.getString("GhiChu"));
+                hd.setTrangThai(rs.getInt("TrangThai"));
+                lst.add(hd);
+            }
         } catch (Exception e) {
             e.printStackTrace();
             return null;
@@ -338,8 +353,7 @@ public class HoaDonRepository {
         }
         return lst;
     }
-
-
+  
     //-----------------
     //----------------------
 }

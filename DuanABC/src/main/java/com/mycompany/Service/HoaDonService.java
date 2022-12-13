@@ -20,9 +20,9 @@ public interface HoaDonService {
 
     List<HoaDonViewModels> getAllHD();
     
-    int countHoaDonBanHang();
+    int countHoaDon();
 
-    List<QLHoaDonViewModel> getAllHDViewQLHD();
+    List<QLHoaDonViewModel> getAllHDViewQLHD(int soTrang);
 
     List<QLHoaDonViewModel> getAllHDViewQLHDByTrangThai(Integer trangThai);
     

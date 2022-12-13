@@ -52,8 +52,8 @@ public class HoaDonServiceIpm implements HoaDonService {
     }
     
     @Override
-    public int countHoaDonBanHang() {
-        return hoaDonRepository.countHoaDonBanHang();
+    public int countHoaDon() {
+        return hoaDonRepository.countHoaDon();
     }
     @Override
     public Integer addHD(HoaDon hd) {
@@ -105,8 +105,8 @@ public class HoaDonServiceIpm implements HoaDonService {
     }
 
     @Override
-    public List<QLHoaDonViewModel> getAllHDViewQLHD() {
-        List<HoaDon> lst = hoaDonRepository.getAllHDViewQLHD();
+    public List<QLHoaDonViewModel> getAllHDViewQLHD(int soTrang) {
+        List<HoaDon> lst = hoaDonRepository.getAllHDViewQLHD(soTrang);
         List<QLHoaDonViewModel> lst_view = new ArrayList<>();
         for (HoaDon hd : lst) {
             String hoTen= null;
