@@ -695,18 +695,17 @@ public class ThongKePanel extends javax.swing.JPanel {
                         .addGap(24, 24, 24)
                         .addComponent(cbtrangthai, 0, 133, Short.MAX_VALUE))
                     .addGroup(jPanel9Layout.createSequentialGroup()
-                        .addComponent(lblmin, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(2, 2, 2)
-                        .addComponent(txtngayBD, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(jPanel9Layout.createSequentialGroup()
                         .addComponent(rdbang)
                         .addGap(18, 18, 18)
                         .addComponent(rdbieudo, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(jPanel9Layout.createSequentialGroup()
-                        .addComponent(lblmax)
+                        .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblmax)
+                            .addComponent(lblmin, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtngayBD, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(jPanel9Layout.createSequentialGroup()
                                 .addComponent(btntimkiem, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(0, 0, Short.MAX_VALUE))
@@ -1172,6 +1171,8 @@ public class ThongKePanel extends javax.swing.JPanel {
     private void finByKhoangNgayThanhToan(Date ngay, Date ngay2) {
         DefaultTableModel de = (DefaultTableModel) tbdoanhthu.getModel();
         de.setRowCount(0);
+        if(hdservice.finByKhoangNgayThanhToan(ngay, ngay2).size()>0 ){
+            
         if(txtngayBD.getDate() != null || txtngayKT.getDate() != null){
                 for (HoaDonViewModels hd : hdservice.finByKhoangNgayThanhToan(ngay, ngay2)) {
                     de.addRow(new Object[]{
@@ -1181,5 +1182,17 @@ public class ThongKePanel extends javax.swing.JPanel {
             } else{
                 JOptionPane.showMessageDialog(this, "Mời chon ngày bắt đầu hoặc ngày kết thúc ");
             }
+    }else{
+         JOptionPane.showMessageDialog(this, "Không có doang thu bạn cần tìm. Mời bạn chọn lại ngày");
+        if(txtngayBD.getDate() != null || txtngayKT.getDate() != null){
+                for (HoaDonViewModels hd : hdservice.finByKhoangNgayThanhToan(ngay, ngay2)) {
+                    de.addRow(new Object[]{
+                        hd.getMa(), hd.getNgayThanhToan(), hd.getTongTien(), hd.getTrangThai()
+                    });
+                }
+            } else{
+                JOptionPane.showMessageDialog(this, "Mời chon ngày bắt đầu hoặc ngày kết thúc ");
+            }
+        }
     }
 }

@@ -599,5 +599,6 @@ public class NhanVienPanel extends javax.swing.JPanel {
 
         return nv;
     }
+    
 
 }
