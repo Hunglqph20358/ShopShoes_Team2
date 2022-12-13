@@ -6,22 +6,31 @@ package com.mycompany.Repository;
 
 import com.mycompany.DomainModels.ChiTietSP;
 import com.mycompany.DomainModels.GiamGiaChiTiet;
+import com.mycompany.DomainModels.Hang;
+import com.mycompany.DomainModels.HoaDon;
 import com.mycompany.DomainModels.LoaiSP;
 import com.mycompany.DomainModels.MauSac;
+import com.mycompany.DomainModels.NhaCungCap;
+import com.mycompany.DomainModels.NhaSanXuat;
+import com.mycompany.DomainModels.NhanVien;
 import com.mycompany.DomainModels.SanPham;
 import com.mycompany.Util.DBContext;
 import com.mycompany.Util.HibernateUtil;
 import com.mycompany.ViewModel.BanHang.SanPhamViewModelBanHang;
+import com.mycompany.ViewModel.SanPham.SanPhamViewModelSP;
 import java.math.BigDecimal;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 import org.hibernate.Session;
+import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 
 /**
@@ -34,17 +43,7 @@ public class ChiTietSPRepository {
     public List<ChiTietSP> getAll() {
         List<ChiTietSP> lst = new ArrayList<>();
         try (Session sess = HibernateUtil.getFACTORY().openSession()) {
-            CriteriaBuilder builder = sess.getCriteriaBuilder();
-            CriteriaQuery<ChiTietSP> query = builder.createQuery(ChiTietSP.class);
-            Root<ChiTietSP> ctspRoot = query.from(ChiTietSP.class);
-            Root<SanPham> spRoot = query.from(SanPham.class);
-            Root<LoaiSP> loaispRoot = query.from(LoaiSP.class);
-            Root<MauSac> msRoot = query.from(MauSac.class);
-            query = query.where(builder.equal(ctspRoot.get("sanPham"), spRoot.get("Id")),
-                    builder.equal(ctspRoot.get("loaiSP"), loaispRoot.get("Id")),
-                    builder.equal(ctspRoot.get("mauSac"), msRoot.get("Id")));
-            query.select(ctspRoot);
-            Query q = sess.createQuery(query);
+            Query q = sess.createQuery("Select ctsp From ChiTietSP ctsp left join ctsp.loaiSP loai join ctsp.sanPham sp join ctsp.hang h join ctsp.mauSac ms where ctsp.TrangThai = 1");
             lst = q.getResultList();
         } catch (Exception e) {
             e.printStackTrace();
@@ -52,29 +51,30 @@ public class ChiTietSPRepository {
         }
         return lst;
     }
+
     public List<ChiTietSP> getAllPhanTrang(int soTrang) {
         List<ChiTietSP> lst = new ArrayList<>();
-        String sql = "select TOP 5 ctsp.Id, sp.Ma as MaSP, sp.Ten as TenSP ,loai.Ten as tenLoai ,ms.Ten as tenMauSac,ctsp.Size,ctsp.SoLuong,ctsp.GiaBan from ChiTietSP ctsp join SanPham sp on ctsp.IdGiay = sp.Id \n" +
-"  join LoaiSP loai on ctsp.IdLoaiSP = loai.Id join MauSac ms on ctsp.IdMauSac = ms.Id where sp.Ma not in (select top "+(soTrang-1) * 5 +" Ma from SanPham order by Ma asc) order by sp.Ma asc";
-        try (Connection con = DBContext.getConnection();PreparedStatement ps = con.prepareCall(sql)) {
-         ResultSet rs = ps.executeQuery();
-            while (rs.next()) {                
-               SanPham sp = new SanPham();
-               sp.setMa(rs.getString("MaSP"));
-               sp.setTen(rs.getString("TenSP"));
-               LoaiSP loaisp = new LoaiSP();
-               loaisp.setTen(rs.getString("tenLoai"));
-               MauSac ms = new MauSac();
-               ms.setTen(rs.getString("tenMauSac"));
-               ChiTietSP ctsp = new ChiTietSP();
-               ctsp.setId(rs.getString("Id"));
-               ctsp.setSanPham(sp);
-               ctsp.setLoaiSP(loaisp);
-               ctsp.setMauSac(ms);
-               ctsp.setSize(rs.getInt("Size"));
-               ctsp.setSoLuong(rs.getInt("SoLuong"));
-               ctsp.setGiaBan(rs.getBigDecimal("GiaBan"));
-               lst.add(ctsp);
+        String sql = "select TOP 5 ctsp.Id, sp.Ma as MaSP, sp.Ten as TenSP ,loai.Ten as tenLoai ,ms.Ten as tenMauSac,ctsp.Size,ctsp.SoLuong,ctsp.GiaBan from ChiTietSP ctsp join SanPham sp on ctsp.IdGiay = sp.Id \n"
+                + "  join LoaiSP loai on ctsp.IdLoaiSP = loai.Id join MauSac ms on ctsp.IdMauSac = ms.Id where ctsp.Id not in (select top " + (soTrang - 1) * 5 + " Id from ChiTietSP)";
+        try (Connection con = DBContext.getConnection(); PreparedStatement ps = con.prepareCall(sql)) {
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                SanPham sp = new SanPham();
+                sp.setMa(rs.getString("MaSP"));
+                sp.setTen(rs.getString("TenSP"));
+                LoaiSP loaisp = new LoaiSP();
+                loaisp.setTen(rs.getString("tenLoai"));
+                MauSac ms = new MauSac();
+                ms.setTen(rs.getString("tenMauSac"));
+                ChiTietSP ctsp = new ChiTietSP();
+                ctsp.setId(rs.getString("Id"));
+                ctsp.setSanPham(sp);
+                ctsp.setLoaiSP(loaisp);
+                ctsp.setMauSac(ms);
+                ctsp.setSize(rs.getInt("Size"));
+                ctsp.setSoLuong(rs.getInt("SoLuong"));
+                ctsp.setGiaBan(rs.getBigDecimal("GiaBan"));
+                lst.add(ctsp);
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -82,6 +82,7 @@ public class ChiTietSPRepository {
         }
         return lst;
     }
+
     public int countSanPhamBanHang() {
         try (Session sess = HibernateUtil.getFACTORY().openSession()) {
             Query q = sess.createQuery("select Count(*) from ChiTietSP ctsp");
@@ -90,9 +91,8 @@ public class ChiTietSPRepository {
             e.printStackTrace();
             return -1;
         }
-    } 
-    
-    
+    }
+
     public List<ChiTietSP> getAllBySearch(String timKiem) {
         List<ChiTietSP> lst = new ArrayList<>();
         try (Session sess = HibernateUtil.getFACTORY().openSession()) {
@@ -110,21 +110,58 @@ public class ChiTietSPRepository {
         }
         return lst;
     }
+
     public List<ChiTietSP> getAllByKhoangGia(BigDecimal gia, BigDecimal gia2) {
         List<ChiTietSP> lst = new ArrayList<>();
         try (Session sess = HibernateUtil.getFACTORY().openSession()) {
             Query q = sess.createQuery("Select ctsp From ChiTietSP ctsp join "
                     + "ctsp.sanPham sp join ctsp.loaiSP loai join ctsp.mauSac ms"
                     + " where ctsp.GiaBan between :gia and :gia2");
-            q.setParameter("gia",  gia);
-            q.setParameter("gia2",  gia2);
-            
+            q.setParameter("gia", gia);
+            q.setParameter("gia2", gia2);
+
             lst = q.getResultList();
         } catch (Exception e) {
             e.printStackTrace();
             return null;
         }
         return lst;
+    }
+
+    public List<ChiTietSP> getAllBySIze(Integer size, Integer size2) {
+        List<ChiTietSP> lst = new ArrayList<>();
+        try (Session sess = HibernateUtil.getFACTORY().openSession()) {
+            Query q = sess.createQuery("Select ctsp From ChiTietSP ctsp join "
+                    + "ctsp.sanPham sp join ctsp.loaiSP loai join ctsp.mauSac ms"
+                    + " where ctsp.Size between :size and :size2");
+            q.setParameter("size", size);
+            q.setParameter("size", size2);
+
+            lst = q.getResultList();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+        return lst;
+    }
+
+    public ChiTietSP updateSP(String ma, ChiTietSP sp) {
+
+        try (Session session = HibernateUtil.getFACTORY().openSession()) {
+
+            Transaction trans = session.beginTransaction();
+            try {
+                //nv.setMa(id);
+                session.update(sp);
+                trans.commit();
+            } catch (Exception e) {
+                e.printStackTrace();
+                trans.rollback();
+
+            }
+        } finally {
+            return sp;
+        }
     }
 
     public Integer updateSPKhiMua(ChiTietSP sp) {
@@ -161,50 +198,93 @@ public class ChiTietSPRepository {
     //HUNGLQPH20358
     //-------------///
 
-//     public ArrayList<SanPhamViewModel> All() {
-//        ArrayList<SanPhamViewModel> list = new ArrayList<>();
-//        try {
-//
-//            Connection conn = DBContext.getConnection();
-//            String select = "select ChiTietSP.Id, ChiTietSP.TrangThai, SanPham.Ma,SanPham.Ten as 'TenSP',MauSac.Ten as 'TenMS',NhaCungCap.Ten as 'TenNCC',NSX.Ten as 'TenNSX',Hang.Ten as 'TenHang',LoaiSP.Ten as 'TenLoai',ChiTietSP.Size,ChiTietSP.SoLuong,ChiTietSP.GiaNhap,ChiTietSP.GiaBan from ChiTietSP \n"
-//                    + "join NSX on NSX.Id=ChiTietSP.IdNsx\n"
-//                    + "join NhaCungCap on NhaCungCap.Id=ChiTietSP.IdNhaCC\n"
-//                    + "join MauSac on MauSac.Id=ChiTietSP.IdMauSac\n"
-//                    + "join Hang on Hang.Id=ChiTietSP.IdHang\n"
-//                    + "join LoaiSP on LoaiSP.Id=ChiTietSP.IdLoaiSP\n"
-//                    + "join SanPham on SanPham.Id=ChiTietSP.IdGiay";
-//            PreparedStatement ps = conn.prepareStatement(select);
-//            ps.execute();
-//            ResultSet rs = ps.executeQuery();
-//            while (rs.next()) {
-//                String Id = rs.getString("Id");
-//                String masp = rs.getString("Ma");
-//                String tensp = rs.getString("TenSP");
-//                String tenmausac = rs.getString("TenMS");
-//                String tenncc = rs.getString("TenNCC");
-//                String tennsx = rs.getString("TenNSX");
-//                String tenhang = rs.getString("TenHang");
-//                String tenloai = rs.getString("TenLoai");
-//                String size = rs.getString("Size");
-//                int soluongton = rs.getInt("SoLuong");
-//                int gianhap = rs.getInt("GiaNhap");
-//                int giaban = rs.getInt("GiaBan");
-//                int tt = rs.getInt("TrangThai");
-//                SanPhamViewModel ctsp = new SanPhamViewModel(Id, masp, tensp, tenmausac, tenncc, tennsx, tenhang, tenloai, size, soluongton, gianhap, giaban,null,tt);
-//                list.add(ctsp);
-//
-//            }
-//        } catch (Exception ex) {
-//
-//        }
-//        return list;
-//    }
+    public ArrayList<ChiTietSP> getAllSPNgungKinhDoanh() {
+        ArrayList<ChiTietSP> list = new ArrayList<>();
+       
+
+           
+            String select = "select ChiTietSP.Id ,SanPham.Ma as maSP,SanPham.Ten as tenSP ,MauSac.Ten as 'TenMS',NSX.Ten as 'TenNSX',NhaCungCap.Ten as 'TenNCC',Hang.Ten as 'TenHang',LoaiSP.Ten as 'TenLoai',ChiTietSP.Size,ChiTietSP.SoLuong,ChiTietSP.GiaNhap,ChiTietSP.GiaBan,ChiTietSP.TrangThai,ChiTietSP.Barcode from ChiTietSP \n"
+                    + "join LoaiSP on LoaiSP.Id=ChiTietSP.IdLoaiSP\n"
+                    + "join NhaCungCap on NhaCungCap.Id=ChiTietSP.IdNhaCC\n"
+                    + "join NSX on NSX.Id=ChiTietSP.IdNsx\n"
+                    + "join SanPham on SanPham.Id=ChiTietSP.IdGiay\n"
+                    + "join Hang on Hang.Id=ChiTietSP.IdHang\n"
+                    + "join MauSac on MauSac.Id=ChiTietSP.IdMauSac\n"
+                    + "where ChiTietSP.TrangThai=1";
+            
+            try( Connection conn = DBContext.getConnection();PreparedStatement ps = conn.prepareStatement(select)) {
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                SanPham sp = new SanPham();
+                sp.setMa(rs.getString("maSP"));
+                LoaiSP loaisp = new LoaiSP();
+                loaisp.setTen(rs.getString("TenLoai"));
+                sp.setTen(rs.getString("tenSP"));
+                MauSac ms = new MauSac();
+                ms.setTen(rs.getString("TenMS"));
+                NhaSanXuat nsx = new NhaSanXuat();
+                nsx.setTen(rs.getString("TenNSX"));
+                NhaCungCap ncc = new NhaCungCap();
+                ncc.setTen(rs.getString("TenNCC"));
+                Hang h = new Hang();
+                h.setTen(rs.getString("TenHang"));
+                ChiTietSP ctsp = new ChiTietSP(rs.getString("Id"), sp, loaisp,
+                        nsx, ms, h, ncc, null, null, rs.getInt("Size"), rs.getInt("SoLuong")
+                        , rs.getBigDecimal("GiaNhap"),rs.getBigDecimal("GiaBan"), rs.getInt("TrangThai"), rs.getString("Barcode"));
+                list.add(ctsp);
+            }
+        } catch (Exception ex) {
+
+        }
+        return list;
+    }
+      public ArrayList<ChiTietSP> getAllSPDangKinhDoanh() {
+        ArrayList<ChiTietSP> list = new ArrayList<>();
+       
+
+           
+            String select = "select ChiTietSP.Id ,SanPham.Ma as maSP,SanPham.Ten as tenSP ,MauSac.Ten as 'TenMS',NSX.Ten as 'TenNSX',NhaCungCap.Ten as 'TenNCC',Hang.Ten as 'TenHang',LoaiSP.Ten as 'TenLoai',ChiTietSP.Size,ChiTietSP.SoLuong,ChiTietSP.GiaNhap,ChiTietSP.GiaBan,ChiTietSP.TrangThai,ChiTietSP.Barcode from ChiTietSP \n"
+                    + "join LoaiSP on LoaiSP.Id=ChiTietSP.IdLoaiSP\n"
+                    + "join NhaCungCap on NhaCungCap.Id=ChiTietSP.IdNhaCC\n"
+                    + "join NSX on NSX.Id=ChiTietSP.IdNsx\n"
+                    + "join SanPham on SanPham.Id=ChiTietSP.IdGiay\n"
+                    + "join Hang on Hang.Id=ChiTietSP.IdHang\n"
+                    + "join MauSac on MauSac.Id=ChiTietSP.IdMauSac\n"
+                    + "where ChiTietSP.TrangThai=0";
+            
+            try( Connection conn = DBContext.getConnection();PreparedStatement ps = conn.prepareStatement(select)) {
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                SanPham sp = new SanPham();
+                sp.setMa(rs.getString("maSP"));
+                LoaiSP loaisp = new LoaiSP();
+                loaisp.setTen(rs.getString("TenLoai"));
+                sp.setTen(rs.getString("tenSP"));
+                MauSac ms = new MauSac();
+                ms.setTen(rs.getString("TenMS"));
+                NhaSanXuat nsx = new NhaSanXuat();
+                nsx.setTen(rs.getString("TenNSX"));
+                NhaCungCap ncc = new NhaCungCap();
+                ncc.setTen(rs.getString("TenNCC"));
+                Hang h = new Hang();
+                h.setTen(rs.getString("TenHang"));
+                ChiTietSP ctsp = new ChiTietSP(rs.getString("Id"), sp, loaisp,
+                        nsx, ms, h, ncc, null, null, rs.getInt("Size"), rs.getInt("SoLuong")
+                        , rs.getBigDecimal("GiaNhap"),rs.getBigDecimal("GiaBan"), rs.getInt("TrangThai"), rs.getString("Barcode"));
+                list.add(ctsp);
+            }
+        } catch (Exception ex) {
+
+        }
+        return list;
+    }
+
     public Integer Update(ChiTietSP ct) {
         Integer row = null;
         try {
             Connection con = DBContext.getConnection();
             String sql = "update ChiTietSP set IdLoaiSP = ? , IdNsx = ?, IdMauSac = ?,IdHang = ?, IdNhaCC = ?  , MoTa = ? , Size = ? , SoLuong = ?\n"
-                    + ",GiaNhap = ? , GiaBan = ? , TrangThai = ? where id = ?";
+                    + ",GiaNhap = ? , GiaBan = ? , TrangThai = ?,Barcode=? where id = ?";
             PreparedStatement ps = con.prepareStatement(sql);
             String idLoai = null;
             String idNsx = null;
@@ -238,7 +318,8 @@ public class ChiTietSPRepository {
             ps.setBigDecimal(9, ct.getGiaNhap());
             ps.setBigDecimal(10, ct.getGiaBan());
             ps.setInt(11, ct.getTrangThai());
-            ps.setString(12, ct.getId());
+            ps.setString(12, ct.getBarcode());
+            ps.setString(13, ct.getId());
             row = ps.executeUpdate();
         } catch (Exception e) {
             e.printStackTrace();
@@ -257,5 +338,90 @@ public class ChiTietSPRepository {
             return -1;
         }
         return 1;
+    }
+
+    public void delete(String id) {
+        try (Session sess = HibernateUtil.getFACTORY().openSession()) {
+            Transaction trans = sess.beginTransaction();
+            String hql = "Delete ChiTietSP c where c.Id = :id";
+            Query query = sess.createQuery(hql);
+            query.setParameter("id", id);
+            query.executeUpdate();
+            trans.commit();
+        }
+    }
+
+    public void updateThungRac(String id) {
+        try {
+            Connection con = DBContext.getConnection();
+            String sql = "update ChiTietSP set TrangThai = 1 where Id = ?";
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setString(1, id);
+            ps.execute();
+        } catch (Exception e) {
+        }
+    }
+
+    public Integer KhoiPhucSP(String id) {
+        try {
+            Connection con = DBContext.getConnection();
+            String sql = "update ChiTietSP set TrangThai = 0 where Id = ?";
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setString(1, id);
+
+            return ps.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return -1;
+        }
+
+    }
+
+    public List<ChiTietSP> getAllThungRacSP() {
+        List<ChiTietSP> list = new ArrayList();
+        try (Session sess = HibernateUtil.getFACTORY().openSession()) {
+            Transaction trans = sess.beginTransaction();
+            list = sess.createQuery("from ChiTietSP where TrangThai = 0").list();
+            trans.commit();
+        }
+        return list;
+    }
+    public ArrayList<ChiTietSP> finByTrangThai(int size) {
+        ArrayList<ChiTietSP> listsp = new ArrayList<>();        
+            String select = "select ChiTietSP.Id ,SanPham.Ma as maSP,SanPham.Ten as tenSP ,MauSac.Ten as 'TenMS',NSX.Ten as 'TenNSX',NhaCungCap.Ten as 'TenNCC',Hang.Ten as 'TenHang',LoaiSP.Ten as 'TenLoai',ChiTietSP.Size,ChiTietSP.SoLuong,ChiTietSP.GiaNhap,ChiTietSP.GiaBan,ChiTietSP.TrangThai,ChiTietSP.Barcode from ChiTietSP \n"
+                    + "join LoaiSP on LoaiSP.Id=ChiTietSP.IdLoaiSP\n"
+                    + "join NhaCungCap on NhaCungCap.Id=ChiTietSP.IdNhaCC\n"
+                    + "join NSX on NSX.Id=ChiTietSP.IdNsx\n"
+                    + "join SanPham on SanPham.Id=ChiTietSP.IdGiay\n"
+                    + "join Hang on Hang.Id=ChiTietSP.IdHang\n"
+                    + "join MauSac on MauSac.Id=ChiTietSP.IdMauSac\n"
+                    + "where ChiTietSP.Size like '%" + size + "%'" ;
+            
+            try( Connection conn = DBContext.getConnection();PreparedStatement ps = conn.prepareStatement(select)) {
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                SanPham sp = new SanPham();
+                sp.setMa(rs.getString("maSP"));
+                LoaiSP loaisp = new LoaiSP();
+                loaisp.setTen(rs.getString("TenLoai"));
+                sp.setTen(rs.getString("tenSP"));
+                MauSac ms = new MauSac();
+                ms.setTen(rs.getString("TenMS"));
+                NhaSanXuat nsx = new NhaSanXuat();
+                nsx.setTen(rs.getString("TenNSX"));
+                NhaCungCap ncc = new NhaCungCap();
+                ncc.setTen(rs.getString("TenNCC"));
+                Hang h = new Hang();
+                h.setTen(rs.getString("TenHang"));
+                ChiTietSP ctsp = new ChiTietSP(rs.getString("Id"), sp, loaisp,
+                        nsx, ms, h, ncc, null, null, rs.getInt("Size"), rs.getInt("SoLuong")
+                        , rs.getBigDecimal("GiaNhap"),rs.getBigDecimal("GiaBan"), rs.getInt("TrangThai"), rs.getString("Barcode"));
+                listsp.add(ctsp);
+            }
+            
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        return listsp;
     }
 }

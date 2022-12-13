@@ -4,6 +4,7 @@
  */
 package com.mycompany.ViewModel.SanPham;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -16,7 +17,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-public class SanPhamViewModelSP {
+public class SanPhamViewModelSP implements Serializable{
 
     private String Id;
     private String Ma;
@@ -31,5 +32,6 @@ public class SanPhamViewModelSP {
     private BigDecimal GiaNhap;
     private BigDecimal GiaBan;
     private Integer TrangThai;
+    private String Barcode;
 
 }
