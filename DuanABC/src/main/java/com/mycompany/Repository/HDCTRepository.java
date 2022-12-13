@@ -79,7 +79,7 @@ public class HDCTRepository {
     
     public Integer deleteHDCTByID(String id){
         Integer row = null;
-        String HQL = "Delete From HoaDonChiTiet where IdHoaDon = :id";
+        String HQL = "Delete From HoaDonChiTiet where Id = :id";
         try(Session sess = HibernateUtil.getFACTORY().openSession()){
             sess.getTransaction().begin();
            Query q = sess.createQuery(HQL);

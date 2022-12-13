@@ -1365,7 +1365,6 @@ public class BanHangPanel extends javax.swing.JPanel {
                     if (hoaDonChiTietService.getAllHDCT(txtMaHD.getText()).get(i).getMaSP().equals(tblGioHang.getValueAt(row, 0))) {
                         idHDCT = hoaDonChiTietService.getAllHDCT(txtMaHD.getText()).get(i).getId();
                         maSP = hoaDonChiTietService.getAllHDCT(txtMaHD.getText()).get(i).getMaSP();
-                        System.out.println(maSP);
                     }
                 }
                 if (checkDSSP(maSP, ctspService.getSPBanHang(trang))) {
@@ -1837,6 +1836,11 @@ public class BanHangPanel extends javax.swing.JPanel {
                 JOptionPane.showMessageDialog(this, "Vui long chon San Pham Can Hoan Tra");
                 return;
             }
+            if(tblHoaDon.getValueAt(tblHoaDon.getSelectedRow(), 3).toString().equalsIgnoreCase("Chưa Thanh Toán")
+                    || tblHoaDon.getValueAt(tblHoaDon.getSelectedRow(), 3).toString().equalsIgnoreCase("Chờ Thanh Toán")){
+                JOptionPane.showMessageDialog(this,"Hóa đơn ở trạng thái Giao Hàng mới dược Hoàn Trả");
+                return;
+            }
             Integer tongSLSP = null;
             Integer soLuongHienTai = Integer.valueOf(tblGioHang.getValueAt(tblGioHang.getSelectedRow(), 2).toString());
             BigDecimal donGia = null;
@@ -1933,6 +1937,11 @@ public class BanHangPanel extends javax.swing.JPanel {
             }
             if (tblGioHang.getRowCount() == 0) {
                 JOptionPane.showMessageDialog(this, "Giỏ Hàng đang trống không để Thanh Toán");
+                return;
+            }
+            if(tblHoaDon.getValueAt(tblHoaDon.getSelectedRow(), 3).toString().equalsIgnoreCase("Chưa Thanh Toán")
+                    || tblHoaDon.getValueAt(tblHoaDon.getSelectedRow(), 3).toString().equalsIgnoreCase("Chờ Thanh Toán")){
+                JOptionPane.showMessageDialog(this,"Hóa đơn ở trạng thái Giao Hàng mới dược Xác Nhận");
                 return;
             }
             double khachCanTra = Double.parseDouble(txtKhachCanTraDatHang.getText());
