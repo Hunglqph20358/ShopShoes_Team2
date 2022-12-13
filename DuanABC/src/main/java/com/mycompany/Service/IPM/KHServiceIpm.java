@@ -104,4 +104,9 @@ public class KHServiceIpm implements KHService {
         return kHRepository.KhoiPhucThungRacKH(ma);
     }
 
+    @Override
+    public long totalCount() {
+     return kHRepository.totalCount();
+    }
+
 }

@@ -12,6 +12,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
+import javax.persistence.TypedQuery;
 import org.hibernate.Session;
 import org.hibernate.query.Query;
 
@@ -224,5 +225,15 @@ public class KHRepository {
         
         public static void main(String[] args) {
         new KHRepository().getAllKhachHang().forEach(c -> System.out.println(c));
+    }
+        
+             public static long totalCount() {
+        long total = 0;
+        try (Session session = HibernateUtil.getFACTORY().openSession()) {
+            String statement = "select count(*) from KhachHang";
+            TypedQuery<Long> query = session.createQuery(statement, Long.class);
+            total = query.getSingleResult();
+        }
+        return total;
     }
 }

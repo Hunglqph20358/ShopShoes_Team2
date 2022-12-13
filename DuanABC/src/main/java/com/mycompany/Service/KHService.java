@@ -37,4 +37,6 @@ public interface KHService {
     Integer updateThungRacKH(String ma);
 
     Integer KhoiPhucThungRacKH(String ma);
+    
+    long totalCount();
 }
