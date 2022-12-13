@@ -21,7 +21,11 @@ public class KhachHangPanel extends javax.swing.JPanel {
     public KhachHangPanel() {
         initComponents();
         loadTableChiTietSP(svKH.getList());
-
+          if (svKH.totalCount() % 5 ==0) {
+            tongsoTrang = (int) (svKH.totalCount() / 5);
+        }else{
+             tongsoTrang = (int) (svKH.totalCount() / 5 + 1);
+        }
     }
 
     public KhachHang getFormData() {
@@ -119,6 +123,7 @@ public class KhachHangPanel extends javax.swing.JPanel {
         lblTotal = new javax.swing.JLabel();
         btnDau = new javax.swing.JButton();
         btnCuoi = new javax.swing.JButton();
+        lblTrang = new javax.swing.JLabel();
 
         DeleteMenu.setText("Delete");
         DeleteMenu.addActionListener(new java.awt.event.ActionListener() {
@@ -369,6 +374,8 @@ public class KhachHangPanel extends javax.swing.JPanel {
             }
         });
 
+        lblTrang.setText("jLabel1");
+
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
@@ -383,7 +390,9 @@ public class KhachHangPanel extends javax.swing.JPanel {
                 .addComponent(btnDau)
                 .addGap(18, 18, 18)
                 .addComponent(btnBack)
-                .addGap(64, 64, 64)
+                .addGap(15, 15, 15)
+                .addComponent(lblTrang)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnNext)
                 .addGap(18, 18, 18)
                 .addComponent(btnCuoi)
@@ -404,7 +413,8 @@ public class KhachHangPanel extends javax.swing.JPanel {
                     .addComponent(btnBack)
                     .addComponent(lblTotal)
                     .addComponent(btnDau)
-                    .addComponent(btnCuoi))
+                    .addComponent(btnCuoi)
+                    .addComponent(lblTrang))
                 .addContainerGap())
         );
 
@@ -576,6 +586,7 @@ public class KhachHangPanel extends javax.swing.JPanel {
     private javax.swing.JRadioButton jRadioButton1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblTotal;
+    private javax.swing.JLabel lblTrang;
     private javax.swing.JRadioButton rdLauNam;
     private javax.swing.JRadioButton rdMoi;
     private javax.swing.JTable tblBang;
@@ -587,7 +598,7 @@ public class KhachHangPanel extends javax.swing.JPanel {
     private javax.swing.JTextField txt_find;
     // End of variables declaration//GEN-END:variables
  public void loadTableChiTietSP(List<KhachHang> kh) {
-        DefaultTableModel dtm1 = (DefaultTableModel) tblBang.getModel();
+       DefaultTableModel dtm1 = (DefaultTableModel) tblBang.getModel();
         dtm1.setRowCount(0);
         lblTotal.setText("Total: " + svKH.totalCount());
         count = kh.size();
@@ -629,6 +640,7 @@ public class KhachHangPanel extends javax.swing.JPanel {
                         kh.get(i).getTrangThai() == 1 ? "Lâu Năm" : "Mới",});
                 }
             }
+           lblTrang.setText(tranghientai + 1 +"/"+ tongsoTrang);
         }
     }
 

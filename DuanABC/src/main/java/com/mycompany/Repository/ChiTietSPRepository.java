@@ -25,6 +25,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
@@ -443,4 +444,15 @@ public class ChiTietSPRepository {
         } catch (Exception e) {
         }
     }
+    
+      public static long totalCount() {
+        long total = 0;
+        try (Session session = HibernateUtil.getFACTORY().openSession()) {
+            String statement = "select count(*) from ChiTietSP";
+            TypedQuery<Long> query = session.createQuery(statement, Long.class);
+            total = query.getSingleResult();
+        }
+        return total;
+    }
+    
 }

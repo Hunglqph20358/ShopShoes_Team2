@@ -59,5 +59,7 @@ public interface ChiTietSPService {
     ArrayList<SanPhamViewModelSP> finbySize(int size);
 
     void deletePGG(String id);
+    
+     long totalCount();
 
 }

@@ -316,4 +316,9 @@ public class CTSPSerivceIpm implements ChiTietSPService {
           chiTietSPRepository.deletePGG(id);
     }
 
+    @Override
+    public long totalCount() {
+        return chiTietSPRepository.totalCount();
+    }
+
 }
