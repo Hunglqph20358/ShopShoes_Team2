@@ -122,7 +122,7 @@ public class KHRepository {
             ps.setString(4, kh.getSdt());
             ps.setString(5, kh.getDiaChi());
             ps.setInt(6, kh.getTrangThai());
-            ps.setString(8, ma);
+            ps.setString(7, ma);
             ps.execute();
         } catch (Exception e) {
             e.printStackTrace();

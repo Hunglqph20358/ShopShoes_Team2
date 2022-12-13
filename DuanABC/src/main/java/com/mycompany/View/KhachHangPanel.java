@@ -21,10 +21,10 @@ public class KhachHangPanel extends javax.swing.JPanel {
     public KhachHangPanel() {
         initComponents();
         loadTableChiTietSP(svKH.getList());
-          if (svKH.totalCount() % 5 ==0) {
+        if (svKH.totalCount() % 5 == 0) {
             tongsoTrang = (int) (svKH.totalCount() / 5);
-        }else{
-             tongsoTrang = (int) (svKH.totalCount() / 5 + 1);
+        } else {
+            tongsoTrang = (int) (svKH.totalCount() / 5 + 1);
         }
     }
 
@@ -52,22 +52,22 @@ public class KhachHangPanel extends javax.swing.JPanel {
 
     }
 
-    public void loadTable() {
-        model = (DefaultTableModel) tblBang.getModel();
-        model.setRowCount(0);
-        for (KhachHang kh : svKH.getList()) {
-            Object[] rowData = {
-                kh.getMa(),
-                kh.getHoTen(),
-                kh.getNgaySinh(),
-                kh.getSdt(),
-                kh.getDiaChi(),
-                kh.getTrangThai() == 1 ? "Lâu Năm" : "Mới"
-            };
-            model.addRow(rowData);
-
-        }
-    }
+//    public void loadTable() {
+//        model = (DefaultTableModel) tblBang.getModel();
+//        model.setRowCount(0);
+//        for (KhachHang kh : svKH.getList()) {
+//            Object[] rowData = {
+//                kh.getMa(),
+//                kh.getHoTen(),
+//                kh.getNgaySinh(),
+//                kh.getSdt(),
+//                kh.getDiaChi(),
+//                kh.getTrangThai() == 1 ? "Lâu Năm" : "Mới"
+//            };
+//            model.addRow(rowData);
+//
+//        }
+//    }
 
     public void loadFind(ArrayList<KhachHang> list) {
         model = (DefaultTableModel) tblBang.getModel();
@@ -107,10 +107,10 @@ public class KhachHangPanel extends javax.swing.JPanel {
         jLabel11 = new javax.swing.JLabel();
         rdLauNam = new javax.swing.JRadioButton();
         rdMoi = new javax.swing.JRadioButton();
-        jButton1 = new javax.swing.JButton();
+        btnThemKH = new javax.swing.JButton();
         btnSua = new javax.swing.JButton();
         btnLamMoi = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
+        btnXoaKH = new javax.swing.JButton();
         jLabel13 = new javax.swing.JLabel();
         txtSDT = new javax.swing.JTextField();
         btnThungRac = new javax.swing.JButton();
@@ -166,11 +166,11 @@ public class KhachHangPanel extends javax.swing.JPanel {
         buttonGroup1.add(rdMoi);
         rdMoi.setText("Mới");
 
-        jButton1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jButton1.setText("Thêm");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnThemKH.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnThemKH.setText("Thêm");
+        btnThemKH.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnThemKHActionPerformed(evt);
             }
         });
 
@@ -190,11 +190,11 @@ public class KhachHangPanel extends javax.swing.JPanel {
             }
         });
 
-        jButton5.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jButton5.setText("Xóa");
-        jButton5.addActionListener(new java.awt.event.ActionListener() {
+        btnXoaKH.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnXoaKH.setText("Xóa");
+        btnXoaKH.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton5ActionPerformed(evt);
+                btnXoaKHActionPerformed(evt);
             }
         });
 
@@ -241,11 +241,11 @@ public class KhachHangPanel extends javax.swing.JPanel {
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(btnThungRac, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGroup(javax.swing.GroupLayout.Alignment.LEADING, btnThemLayout.createSequentialGroup()
-                            .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnThemKH, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGap(18, 18, 18)
                             .addComponent(btnSua, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGap(18, 18, 18)
-                            .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnXoaKH, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGap(18, 18, 18)
                             .addComponent(btnLamMoi))))
                 .addContainerGap(44, Short.MAX_VALUE))
@@ -284,9 +284,9 @@ public class KhachHangPanel extends javax.swing.JPanel {
                         .addGap(55, 55, 55)
                         .addGroup(btnThemLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btnLamMoi, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnXoaKH, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(btnSua, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(btnThemKH, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(111, 111, 111))
                     .addGroup(btnThemLayout.createSequentialGroup()
                         .addGap(31, 31, 31)
@@ -436,7 +436,7 @@ public class KhachHangPanel extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btnThemKHActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemKHActionPerformed
         int row = tblBang.getSelectedRow();
 
         KhachHang kh = getFormData();
@@ -444,9 +444,9 @@ public class KhachHangPanel extends javax.swing.JPanel {
             return;
         }
         this.svKH.INSERT(kh);
-        loadTable();
+        loadTableChiTietSP(svKH.getList());
         JOptionPane.showMessageDialog(this, "Thêm Thành Công !");
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_btnThemKHActionPerformed
 
     private void btnSuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSuaActionPerformed
         int row = this.tblBang.getSelectedRow();
@@ -455,10 +455,14 @@ public class KhachHangPanel extends javax.swing.JPanel {
             return;
         }
         KhachHang kh = getFormData();
-        this.svKH.UPDATE(kh, kh.getMa());
-
-        loadTable();
-        JOptionPane.showMessageDialog(this, "Sửa thành công!");
+        int tb = JOptionPane.showConfirmDialog(this, "Bạn có muốn xóa không?", "Thông báo", JOptionPane.YES_NO_OPTION);
+        if (tb == JOptionPane.YES_OPTION) {
+             svKH.UPDATE(kh, kh.getMa());
+            loadTableChiTietSP(svKH.getList());
+            JOptionPane.showMessageDialog(this, "Xóa Thành Công !");
+        } else {
+            JOptionPane.showMessageDialog(this, "Đã hủy!");
+        }
     }//GEN-LAST:event_btnSuaActionPerformed
 
     private void btnLamMoiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLamMoiActionPerformed
@@ -501,12 +505,12 @@ public class KhachHangPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_tblBangMouseReleased
 
     private void DeleteMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DeleteMenuActionPerformed
-        String maStr = tblBang.getValueAt(row, 0).toString();
+        KhachHang kh = getFormData();
 
         int tb = JOptionPane.showConfirmDialog(this, "Bạn có muốn xóa không?", "Thông báo", JOptionPane.YES_NO_OPTION);
         if (tb == JOptionPane.YES_OPTION) {
-            svKH.updateThungRacKH(maStr);
-            loadTable();
+            svKH.updateThungRacKH(kh.getMa());
+            loadTableChiTietSP(svKH.getList());
             JOptionPane.showMessageDialog(this, "Xóa Thành Công !");
         } else {
             JOptionPane.showMessageDialog(this, "Đã hủy!");
@@ -514,18 +518,18 @@ public class KhachHangPanel extends javax.swing.JPanel {
 
     }//GEN-LAST:event_DeleteMenuActionPerformed
 
-    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        String maStr = tblBang.getValueAt(row, 0).toString();
+    private void btnXoaKHActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaKHActionPerformed
+        KhachHang kh = getFormData();
 
         int tb = JOptionPane.showConfirmDialog(this, "Bạn có muốn xóa không?", "Thông báo", JOptionPane.YES_NO_OPTION);
         if (tb == JOptionPane.YES_OPTION) {
-            svKH.updateThungRacKH(maStr);
-            loadTable();
+             svKH.updateThungRacKH(kh.getMa());
+            loadTableChiTietSP(svKH.getList());
             JOptionPane.showMessageDialog(this, "Xóa Thành Công !");
         } else {
             JOptionPane.showMessageDialog(this, "Đã hủy!");
         }
-    }//GEN-LAST:event_jButton5ActionPerformed
+    }//GEN-LAST:event_btnXoaKHActionPerformed
 
     private void btnThungRacActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThungRacActionPerformed
         ThungRacKHForm trkh = new ThungRacKHForm();
@@ -569,11 +573,11 @@ public class KhachHangPanel extends javax.swing.JPanel {
     private javax.swing.JButton btnNext;
     private javax.swing.JButton btnSua;
     private javax.swing.JPanel btnThem;
+    private javax.swing.JButton btnThemKH;
     private javax.swing.JButton btnThungRac;
+    private javax.swing.JButton btnXoaKH;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.ButtonGroup buttonGroup2;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton5;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel13;
@@ -598,7 +602,7 @@ public class KhachHangPanel extends javax.swing.JPanel {
     private javax.swing.JTextField txt_find;
     // End of variables declaration//GEN-END:variables
  public void loadTableChiTietSP(List<KhachHang> kh) {
-       DefaultTableModel dtm1 = (DefaultTableModel) tblBang.getModel();
+        DefaultTableModel dtm1 = (DefaultTableModel) tblBang.getModel();
         dtm1.setRowCount(0);
         lblTotal.setText("Total: " + svKH.totalCount());
         count = kh.size();
@@ -640,7 +644,7 @@ public class KhachHangPanel extends javax.swing.JPanel {
                         kh.get(i).getTrangThai() == 1 ? "Lâu Năm" : "Mới",});
                 }
             }
-           lblTrang.setText(tranghientai + 1 +"/"+ tongsoTrang);
+            lblTrang.setText(tranghientai + 1 + "/" + tongsoTrang);
         }
     }
 
