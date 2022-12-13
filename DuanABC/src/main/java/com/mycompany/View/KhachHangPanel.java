@@ -605,7 +605,7 @@ public class KhachHangPanel extends javax.swing.JPanel {
                     kh.get(i).getNgaySinh(),
                     kh.get(i).getSdt(),
                     kh.get(i).getDiaChi(),
-                    kh.get(i).getTrangThai(),});
+                    kh.get(i).getTrangThai() == 1 ? "Lâu Năm" : "Mới",});
             }
 
         } else {
@@ -617,7 +617,7 @@ public class KhachHangPanel extends javax.swing.JPanel {
                         kh.get(i).getNgaySinh(),
                         kh.get(i).getSdt(),
                         kh.get(i).getDiaChi(),
-                        kh.get(i).getTrangThai(),});
+                        kh.get(i).getTrangThai() == 1 ? "Lâu Năm" : "Mới",});
                 }
             } else {
                 for (int i = n; i < m; i++) {
@@ -626,7 +626,7 @@ public class KhachHangPanel extends javax.swing.JPanel {
                         kh.get(i).getNgaySinh(),
                         kh.get(i).getSdt(),
                         kh.get(i).getDiaChi(),
-                        kh.get(i).getTrangThai(),});
+                        kh.get(i).getTrangThai() == 1 ? "Lâu Năm" : "Mới",});
                 }
             }
         }

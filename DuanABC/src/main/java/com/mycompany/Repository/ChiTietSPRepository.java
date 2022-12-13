@@ -25,6 +25,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
@@ -250,7 +251,7 @@ public class ChiTietSPRepository {
                     + "join SanPham on SanPham.Id=ChiTietSP.IdGiay\n"
                     + "join Hang on Hang.Id=ChiTietSP.IdHang\n"
                     + "join MauSac on MauSac.Id=ChiTietSP.IdMauSac\n"
-                    + "where ChiTietSP.TrangThai=0";
+                    + "where ChiTietSP.TrangThai=0 order by ChiTietSP.Id asc";
             
             try( Connection conn = DBContext.getConnection();PreparedStatement ps = conn.prepareStatement(select)) {
             ResultSet rs = ps.executeQuery();
@@ -423,5 +424,15 @@ public class ChiTietSPRepository {
             ex.printStackTrace();
         }
         return listsp;
+    }
+    
+      public static long totalCount() {
+        long total = 0;
+        try (Session session = HibernateUtil.getFACTORY().openSession()) {
+            String statement = "select count(*) from ChiTietSP";
+            TypedQuery<Long> query = session.createQuery(statement, Long.class);
+            total = query.getSingleResult();
+        }
+        return total;
     }
 }

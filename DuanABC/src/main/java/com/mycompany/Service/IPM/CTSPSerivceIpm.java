@@ -311,4 +311,9 @@ public class CTSPSerivceIpm implements ChiTietSPService {
 
     }
 
+    @Override
+    public long totalCount() {
+        return chiTietSPRepository.totalCount();
+    }
+
 }

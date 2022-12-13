@@ -69,7 +69,7 @@ public class KHRepository {
         ArrayList<KhachHang> listKH = new ArrayList<>();
         try {
             Connection con = DBContext.getConnection();
-            String sql = "select * from khachhang where TrangThai = 1";
+            String sql = "select * from khachhang where TrangThai = 1 order by Ma asc";
             PreparedStatement ps = con.prepareStatement(sql);
             ps.execute();
             ResultSet rs = ps.getResultSet();
