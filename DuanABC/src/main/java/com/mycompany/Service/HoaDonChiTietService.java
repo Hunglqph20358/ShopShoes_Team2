@@ -23,4 +23,6 @@ public interface HoaDonChiTietService {
     
     Integer deleteHDCTById(String id);
     
+    Integer deleteHDCTByIDHoaDon(String id);
+    
 }

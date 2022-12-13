@@ -92,6 +92,21 @@ public class HDCTRepository {
         }
         return row;
     }
+    public Integer deleteHDCTByIDHoaDon(String id){
+        Integer row = null;
+        String HQL = "Delete From HoaDonChiTiet where IdHoaDon = :id";
+        try(Session sess = HibernateUtil.getFACTORY().openSession()){
+            sess.getTransaction().begin();
+           Query q = sess.createQuery(HQL);
+           q.setParameter("id", id);
+           row = q.executeUpdate();
+            sess.getTransaction().commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return -1;
+        }
+        return row;
+    }
     //HungLQPH20358
     //--------------------------------
     

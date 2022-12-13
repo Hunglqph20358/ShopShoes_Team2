@@ -63,4 +63,9 @@ public class HDCTServiceIpm implements HoaDonChiTietService{
     public Integer updateHDCTTraHangToanPhan(HoaDonChiTiet hdct) {
         return hDCTRepository.updateHDCTTraHangToanPhan(hdct);
     }
+
+    @Override
+    public Integer deleteHDCTByIDHoaDon(String id) {
+        return hDCTRepository.deleteHDCTByIDHoaDon(id);
+    }
 }

@@ -1171,6 +1171,10 @@ public class BanHangPanel extends javax.swing.JPanel {
                 JOptionPane.showMessageDialog(this, "Chưa có hóa đơn để chọn sản phẩm");
                 return;
             }
+            if (tblHoaDon.getValueAt(tblHoaDon.getSelectedRow(), 0).toString().equalsIgnoreCase("Đang Giao Hàng")) {
+                JOptionPane.showMessageDialog(this, "Hóa đơn Đang Giao Hàng không thể chọn Mua");
+                return;
+            }
             int row = tblSanPham.getSelectedRow();
 
             Integer soLuong = null;
@@ -1655,6 +1659,7 @@ public class BanHangPanel extends javax.swing.JPanel {
             } else {
                 return;
             }
+
             for (int i = 0; i < hoaDonService.getAllHD().size(); i++) {
                 if (hoaDonService.getAllHD().get(i).getMa().equals(tblHoaDon.getValueAt(tblHoaDon.getSelectedRow(), 0))) {
                     hd.setId(hoaDonService.getAllHD().get(i).getId());
@@ -1676,10 +1681,9 @@ public class BanHangPanel extends javax.swing.JPanel {
                     fillDSSP(trang);
                 }
             }
-
             hd.setTongTien(new BigDecimal(txtTongTien.getText()));
             hd.setTrangThai(2);
-            if (hoaDonChiTietService.deleteHDCTById(hd.getId()) > 0) {
+            if (hoaDonChiTietService.deleteHDCTByIDHoaDon(hd.getId()) > 0) {
                 if (hoaDonService.updateHD(hd) > 0) {
                     JOptionPane.showMessageDialog(this, "Hủy Hóa Đơn Thành Công!");
                     fillHoaDon();
@@ -1836,9 +1840,9 @@ public class BanHangPanel extends javax.swing.JPanel {
                 JOptionPane.showMessageDialog(this, "Vui long chon San Pham Can Hoan Tra");
                 return;
             }
-            if(tblHoaDon.getValueAt(tblHoaDon.getSelectedRow(), 3).toString().equalsIgnoreCase("Chưa Thanh Toán")
-                    || tblHoaDon.getValueAt(tblHoaDon.getSelectedRow(), 3).toString().equalsIgnoreCase("Chờ Thanh Toán")){
-                JOptionPane.showMessageDialog(this,"Hóa đơn ở trạng thái Giao Hàng mới dược Hoàn Trả");
+            if (tblHoaDon.getValueAt(tblHoaDon.getSelectedRow(), 3).toString().equalsIgnoreCase("Chưa Thanh Toán")
+                    || tblHoaDon.getValueAt(tblHoaDon.getSelectedRow(), 3).toString().equalsIgnoreCase("Chờ Thanh Toán")) {
+                JOptionPane.showMessageDialog(this, "Hóa đơn ở trạng thái Giao Hàng mới dược Hoàn Trả");
                 return;
             }
             Integer tongSLSP = null;
@@ -1939,9 +1943,9 @@ public class BanHangPanel extends javax.swing.JPanel {
                 JOptionPane.showMessageDialog(this, "Giỏ Hàng đang trống không để Thanh Toán");
                 return;
             }
-            if(tblHoaDon.getValueAt(tblHoaDon.getSelectedRow(), 3).toString().equalsIgnoreCase("Chưa Thanh Toán")
-                    || tblHoaDon.getValueAt(tblHoaDon.getSelectedRow(), 3).toString().equalsIgnoreCase("Chờ Thanh Toán")){
-                JOptionPane.showMessageDialog(this,"Hóa đơn ở trạng thái Giao Hàng mới dược Xác Nhận");
+            if (tblHoaDon.getValueAt(tblHoaDon.getSelectedRow(), 3).toString().equalsIgnoreCase("Chưa Thanh Toán")
+                    || tblHoaDon.getValueAt(tblHoaDon.getSelectedRow(), 3).toString().equalsIgnoreCase("Chờ Thanh Toán")) {
+                JOptionPane.showMessageDialog(this, "Hóa đơn ở trạng thái Giao Hàng mới dược Xác Nhận");
                 return;
             }
             double khachCanTra = Double.parseDouble(txtKhachCanTraDatHang.getText());
