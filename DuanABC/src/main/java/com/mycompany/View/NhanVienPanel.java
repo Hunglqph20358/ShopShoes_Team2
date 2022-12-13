@@ -72,8 +72,6 @@ public class NhanVienPanel extends javax.swing.JPanel {
         jButton3 = new javax.swing.JButton();
         txtten = new javax.swing.JTextField();
 
-        setBackground(new java.awt.Color(102, 255, 255));
-
         btnThungRac.setBackground(new java.awt.Color(255, 0, 51));
         btnThungRac.setIcon(new javax.swing.ImageIcon(getClass().getResource("/delete.png"))); // NOI18N
         btnThungRac.addActionListener(new java.awt.event.ActionListener() {
@@ -118,6 +116,7 @@ public class NhanVienPanel extends javax.swing.JPanel {
         });
 
         buttonGroup1.add(rdnam);
+        rdnam.setSelected(true);
         rdnam.setText("Nam");
 
         jLabel3.setText("Họ tên");
@@ -142,7 +141,7 @@ public class NhanVienPanel extends javax.swing.JPanel {
 
         jLabel6.setText("Giới tính");
 
-        cbtrangthai.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Đang làm", "Nghỉ phép", "Đã nghỉ" }));
+        cbtrangthai.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Đang làm", "Đã nghỉ" }));
         cbtrangthai.setName(""); // NOI18N
 
         jLabel7.setText("SDT");
@@ -244,14 +243,13 @@ public class NhanVienPanel extends javax.swing.JPanel {
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createSequentialGroup()
+                    .addGap(182, 182, 182)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(layout.createSequentialGroup()
-                            .addGap(182, 182, 182)
                             .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGap(266, 266, 266)
                             .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGroup(layout.createSequentialGroup()
-                            .addGap(182, 182, 182)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(txtma, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(jLabel3))
@@ -262,7 +260,6 @@ public class NhanVienPanel extends javax.swing.JPanel {
                             .addGap(101, 101, 101)
                             .addComponent(btnthem, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGroup(layout.createSequentialGroup()
-                            .addGap(182, 182, 182)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(txtten, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(jLabel4))
@@ -276,7 +273,6 @@ public class NhanVienPanel extends javax.swing.JPanel {
                             .addGap(100, 100, 100)
                             .addComponent(btnsua, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGroup(layout.createSequentialGroup()
-                            .addGap(182, 182, 182)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(txttentk, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(jLabel5))
@@ -287,7 +283,6 @@ public class NhanVienPanel extends javax.swing.JPanel {
                             .addGap(100, 100, 100)
                             .addComponent(byaxoa, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGroup(layout.createSequentialGroup()
-                            .addGap(182, 182, 182)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addGroup(layout.createSequentialGroup()
                                     .addComponent(txtmatkhau, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)

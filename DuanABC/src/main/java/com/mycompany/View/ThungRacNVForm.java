@@ -71,7 +71,7 @@ public class ThungRacNVForm extends javax.swing.JFrame {
                 {null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4", "null", "Title 6", "Title 7", "Title 8", "Title 9"
+                "Ma", "Tên", "Tên tài khoải", "Mật khẩu", "Giới tính", "Dịa chỉ", "SDT", "Chức vụ", "Trang thái"
             }
         ));
         tblThungRacNV.setOpaque(false);
