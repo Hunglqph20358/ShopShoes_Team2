@@ -233,6 +233,7 @@ public class HangForm extends javax.swing.JFrame {
         }
         dongService.insert(sp);
         LoadTable();
+        SanPhamPanel.sanPhamPanel.loadCBBHang();
         JOptionPane.showMessageDialog(this, "Thêm Thành Công!");
     }//GEN-LAST:event_btnThemActionPerformed
 

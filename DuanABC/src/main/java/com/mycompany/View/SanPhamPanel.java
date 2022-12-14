@@ -997,14 +997,14 @@ public class SanPhamPanel extends javax.swing.JPanel {
     private javax.swing.JTextField txtTimKiem;
     // End of variables declaration//GEN-END:variables
 
-    private void loadCBBMS() {
+    public void loadCBBMS() {
         for (MauSac ms : msSacService.GetALLMS()) {
             cbbMS.addItem(ms);
         }
 
     }
 
-    private void loadCBBLoai() {
+    public void loadCBBLoai() {
 
         for (LoaiSP loai : loaiSPService.getALLloai()) {
             cbbLoai.addItem(loai);
@@ -1012,7 +1012,7 @@ public class SanPhamPanel extends javax.swing.JPanel {
 
     }
 
-    private void loadCBBHang() {
+    public void loadCBBHang() {
 
         for (Hang h : hangService.GetALLHang()) {
             cbbHang.addItem(h);
@@ -1020,7 +1020,7 @@ public class SanPhamPanel extends javax.swing.JPanel {
 
     }
 
-    private void loadCBBNCC() {
+    public void loadCBBNCC() {
 
         for (NhaCungCap ncc : nhaCungCapService.GetALLNCC()) {
             cbbNCC.addItem(ncc);
@@ -1028,7 +1028,7 @@ public class SanPhamPanel extends javax.swing.JPanel {
 
     }
 
-    private void loadCBBNSX() {
+    public void loadCBBNSX() {
 
         for (NhaSanXuat nsx : nhaSanXuatService.GetALLNSX()) {
             cbbNSX.addItem(nsx);

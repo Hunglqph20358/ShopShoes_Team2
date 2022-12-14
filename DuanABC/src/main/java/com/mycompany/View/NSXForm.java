@@ -238,6 +238,7 @@ public class NSXForm extends javax.swing.JFrame {
         }
         nsxs.insert(sp);
         LoadTable();
+        SanPhamPanel.sanPhamPanel.loadCBBNSX();
         JOptionPane.showMessageDialog(this, "Thêm Thành Công!");
     }//GEN-LAST:event_btnThem2ActionPerformed
 

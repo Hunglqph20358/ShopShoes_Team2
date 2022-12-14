@@ -256,6 +256,7 @@ public class MauSacForm extends javax.swing.JFrame {
         }
         mauSacService.insert(sp);
         LoadTable();
+        SanPhamPanel.sanPhamPanel.loadCBBMS();
         JOptionPane.showMessageDialog(this, "Thêm Thành Công!");
     }//GEN-LAST:event_btnThemActionPerformed
 

@@ -56,7 +56,7 @@ public class ChiTietSPRepository {
     public List<ChiTietSP> getAllPhanTrang(int soTrang) {
         List<ChiTietSP> lst = new ArrayList<>();
         String sql = "select TOP 5 ctsp.Id, sp.Ma as MaSP, sp.Ten as TenSP ,loai.Ten as tenLoai ,ms.Ten as tenMauSac,ctsp.Size,ctsp.SoLuong,ctsp.GiaBan from ChiTietSP ctsp join SanPham sp on ctsp.IdGiay = sp.Id \n"
-                + "  join LoaiSP loai on ctsp.IdLoaiSP = loai.Id join MauSac ms on ctsp.IdMauSac = ms.Id where ctsp.Id not in (select top " + (soTrang - 1) * 5 + " Id from ChiTietSP)";
+                + "  join LoaiSP loai on ctsp.IdLoaiSP = loai.Id join MauSac ms on ctsp.IdMauSac = ms.Id where sp.Ma not in (select top " + (soTrang - 1) * 5 + " Ma from SanPham order by Ma asc) and ctsp.TrangThai = 0 order by sp.Ma asc";
         try (Connection con = DBContext.getConnection(); PreparedStatement ps = con.prepareCall(sql)) {
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
@@ -134,7 +134,7 @@ public class ChiTietSPRepository {
         try (Session sess = HibernateUtil.getFACTORY().openSession()) {
             Query q = sess.createQuery("Select ctsp From ChiTietSP ctsp join "
                     + "ctsp.sanPham sp join ctsp.loaiSP loai join ctsp.mauSac ms"
-                    + " where ctsp.Size between :size and :size2");
+                    + " where ctsp.Size between :size and :size2" );
             q.setParameter("size", size);
             q.setParameter("size", size2);
 

@@ -236,6 +236,7 @@ public class LoaiSPForm extends javax.swing.JFrame {
         }
         loaiSPService.insert(sp);
         LoadTable();
+        SanPhamPanel.sanPhamPanel.loadCBBLoai();
         JOptionPane.showMessageDialog(this, "Thêm Thành Công!");
     }//GEN-LAST:event_btnThemActionPerformed
 

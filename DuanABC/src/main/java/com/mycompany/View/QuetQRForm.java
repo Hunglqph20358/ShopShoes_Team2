@@ -54,6 +54,7 @@ public class QuetQRForm extends javax.swing.JFrame implements Runnable, ThreadFa
     private Executor executor = Executors.newSingleThreadExecutor(this);
     int idCheckGh;
     Integer soLuong = null;
+
     /**
      * Creates new form QuetQRForm
      */
@@ -64,6 +65,7 @@ public class QuetQRForm extends javax.swing.JFrame implements Runnable, ThreadFa
         chiTietSPService = new CTSPSerivceIpm();
         hoaDonChiTietService = new HDCTServiceIpm();
         ctspService = new CTSPSerivceIpm();
+
     }
 
     /**
@@ -309,7 +311,7 @@ public class QuetQRForm extends javax.swing.JFrame implements Runnable, ThreadFa
 
             SanPham masp = new SanPham();
             masp.setMa(maSP);
-            
+
             ChiTietSP ctsp = new ChiTietSP();
 
             ChiTietSP sp = new ChiTietSP();
@@ -324,7 +326,7 @@ public class QuetQRForm extends javax.swing.JFrame implements Runnable, ThreadFa
             hdct.setSoLuong(soLuong);
             hdct.setDonGia(new BigDecimal(txtDonGia.getText()));
             tongSLSP -= soLuong;
-            
+
             if (checkMaTrung(hdct.getChiTietSP().getSanPham().getMa(), (List<GioHangViewModel>) hoaDonChiTietService.getAllHDCT(BanHangPanel.MaHDQRCode))) {
                 GioHangViewModel gioHangViewModel = hoaDonChiTietService.getAllHDCT(BanHangPanel.MaHDQRCode).get(idCheckGh);
                 tongSLuongGH = gioHangViewModel.getSoLuong();
@@ -373,10 +375,10 @@ public class QuetQRForm extends javax.swing.JFrame implements Runnable, ThreadFa
             txtSize.setText(String.valueOf(ctsp.getSize()));
             txtSoLuong.setText(String.valueOf(ctsp.getSoLuong()));
             txtDonGia.setText(String.valueOf(ctsp.getGiaBan()));
-            Object kq = JOptionPane.showInputDialog(this,"Vui lòng Nhập Số Lượng Cần Mua ?");
-            if(kq instanceof String){
+            Object kq = JOptionPane.showInputDialog(this, "Vui lòng Nhập Số Lượng Cần Mua ?");
+            if (kq instanceof String) {
                 soLuong = Integer.valueOf(kq.toString());
-            }else{
+            } else {
                 return;
             }
         } catch (Exception e) {

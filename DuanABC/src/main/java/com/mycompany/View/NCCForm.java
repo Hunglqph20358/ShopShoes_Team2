@@ -236,6 +236,7 @@ public class NCCForm extends javax.swing.JFrame {
         }
         dongService.insert(sp);
         LoadTable();
+        SanPhamPanel.sanPhamPanel.loadCBBNCC();
         JOptionPane.showMessageDialog(this, "Thêm Thành Công!");
     }//GEN-LAST:event_btnThemActionPerformed
 

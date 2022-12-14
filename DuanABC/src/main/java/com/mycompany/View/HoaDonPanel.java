@@ -62,7 +62,6 @@ public class HoaDonPanel extends javax.swing.JPanel {
         jLabel6 = new javax.swing.JLabel();
         txtNgayKetThuc = new com.toedter.calendar.JDateChooser();
         jLabel1 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
         btnFirst = new javax.swing.JButton();
         btnPrev = new javax.swing.JButton();
         lblSoTrang = new javax.swing.JLabel();
@@ -128,13 +127,6 @@ public class HoaDonPanel extends javax.swing.JPanel {
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel1.setText("Quản Lí Hóa Đơn");
 
-        jButton1.setText("Tìm Kiếm");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-
         btnFirst.setText("<<");
         btnFirst.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -149,7 +141,7 @@ public class HoaDonPanel extends javax.swing.JPanel {
             }
         });
 
-        lblSoTrang.setText("jLabel2");
+        lblSoTrang.setText("1");
 
         btnNext.setText(">");
         btnNext.addActionListener(new java.awt.event.ActionListener() {
@@ -165,7 +157,7 @@ public class HoaDonPanel extends javax.swing.JPanel {
             }
         });
 
-        lblTongSoTrang.setText("jLabel3");
+        lblTongSoTrang.setText("1/4");
 
         javax.swing.GroupLayout pnHoaDonLayout = new javax.swing.GroupLayout(pnHoaDon);
         pnHoaDon.setLayout(pnHoaDonLayout);
@@ -191,9 +183,7 @@ public class HoaDonPanel extends javax.swing.JPanel {
                                 .addComponent(jLabel6)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(txtNgayKetThuc, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jButton1)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 83, Short.MAX_VALUE)
                                 .addComponent(lblTimKiem)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(txtTimKiemHD, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -205,8 +195,8 @@ public class HoaDonPanel extends javax.swing.JPanel {
                 .addGap(18, 18, 18)
                 .addComponent(btnPrev)
                 .addGap(18, 18, 18)
-                .addComponent(lblSoTrang)
-                .addGap(18, 18, 18)
+                .addComponent(lblSoTrang, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnNext)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnLast)
@@ -221,8 +211,7 @@ public class HoaDonPanel extends javax.swing.JPanel {
                 .addGroup(pnHoaDonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(pnHoaDonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(txtTimKiemHD, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(lblTimKiem)
-                        .addComponent(jButton1))
+                        .addComponent(lblTimKiem))
                     .addGroup(pnHoaDonLayout.createSequentialGroup()
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGroup(pnHoaDonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -353,14 +342,6 @@ public class HoaDonPanel extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_txtTimKiemHDMouseClicked
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-        try {
-            fillToHoaDonByNgay(txtNgayBatDau.getDate(), txtNgayKetThuc.getDate());
-        } catch (Exception e) {
-        }
-    }//GEN-LAST:event_jButton1ActionPerformed
-
     private void btnFirstActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFirstActionPerformed
         // TODO add your handling code here:
         soTrang = 1;
@@ -403,7 +384,6 @@ public class HoaDonPanel extends javax.swing.JPanel {
     private javax.swing.JButton btnNext;
     private javax.swing.JButton btnPrev;
     private javax.swing.JComboBox<String> cbbTrangThai;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JScrollPane jScrollPane1;

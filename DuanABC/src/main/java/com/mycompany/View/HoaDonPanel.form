@@ -74,9 +74,7 @@
                                   <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                   <Component id="txtNgayKetThuc" min="-2" pref="165" max="-2" attributes="0"/>
-                                  <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="jButton1" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace max="32767" attributes="0"/>
+                                  <EmptySpace pref="83" max="32767" attributes="0"/>
                                   <Component id="lblTimKiem" min="-2" max="-2" attributes="0"/>
                               </Group>
                           </Group>
@@ -93,8 +91,8 @@
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="btnPrev" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Component id="lblSoTrang" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <Component id="lblSoTrang" min="-2" pref="14" max="-2" attributes="0"/>
+                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Component id="btnNext" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Component id="btnLast" min="-2" max="-2" attributes="0"/>
@@ -112,7 +110,6 @@
                       <Group type="103" alignment="0" groupAlignment="3" attributes="0">
                           <Component id="txtTimKiemHD" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="lblTimKiem" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jButton1" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
                           <Component id="jLabel1" min="-2" pref="25" max="-2" attributes="0"/>
@@ -299,14 +296,6 @@
             <Property name="text" type="java.lang.String" value="Qu&#x1ea3;n L&#xed; H&#xf3;a &#x110;&#x1a1;n"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JButton" name="jButton1">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="T&#xec;m Ki&#x1ebf;m"/>
-          </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton1ActionPerformed"/>
-          </Events>
-        </Component>
         <Component class="javax.swing.JButton" name="btnFirst">
           <Properties>
             <Property name="text" type="java.lang.String" value="&lt;&lt;"/>
@@ -325,7 +314,7 @@
         </Component>
         <Component class="javax.swing.JLabel" name="lblSoTrang">
           <Properties>
-            <Property name="text" type="java.lang.String" value="jLabel2"/>
+            <Property name="text" type="java.lang.String" value="1"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JButton" name="btnNext">
@@ -346,7 +335,7 @@
         </Component>
         <Component class="javax.swing.JLabel" name="lblTongSoTrang">
           <Properties>
-            <Property name="text" type="java.lang.String" value="jLabel3"/>
+            <Property name="text" type="java.lang.String" value="1/4"/>
           </Properties>
         </Component>
       </SubComponents>

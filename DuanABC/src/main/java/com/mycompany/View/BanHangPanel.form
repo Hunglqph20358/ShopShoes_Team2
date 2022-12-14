@@ -192,7 +192,7 @@
                                       <Component id="btnXacNhanKH" min="-2" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
-                              <EmptySpace pref="36" max="32767" attributes="0"/>
+                              <EmptySpace pref="102" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
@@ -200,16 +200,11 @@
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Group type="102" attributes="0">
-                                      <Component id="lblMaHD" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
-                                  </Group>
-                                  <Group type="102" alignment="1" attributes="0">
-                                      <Component id="txtMaHD" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                  </Group>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="lblMaHD" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="txtMaHD" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
+                              <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Component id="txtNgayTao" min="-2" max="-2" attributes="0"/>
                                   <Component id="lblNgayTao" alignment="1" min="-2" max="-2" attributes="0"/>
@@ -241,7 +236,7 @@
                     </Component>
                     <Component class="javax.swing.JLabel" name="txtMaHD">
                       <Properties>
-                        <Property name="text" type="java.lang.String" value="jLabel2"/>
+                        <Property name="text" type="java.lang.String" value="-------"/>
                       </Properties>
                       <AuxValues>
                         <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
@@ -257,7 +252,7 @@
                     </Component>
                     <Component class="javax.swing.JLabel" name="txtNgayTao">
                       <Properties>
-                        <Property name="text" type="java.lang.String" value="jLabel2"/>
+                        <Property name="text" type="java.lang.String" value="-------"/>
                       </Properties>
                       <AuxValues>
                         <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
@@ -303,7 +298,6 @@
                         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                           <Image iconType="3" name="/add.png"/>
                         </Property>
-                        <Property name="text" type="java.lang.String" value="X&#xe1;c nh&#x1ead;n"/>
                       </Properties>
                       <Events>
                         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnXacNhanKHActionPerformed"/>
@@ -428,7 +422,7 @@
                                   <Component id="btnChoThanhToan" alignment="3" min="-2" pref="57" max="-2" attributes="0"/>
                                   <Component id="btnHuyHD" alignment="3" min="-2" pref="57" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace pref="30" max="32767" attributes="0"/>
+                              <EmptySpace pref="38" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
@@ -647,7 +641,7 @@
                           <Group type="102" attributes="0">
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Group type="102" attributes="0">
+                                  <Group type="102" alignment="0" attributes="0">
                                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                           <Group type="102" alignment="0" attributes="0">
                                               <Component id="lblDiaChiNhan" min="-2" max="-2" attributes="0"/>
@@ -665,7 +659,7 @@
                                               <Component id="txtNgayDuKien" min="-2" pref="204" max="-2" attributes="0"/>
                                           </Group>
                                       </Group>
-                                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                                      <EmptySpace pref="102" max="32767" attributes="0"/>
                                   </Group>
                                   <Group type="102" alignment="0" attributes="0">
                                       <Group type="103" groupAlignment="0" attributes="0">
@@ -679,11 +673,11 @@
                                           <Component id="txtMaHDDatHang" min="-2" pref="129" max="-2" attributes="0"/>
                                           <Component id="txtSDTKHDatHang" max="32767" attributes="0"/>
                                       </Group>
-                                      <EmptySpace pref="58" max="32767" attributes="0"/>
+                                      <EmptySpace max="32767" attributes="0"/>
                                       <Component id="btnXacNhanKHDatHang" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
-                              <EmptySpace max="-2" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
@@ -696,10 +690,12 @@
                                   <Component id="lblMaHDDatHang" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="lblHoTenKHDatHang" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="txtHoTenKHDatHang" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="btnXacNhanKHDatHang" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="btnXacNhanKHDatHang" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="3" attributes="0">
+                                      <Component id="lblHoTenKHDatHang" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="txtHoTenKHDatHang" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  </Group>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
@@ -743,7 +739,7 @@
                     </Component>
                     <Component class="javax.swing.JLabel" name="txtMaHDDatHang">
                       <Properties>
-                        <Property name="text" type="java.lang.String" value="jLabel2"/>
+                        <Property name="text" type="java.lang.String" value="----------"/>
                       </Properties>
                     </Component>
                     <Component class="javax.swing.JLabel" name="lblHoTenKHDatHang">
@@ -811,12 +807,14 @@
                     </Container>
                     <Component class="javax.swing.JLabel" name="txtNgayTaoDatHang">
                       <Properties>
-                        <Property name="text" type="java.lang.String" value="jLabel9"/>
+                        <Property name="text" type="java.lang.String" value="------------"/>
                       </Properties>
                     </Component>
                     <Component class="javax.swing.JButton" name="btnXacNhanKHDatHang">
                       <Properties>
-                        <Property name="text" type="java.lang.String" value="X&#xe1;c Nh&#x1ead;n"/>
+                        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                          <Image iconType="3" name="/add.png"/>
+                        </Property>
                       </Properties>
                       <Events>
                         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnXacNhanKHDatHangActionPerformed"/>
@@ -958,7 +956,7 @@
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Group type="102" attributes="0">
                                       <Component id="lblGhiChuDatHang" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace min="0" pref="86" max="32767" attributes="0"/>
+                                      <EmptySpace min="0" pref="84" max="32767" attributes="0"/>
                                   </Group>
                                   <Component id="jScrollPane2" pref="0" max="32767" attributes="0"/>
                               </Group>
@@ -1664,7 +1662,7 @@
         </Component>
         <Component class="javax.swing.JLabel" name="lblSoTrangSP">
           <Properties>
-            <Property name="text" type="java.lang.String" value="jLabel5"/>
+            <Property name="text" type="java.lang.String" value="1"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JButton" name="btnNext">
@@ -1685,7 +1683,7 @@
         </Component>
         <Component class="javax.swing.JLabel" name="lblTongSoTrang">
           <Properties>
-            <Property name="text" type="java.lang.String" value="jLabel6"/>
+            <Property name="text" type="java.lang.String" value="1/4"/>
           </Properties>
         </Component>
       </SubComponents>

@@ -222,12 +222,12 @@ public class BanHangPanel extends javax.swing.JPanel {
         lblMaHD.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         lblMaHD.setText("Mã HD");
 
-        txtMaHD.setText("jLabel2");
+        txtMaHD.setText("-------");
 
         lblNgayTao.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         lblNgayTao.setText("Ngày tạo");
 
-        txtNgayTao.setText("jLabel2");
+        txtNgayTao.setText("-------");
 
         jLabel12.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel12.setText("SDT KH");
@@ -241,7 +241,6 @@ public class BanHangPanel extends javax.swing.JPanel {
 
         btnXacNhanKH.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnXacNhanKH.setIcon(new javax.swing.ImageIcon(getClass().getResource("/add.png"))); // NOI18N
-        btnXacNhanKH.setText("Xác nhận");
         btnXacNhanKH.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnXacNhanKHActionPerformed(evt);
@@ -276,19 +275,16 @@ public class BanHangPanel extends javax.swing.JPanel {
                                 .addComponent(txtSDTKH)
                                 .addGap(27, 27, 27)))
                         .addComponent(btnXacNhanKH)))
-                .addContainerGap(36, Short.MAX_VALUE))
+                .addContainerGap(102, Short.MAX_VALUE))
         );
         pnThongTinChungLayout.setVerticalGroup(
             pnThongTinChungLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnThongTinChungLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(pnThongTinChungLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(pnThongTinChungLayout.createSequentialGroup()
-                        .addComponent(lblMaHD)
-                        .addGap(19, 19, 19))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnThongTinChungLayout.createSequentialGroup()
-                        .addComponent(txtMaHD)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
+                .addGroup(pnThongTinChungLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblMaHD)
+                    .addComponent(txtMaHD))
+                .addGap(19, 19, 19)
                 .addGroup(pnThongTinChungLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(txtNgayTao)
                     .addComponent(lblNgayTao, javax.swing.GroupLayout.Alignment.TRAILING))
@@ -467,7 +463,7 @@ public class BanHangPanel extends javax.swing.JPanel {
                 .addGroup(pnChiTietLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnChoThanhToan, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnHuyHD, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(30, Short.MAX_VALUE))
+                .addContainerGap(38, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -498,7 +494,7 @@ public class BanHangPanel extends javax.swing.JPanel {
         lblMaHDDatHang.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         lblMaHDDatHang.setText("Mã HD");
 
-        txtMaHDDatHang.setText("jLabel2");
+        txtMaHDDatHang.setText("----------");
 
         lblHoTenKHDatHang.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         lblHoTenKHDatHang.setText("Họ tên KH");
@@ -520,9 +516,9 @@ public class BanHangPanel extends javax.swing.JPanel {
         txtDiaChiNhanHang.setRows(5);
         JScroll.setViewportView(txtDiaChiNhanHang);
 
-        txtNgayTaoDatHang.setText("jLabel9");
+        txtNgayTaoDatHang.setText("------------");
 
-        btnXacNhanKHDatHang.setText("Xác Nhận");
+        btnXacNhanKHDatHang.setIcon(new javax.swing.ImageIcon(getClass().getResource("/add.png"))); // NOI18N
         btnXacNhanKHDatHang.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnXacNhanKHDatHangActionPerformed(evt);
@@ -555,7 +551,7 @@ public class BanHangPanel extends javax.swing.JPanel {
                                 .addComponent(jLabel1)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(txtNgayDuKien, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 0, Short.MAX_VALUE))
+                        .addContainerGap(102, Short.MAX_VALUE))
                     .addGroup(jPanel5Layout.createSequentialGroup()
                         .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lblHoTenKHDatHang)
@@ -566,9 +562,9 @@ public class BanHangPanel extends javax.swing.JPanel {
                             .addComponent(txtHoTenKHDatHang, javax.swing.GroupLayout.DEFAULT_SIZE, 156, Short.MAX_VALUE)
                             .addComponent(txtMaHDDatHang, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtSDTKHDatHang))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 58, Short.MAX_VALUE)
-                        .addComponent(btnXacNhanKHDatHang)))
-                .addContainerGap())
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnXacNhanKHDatHang)
+                        .addGap(29, 29, 29))))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -578,10 +574,11 @@ public class BanHangPanel extends javax.swing.JPanel {
                     .addComponent(txtMaHDDatHang)
                     .addComponent(lblMaHDDatHang))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblHoTenKHDatHang)
-                    .addComponent(txtHoTenKHDatHang, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnXacNhanKHDatHang))
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnXacNhanKHDatHang)
+                    .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(lblHoTenKHDatHang)
+                        .addComponent(txtHoTenKHDatHang, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel29)
@@ -782,7 +779,7 @@ public class BanHangPanel extends javax.swing.JPanel {
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel7Layout.createSequentialGroup()
                         .addComponent(lblGhiChuDatHang)
-                        .addGap(0, 86, Short.MAX_VALUE))
+                        .addGap(0, 84, Short.MAX_VALUE))
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -1051,7 +1048,7 @@ public class BanHangPanel extends javax.swing.JPanel {
             }
         });
 
-        lblSoTrangSP.setText("jLabel5");
+        lblSoTrangSP.setText("1");
 
         btnNext.setText(">");
         btnNext.addActionListener(new java.awt.event.ActionListener() {
@@ -1067,7 +1064,7 @@ public class BanHangPanel extends javax.swing.JPanel {
             }
         });
 
-        lblTongSoTrang.setText("jLabel6");
+        lblTongSoTrang.setText("1/4");
 
         javax.swing.GroupLayout pnDSSanPhamLayout = new javax.swing.GroupLayout(pnDSSanPham);
         pnDSSanPham.setLayout(pnDSSanPhamLayout);
@@ -1386,7 +1383,14 @@ public class BanHangPanel extends javax.swing.JPanel {
                     }
                 }
             }
-
+            DecimalFormat dmf = new DecimalFormat("####.####");
+            Double tongTien = 0.0;
+            for (int i = 0; i < hoaDonChiTietService.getAllHDCT(txtMaHD.getText()).size(); i++) {
+                tongTien += hoaDonChiTietService.getAllHDCT(txtMaHD.getText()).get(i).getThanhTien();
+            }
+            txtTongTien.setText(dmf.format(tongTien) + "");
+            txtKhachCanTra.setText(dmf.format(tongTien) + "");
+            txtTongTienDatHang.setText(dmf.format(tongTien) + "");
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -1463,6 +1467,14 @@ public class BanHangPanel extends javax.swing.JPanel {
                 }
 
             }
+            DecimalFormat dmf = new DecimalFormat("####.####");
+            Double tongTien = 0.0;
+            for (int i = 0; i < hoaDonChiTietService.getAllHDCT(txtMaHD.getText()).size(); i++) {
+                tongTien += hoaDonChiTietService.getAllHDCT(txtMaHD.getText()).get(i).getThanhTien();
+            }
+            txtTongTien.setText(dmf.format(tongTien) + "");
+            txtKhachCanTra.setText(dmf.format(tongTien) + "");
+            txtTongTienDatHang.setText(dmf.format(tongTien) + "");
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -1671,10 +1683,8 @@ public class BanHangPanel extends javax.swing.JPanel {
                 for (int j = 0; j < ctspService.getSPBanHang(trang).size(); j++) {
                     SanPhamViewModelBanHang sanPhamViewModelBanHang = ctspService.getSPBanHang(trang).get(i);
                     if (sanPhamViewModelBanHang.getMaSP().equals(hoaDonChiTietService.getAllHDCT(txtMaHD.getText()).get(i).getMaSP())) {
-
                         ctsp.setId(sanPhamViewModelBanHang.getId());
                         ctsp.setSoLuong((sanPhamViewModelBanHang.getSoLunog() + hoaDonChiTietService.getAllHDCT(txtMaHD.getText()).get(i).getSoLuong()));
-
                     }
                 }
                 if (ctspService.updateSPKhiMua(ctsp) > 0) {
